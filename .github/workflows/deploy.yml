@@ -1,0 +1,45 @@
+name: Build and Deploy
+
+on:
+  repository_dispatch:
+    types: [update_diary]
+  # 手動でも動かせるようにする
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. (B) のプログラム(Go)を取得
+      - name: Checkout Code (Go Program)
+        uses: actions/checkout@v4
+
+      # 2. (A) の日記データを 'data' フォルダに取得
+      - name: Checkout Diary Data
+        uses: actions/checkout@v4
+        with:
+          repository: toasa/diary
+          path: data # プロジェクト内の 'data' フォルダに配置
+
+      # 3. Go のセットアップ
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21' # 適宜最新版に
+
+      # 4. HTML生成
+      - name: Generate HTML
+        run: go run main.go
+
+      # 5. 生成された public フォルダを github.io として公開
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          # github.io の場合、通常は gh-pages ブランチではなく main を公開元にすることが多いが、
+          # ソースコードと成果物を分けたいので gh-pages ブランチにデプロイする。
+          publish_branch: gh-pages 

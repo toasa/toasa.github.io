@@ -1,0 +1,209 @@
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"html/template"
+	"io/fs"
+	"os"
+	"path/filepath"
+	"sort"
+	"strings"
+
+	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/extension"
+	"github.com/yuin/goldmark/renderer/html"
+)
+
+// 設定：出力先ディレクトリ
+const outputDir = "public/diary"
+const dataDir = "data"
+
+// 日記データの構造体
+type DayEntry struct {
+	Year    string
+	Month   string
+	Day     string
+	Content template.HTML
+	Path    string
+}
+
+func main() {
+	// 1. データの収集
+	entries, err := collectEntries(dataDir)
+	if err != nil {
+		panic(err)
+	}
+
+	// 2. 出力ディレクトリのクリーニングと作成
+	os.RemoveAll("public")
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		panic(err)
+	}
+
+	// 3. 階層構造データの作成
+	tree := buildTree(entries)
+
+	// 4. HTMLの生成
+
+	// 4-1. 各日のページ
+	for _, entry := range entries {
+		html := renderTemplate("day", entry)
+		saveFile(filepath.Join(outputDir, entry.Year, entry.Month, entry.Day+".html"), html)
+	}
+
+	// 4-2. 月のページ
+	for year, months := range tree {
+		for month, days := range months {
+			data := map[string]interface{}{
+				"Year": year, "Month": month, "Days": days,
+				"UpLink": fmt.Sprintf("../%s.html", year),
+			}
+			html := renderTemplate("month", data)
+			saveFile(filepath.Join(outputDir, year, month+".html"), html)
+		}
+	}
+
+	// 4-3. 年のページ
+	for year, months := range tree {
+		// 月順ソート用
+		var monthKeys []string
+		for m := range months {
+			monthKeys = append(monthKeys, m)
+		}
+		sort.Strings(monthKeys)
+
+		data := map[string]interface{}{
+			"Year": year, "Months": monthKeys,
+			"UpLink": "index.html",
+		}
+		html := renderTemplate("year", data)
+		saveFile(filepath.Join(outputDir, year+".html"), html)
+	}
+
+	// 4-4. トップページ
+	var years []string
+	for y := range tree {
+		years = append(years, y)
+	}
+	sort.Strings(years)
+
+	data := map[string]interface{}{"Years": years}
+	html := renderTemplate("index", data)
+	saveFile(filepath.Join(outputDir, "index.html"), html)
+
+	fmt.Println("生成完了: ./public ディレクトリを確認してください")
+}
+
+// データ収集関数
+func collectEntries(root string) ([]DayEntry, error) {
+	var entries []DayEntry
+
+	md := goldmark.New(
+		goldmark.WithExtensions(extension.Linkify),      // Linkify: URLを自動でリンクにする
+		goldmark.WithRendererOptions(html.WithUnsafe()), // WithUnsafe: <img>タグなどをそのまま出力する
+	)
+
+	err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if !d.IsDir() && strings.HasSuffix(d.Name(), ".md") {
+			parts := strings.Split(filepath.ToSlash(path), "/")
+			if len(parts) < 4 {
+				return nil
+			}
+			year, month := parts[len(parts)-3], parts[len(parts)-2]
+			day := strings.TrimSuffix(parts[len(parts)-1], ".md")
+
+			content, _ := os.ReadFile(path)
+			var buf bytes.Buffer
+			
+			// 作成したパーサー(md)を使って変換
+			if err := md.Convert(content, &buf); err != nil {
+				return err
+			}
+
+			entries = append(entries, DayEntry{
+				Year: year, Month: month, Day: day,
+				Content: template.HTML(buf.String()),
+			})
+		}
+		return nil
+	})
+	return entries, err
+}
+
+// 階層データ構築
+func buildTree(entries []DayEntry) map[string]map[string][]DayEntry {
+	tree := make(map[string]map[string][]DayEntry)
+	for _, e := range entries {
+		if tree[e.Year] == nil {
+			tree[e.Year] = make(map[string][]DayEntry)
+		}
+		tree[e.Year][e.Month] = append(tree[e.Year][e.Month], e)
+	}
+	for y := range tree {
+		for m := range tree[y] {
+			sort.Slice(tree[y][m], func(i, j int) bool {
+				return tree[y][m][i].Day < tree[y][m][j].Day
+			})
+		}
+	}
+	return tree
+}
+
+func saveFile(path string, content string) {
+	dir := filepath.Dir(path)
+	os.MkdirAll(dir, 0755)
+	os.WriteFile(path, []byte(content), 0644)
+}
+
+func renderTemplate(kind string, data interface{}) string {
+	const tplString = `
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		/* 簡易的なスタイル調整 */
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; } /* 画像がはみ出さないように */
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	{{if eq .Kind "index"}}
+		<h1>日記トップ</h1>
+		<ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
+	{{else if eq .Kind "year"}}
+		<h1>{{.Data.Year}}年</h1>
+		<a href="{{.Data.UpLink}}">戻る</a>
+		<ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
+	{{else if eq .Kind "month"}}
+		<h1>{{.Data.Year}}年 {{.Data.Month}}月</h1>
+		<a href="{{.Data.UpLink}}">戻る</a>
+		<ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
+	{{else if eq .Kind "day"}}
+		<h1>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h1>
+		<a href="../{{.Data.Month}}.html">月一覧へ戻る</a>
+		<hr>
+		<div>{{.Data.Content}}</div>
+	{{end}}
+</body>
+</html>`
+	
+	t, _ := template.New("base").Parse(tplString)
+	var buf bytes.Buffer
+	wrapper := struct {
+		Kind string
+		Data interface{}
+	}{Kind: kind, Data: data}
+	
+	t.Execute(&buf, wrapper)
+	return buf.String()
+}
