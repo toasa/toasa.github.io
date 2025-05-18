@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article>
+    <header>
+        <h2>{{ page.title }}</h2>
+        {% assign path_parts = page.path | split: '/' %}
+        {% assign year = path_parts[0] %}
+        {% assign month = path_parts[1] %}
+        {% assign day = path_parts[2] | split: '.' | first %}
+        <p class="date">{{ year }}-{{ month }}-{{ day }}</p>
+    </header>
+    <section>
+        {{ content }}
+    </section>
+</article>

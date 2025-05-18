@@ -1,0 +1,27 @@
+---
+layout: default
+---
+{% assign current_year = page.path | split: '/' | first %}
+<h1>{{ current_year }}年</h1>
+<ul>
+  {% assign months = "" | split: "" %}
+  {% for p in site.pages %}
+    {% if p.path contains '/' %}
+      {% assign path_parts = p.path | split: '/' %}
+      {% if path_parts[0] == current_year and path_parts.size > 1 %}
+        {% assign month = path_parts[1] %}
+        {% comment %}月ディレクトリは2桁の数字と仮定 (例: "01", "12") {% endcomment %}
+        {% if month != nil and month.size == 2 and month != "index.html" %}
+          {% unless months contains month %}
+            {% assign months = months | push: month %}
+          {% endunless %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% assign sorted_months = months | uniq | sort %}
+  {% for month in sorted_months %}
+    <li><a href="{{ site.baseurl }}/{{ current_year }}/{{ month }}/">{{ month }}</a></li>
+  {% endfor %}
+</ul>
+<p><a href="{{ site.baseurl }}/">全ての年に戻る</a></p>
