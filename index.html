@@ -1,0 +1,15 @@
+---
+layout: year_index
+---
+
+{%- comment -%}
+このページには、すべての投稿の中から「年」をユニークに抽出して
+昇順／降順でリスト化します
+{%- endcomment -%}
+
+<ul>
+  {%- assign years = site.posts | map: "date" | map: "year" | uniq -%}
+  {%- for y in years reversed -%}
+  <li><a href="{{ site.baseurl }}/{{ y }}/">{{ y }}</a></li>
+  {%- endfor -%}
+</ul>

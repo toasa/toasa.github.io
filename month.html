@@ -1,0 +1,18 @@
+---
+layout: day_index
+---
+
+<h1>{{ page.year }}/{{ page.month }}</h1>
+
+<ul>
+    {%- assign posts_in_month = site.posts |
+    where_exp: "p", "p.date | date: '%Y' == page.year" |
+    where_exp: "p", "p.date | date: '%m' == page.month" -%}
+    {%- for p in posts_in_month -%}
+    <li>
+        <a href="{{ p.url }}">
+            {{ p.date | date: "%d" }}
+        </a>
+    </li>
+    {%- endfor -%}
+</ul>

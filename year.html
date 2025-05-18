@@ -1,0 +1,20 @@
+---
+layout: month_index
+---
+
+<h1>{{ page.year }}</h1>
+
+<ul>
+    {%- comment -%}
+    この `page.year` は index.html から渡された param
+    {%- endcomment -%}
+    {%- assign posts_in_year = site.posts | where_exp: "post", "post.date | date: '%Y' == page.year" -%}
+    {%- assign months = posts_in_year | map: "date" | map: "month" | uniq -%}
+    {%- for m in months -%}
+    <li>
+        <a href="{{ site.baseurl }}/{{ page.year }}/{{ m | prepend: '0' | slice: -2 }}/">
+            {{ m | prepend: '0' | slice: -2 }}
+        </a>
+    </li>
+    {%- endfor -%}
+</ul>

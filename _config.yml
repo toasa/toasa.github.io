@@ -1,18 +1,28 @@
-title: "とあさのうみ"
-description: "toasa のブログです。"
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://toasa.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: toasa
+# title: "とあさのうみ"
+# description: "toasa のブログです。"
+# baseurl: "" # the subpath of your site, e.g. /blog
+# github_username: toasa
+# 
+# # Build settings
+# markdown: CommonMarkGhPages
+# commonmark:
+#   extensions:
+#     - autolink
+#     - strikethrough
+#     - table
+#   
+# theme: minima
+# plugins:
+#   - jekyll-feed
+#   - jekyll-seo-tag
 
-# Build settings
-markdown: CommonMarkGhPages
-commonmark:
-  extensions:
-    - autolink
-    - strikethrough
-    - table
-  
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+# Jekyll 全体設定
+title: "日記"
+baseurl: ""        # GitHub Pages の場合は空
+url: "https://toasa.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+
+# 投稿のパーマリンクを /年/月/日.html に
+permalink: /:year/:month/:day.html
+
+# デフォルトのレイアウトディレクトリ
+layouts_dir: _layouts
