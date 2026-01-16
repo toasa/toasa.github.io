@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/05/03</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>朝。旧居の退去手続き。
+立ち会い代行の業者の方いらして、室内を見回る。
+キッチン近くの壁に油汚れがあり、
+自責による賠償と処理されそうになったが、
+持っていた食洗用スポンジで壁を擦り汚れを落とすと、
+それでオッケーということになった。ヨシッ。</p>
+<h3>Plain Text Always Wins</h3>
+<p><a href="https://gist.github.com/mizchi/651b8c1fcee34d5c299c17bba38e8623">https://gist.github.com/mizchi/651b8c1fcee34d5c299c17bba38e8623</a></p>
+<p>たしかに、リッチテキストは LLM に食わせずらい。
+手元の epub ファイルは NotebookLM にアップロードできなくて持ち腐れしてるし。</p>
+<h3>ことば</h3>
+<blockquote>
+<p>寝てゐても 団扇の動く 親心</p>
+</blockquote>
+<h3>図書館の Wifi</h3>
+<p>特定のドメインへのインターネットアクセスを制限する方法が気になる、というはなしの続き（<a href="https://github.com/toasa/diary/blob/main/2025/04/29.md#%E5%9B%B3%E6%9B%B8%E9%A4%A8%E3%81%AE-wifi">前回</a>）。
+ドメイン名によるフィルタリングをしていると仮定して、
+どのパケットからドメイン名を取得したのか考える。
+前回は TLS handshake時の &quot;Client hello&quot; の Server Name Indication の項目を見てるのかも、と書いたが、
+もっと単純に、HTTP のリクエストヘッダの <code>Host</code> フィールドにドメイン名が埋め込まれているので、ここを見ているのかも、と思った：</p>
+<pre><code>tym@:~ $ curl -v youtube.com
+* Host youtube.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 142.250.76.142
+*   Trying 142.250.76.142:80...
+* Connected to youtube.com (142.250.76.142) port 80
+&gt; GET / HTTP/1.1
+&gt; Host: youtube.com
+&gt; User-Agent: curl/8.7.1
+&gt; Accept: */*
+&gt; 
+</code></pre>
+</div>
+	
+</body>
+</html>

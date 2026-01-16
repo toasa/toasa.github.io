@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/05/27</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>朝。めちゃ暑い。調べてみると暦上はすっかり初夏だった。</p>
+<p>午前中はスタバで Rust の勉強。</p>
+<p>午後はお家でのんびり。</p>
+<p>晩御飯は鶏胸肉と玉ねぎの炒め物。</p>
+<p>20 時から家族とビデオチャット。</p>
+<h3>Fragments</h3>
+<p>早田ひな、すごい！</p>
+<p><a href="https://www.youtube.com/watch?v=abARNPy68YE">https://www.youtube.com/watch?v=abARNPy68YE</a></p>
+<hr>
+<p>引き続き &quot;Learning Rust With Entirely Too Many Linked Lists&quot; を勉強中：</p>
+<p><a href="https://rust-unofficial.github.io/too-many-lists/third-basics.html">https://rust-unofficial.github.io/too-many-lists/third-basics.html</a></p>
+<p>Rust の <code>Option::as_deref()</code> がようやく理解できた気がする。
+もともとは &quot;Learning ...&quot; の実装の中に出てきたのだが、よくわからんまま数日すぎた。
+流石にこのまま放置もできないので、<a href="https://doc.rust-lang.org/std/option/enum.Option.html#method.as_deref">公式のリファレンス</a>を読む。</p>
+<p><code>as_deref()</code> のサンプルコードが文字列型であり、
+そもそも Rust の文字列型がよくわかってなかったので、そこからの復習になった。
+<code>String</code> 型は、ヒープにアロケートされた、可変で、所有権を持つ文字列型で、参照をとると <code>&amp;str</code> 型になる。また <code>String</code> 型は <code>Deref</code> trait を実装している。
+なので <code>Option&lt;String&gt;</code> 型に対して、<code>as_deref()</code> を施すと
+<code>Option&lt;&amp;str&gt;</code> が得られるということね。</p>
+<p>今のところの勉強方法は &quot;Learning ...&quot; でよくわからん -&gt; 公式を参照する、をループしている。
+こんな場当たり的な勉強の良いところはやる気を維持しやすいこと。
+なんせ目の前にわからないことがあるので。
+悪いところは網羅的で、構造化された知識が得難いこと。
+それと分からないところを流してしまう（特に疲れていると）と指数的にわからないことが増え、
+やる気が下がりがち。</p>
+<hr>
+<p>2022 年キプチョゲが世界記録を出したレースで、彼の給水係として支えたおじいさんの話。
+良い：</p>
+<p><a href="https://www.youtube.com/watch?v=Ymt9bMna2rM">https://www.youtube.com/watch?v=Ymt9bMna2rM</a></p>
+<p>ところで、キプチョゲの平均時速は21.18km/hだった<a href="https://www.redbull.com/jp-ja/eliud-kipchoge-sub-two-marathon-in-numbers">らしい</a>。( ﾟдﾟ)ﾎﾟｶｰﾝ。
+トレッドミルで 20 秒走れたら良い方だと思うが、それを2時間続けるとは！</p>
+</div>
+	
+</body>
+</html>

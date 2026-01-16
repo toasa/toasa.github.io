@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2024/09/08</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>朝。先週買ったパセリが冷蔵庫に余っていたので、
+ポルペッティーニという、イタリア風肉団子を作る。
+8個ほど焼いて、トマトソースパスタの上に乗っけて食べる。</p>
+<p>お昼。武蔵野プレイスでプログラミング。
+Rust 言語で ping コマンドを自作。</p>
+<p>その後、大岡昇平の『<a href="https://www.amazon.co.jp/%E9%87%8E%E7%81%AB-%E3%81%AE%E3%81%B3-%E6%96%B0%E6%BD%AE%E6%96%87%E5%BA%AB-%E5%A4%A7%E5%B2%A1-%E6%98%87%E5%B9%B3/dp/4101065039">野火</a>』を最後まで読む。
+終盤をもう一度読み返したい気持ち。</p>
+<p>お昼寝したり、散歩したり。</p>
+<h3>自作 ping</h3>
+<p><a href="https://github.com/toasa/rp">https://github.com/toasa/rp</a></p>
+<p>macOS 上で動かした例：</p>
+<pre><code>$ cargo build
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
+$ sudo ./target/debug/rp         
+Received response from 127.0.0.1 seq =1 time=20 ms
+</code></pre>
+<p>Raw socket を使うため管理者権限で実行している。
+Linux capability の CAP_NET_RAW を使えば root は不要そう：</p>
+<ul>
+<li><a href="https://gihyo.jp/admin/serial/01/linux_containers/0042">https://gihyo.jp/admin/serial/01/linux_containers/0042</a></li>
+<li><a href="https://docs.rs/caps/latest/caps/enum.Capability.html#variant.CAP_NET_RAW">https://docs.rs/caps/latest/caps/enum.Capability.html#variant.CAP_NET_RAW</a></li>
+</ul>
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/10/28</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>晴れたまに小雨、暖かい日。</p>
+<p>朝4時に目が覚めた。
+2h ほどお家でだらだらし、井の頭公園へランニングに行った：</p>
+<img src="https://i.imgur.com/tDS003M.jpg" width="700">
+<p>西園の競技場周りでは朝 6:30 からラジオ体操をやっているらしい。
+近隣住民と思しき方々が50名ほどグラウンドを囲み、体操する。
+体操中、競技場のトラックを走るのは自分と女性二人組のみ。
+体操中の皆さんからの好奇の目を浴びながら、
+淡々と走った。（内心は嬉しかった。普段注目を浴びることがないので）。</p>
+<p>今日は近所の小学校の運動会。
+<a href="https://github.com/toasa/diary/blob/main/2022/10/29.md">去年</a>もこの時期に開催。
+日記を読み返すと、昨年の自分はダメージを受けていたので、
+三鷹から早々退散することにした。</p>
+<p>品川到着。スタバで勉強したり、お茶したり：</p>
+<img src="https://i.imgur.com/R5jqMZp.jpg" width="500">
+<p>渋谷へ移動。お昼ご飯はやよい軒：</p>
+<img src="https://i.imgur.com/8ld3sHA.jpg" width="700">
+<p>（一杯目の配膳されたご飯がかなり柔らかめで好みから外れたことを除けば）とてもおいしゅーございました。</p>
+<h3>関数型プログラミングと型システムのメンタルモデル</h3>
+<p>Qiita Conference Day2 Naoya Ito さんの講演：</p>
+<ul>
+<li><a href="https://youtu.be/pe0vW9AyunQ?si=lkWZzGYaJ2DNSM8w&amp;t=9530">動画</a></li>
+<li><a href="https://speakerdeck.com/naoya/guan-shu-xing-puroguramingutoxing-sisutemunomentarumoderu">スライド</a></li>
+</ul>
+<p>集合論的な側面としてはすでに知ってる考えが多かったが、
+プログラミングの側面からは知らないこともかなりあった。見てよかった。
+以下、メモ：</p>
+<ul>
+<li>関数の定義域と値域は型と見なすこともできる。なるほど。</li>
+<li>型と型を組み合わせた構造化を上手くやる。
+<ul>
+<li>型としてのモデリング力が上がり、現実的な問題を良く表現できる</li>
+<li>コンパイラによる型チェックが効くため、堅牢なプログラムになる</li>
+</ul>
+</li>
+<li>型の組み合わせの代表例は直積と直和。
+<ul>
+<li>直積の例が struct なのは目から鱗。ただ、スライドで AND と書かれていて、集合論の共通部分かと少しと勘違いしてしまった。</li>
+<li>&quot;Making illegal states unrepresentable&quot; は良い。排他的に表現できる直和を使いましょうというはなし。確かに struct にいろんなメンバを持たせてしまうと、不正な状態のインスタンスが生成可能になってしまう。上手く直和を使って値の組み合わせパターンを減らしましょう。</li>
+</ul>
+</li>
+<li>関数による状態遷移の記述。ある状態を引数として受け取り、新しい状態を返り値として返す。どうしてコピーの発生が気になる。</li>
+</ul>
+<h3>folly::ProducerConsumerQueueTest コード読み</h3>
+<p>コード： <a href="https://github.com/facebook/folly/blob/main/folly/ProducerConsumerQueue.h">https://github.com/facebook/folly/blob/main/folly/ProducerConsumerQueue.h</a><br>
+ドキュメント： <a href="https://github.com/facebook/folly/blob/main/folly/docs/ProducerConsumerQueue.md">https://github.com/facebook/folly/blob/main/folly/docs/ProducerConsumerQueue.md</a></p>
+<ul>
+<li>実装はとてもシンプル。</li>
+<li>Producer 数も Consumer 数も 1 スレッドが前提なんだろうか？<a href="https://github.com/facebook/folly/blob/main/folly/test/ProducerConsumerQueueTest.cpp">テスト</a>を見るとそうっぽいし、<a href="https://github.com/facebook/folly/blob/main/folly/MPMCQueue.h">MPMC queue</a> は別にあるし。</li>
+<li>lock free なので write(enqueue) も read(dequeue) も lock を取っていない。ただバッファ用の read/write インデックスはアトミック変数になっている。これも lock free に含まれるのか。</li>
+<li><code>std::forward</code> が出てきて何だっけ？となる。そもそも forwarding（転送）とは、受け取った引数をそのまま別関数に渡すことらしい。Perfect forwarding とは、左辺値は左辺値のまま、右辺値は右辺値のまま転送すること。<code>std::forward</code> はC++で Perfect forwarding を行う関数。</li>
+</ul>
+</div>
+	
+</body>
+</html>

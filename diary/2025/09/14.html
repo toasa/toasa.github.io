@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/09/14</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>朝。9月末でポイント還元が廃止されるため、
+ふるさと納税を急ぎ注文する。米と鮭。</p>
+<p>お昼。コメダ珈琲。
+卵とハムとレタスのサンドイッチ。</p>
+<hr>
+<ul>
+<li><a href="https://ctfexh.setodanote.net/challenges#echo_me-83">echo_me</a>
+<ul>
+<li>echo サーバーが起動しており、そのサーバーに対し期待する文字列を渡す問題。ラリーが1回で終わらないのがミソ。</li>
+<li>手動で10回ほどやってみたけど、まだまだ続きそうだったので、プログラミングで解く。</li>
+<li>こういうときに Go が便利。<a href="https://wandbox.org/permlink/EyRrtedoBkvqx5Fo">プログラム</a>で解いた。</li>
+</ul>
+</li>
+<li><a href="https://ctfexh.setodanote.net/challenges#EZZZIPPP-61">EZZZIPPP</a>
+<ul>
+<li>パスワード付きの zip ファイルが 1000 階層入れ子になった問題。</li>
+<li>zip ファイルの解凍、パスワードファイルの読み込み、新しい zip ファイルの解凍、...を繰り返す。</li>
+<li>Python の <a href="https://docs.python.org/ja/3/library/zipfile.html">zipfile</a> ライブラリを使って<a href="https://wandbox.org/permlink/2QIlBaXx0XHyumY4">解答</a>。</li>
+<li>Python3 スクリプトで自動化しているとはいえ、処理が結構遅い。ファイルの読み込みに時間がかかっている？</li>
+</ul>
+</li>
+<li><a href="https://ctfexh.setodanote.net/challenges#deep_thought-8">deep_thought</a>
+<ul>
+<li>サーバーから簡単な足し算、引き算の問題が与えられるので、答えを送信するクライアントを作る問題</li>
+<li>掛け算とかも出てくるなら演算子の優先順位を気をつけないと行けないため、パースを工夫する必要があるが、そこまでする必要はなかった</li>
+<li><code>整数 + 整数</code> または <code>整数 - 整数</code> なので、パースは楽</li>
+<li>Go 言語で<a href="https://wandbox.org/permlink/57BvP1yuhmTKXdHg">解答</a>。面白い問題だな、よく思い浮かぶなあ</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

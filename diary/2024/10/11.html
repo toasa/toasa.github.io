@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2024/10/11</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>金曜日</h3>
+<p>朝。6時ごろ目覚める。帰省を控えた昂りが睡眠へ影響を与えてます。これ。</p>
+<p>出勤まで時間があるので Rust in Action の続き：</p>
+<p><a href="https://github.com/toasa/wiki/blob/main/%E3%80%90%E6%9B%B8%E7%B1%8D%E3%80%91RustInAction.md#85-ergonomic-error-handling-for-libraries">https://github.com/toasa/wiki/blob/main/%E3%80%90%E6%9B%B8%E7%B1%8D%E3%80%91RustInAction.md#85-ergonomic-error-handling-for-libraries</a></p>
+<p>大谷が50-50クラブを始めたので、自分も何か始めよう。
+4ボタンクラブとかどうかな。シャツの前ボタンを4つしかとめないクラブ。</p>
+<p>お昼。井の頭公園を散歩：</p>
+<img src="https://i.imgur.com/NUbAe1N.jpeg" width="700">
+<p>夜。豊洲で麻辣先生の四川よだれ鶏、茄子の天ぷら花椒かけを食べる。</p>
+<h3>Fragments</h3>
+<p>ChatGPT に静的ディスパッチと動的ディスパッチのサンプルコードを書いてもらう：</p>
+<pre><code class="language-rust">trait Animal {
+    fn sound(&amp;self);
+}
+
+struct Dog;
+struct Cat;
+
+impl Animal for Dog {
+    fn sound(&amp;self) {
+        println!(&quot;Woof!&quot;);
+    }
+}
+
+impl Animal for Cat {
+    fn sound(&amp;self) {
+        println!(&quot;Meow!&quot;);
+    }
+}
+
+// Static dispatch
+fn sound(animal: impl Animal) {
+    animal.sound();
+}
+
+// // Dynamic dispatch
+// fn sound(animal: &amp;dyn Animal) {
+//     animal.sound();
+// }
+
+fn main() {
+    let dog = Dog;
+    let cat = Cat;
+
+    sound(dog);
+    sound(cat);
+}
+</code></pre>
+</div>
+	
+</body>
+</html>

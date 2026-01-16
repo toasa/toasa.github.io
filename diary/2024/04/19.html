@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2024/04/19</h1>
+		<a href="../04.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>金曜日</h3>
+<ul>
+<li>扇風機かけて寝る。冷房はまだいいか。</li>
+<li>朝。公園で Operating System Concepts の発表準備。8.5 Deadlock Prevention. デッドロックが発生しないことを保証するための仕組み。現実的な解法は、循環参照が発生しないようにすること。具体的には全ての資源に番号をつけて、スレッドは番号順にしか資源を要求しないようにする。
+<ul>
+<li>以下はデッドロックが発生するサンプルコード。スレッド１が do_work1 を実行し、スレッド２が do_work2 を実行する想定。スレッド１が <code>lock(&amp;m1)</code> を実行した直後にスレッド２が <code>lock(&amp;m2)</code> を実行してしまうとデッドロック発生。</li>
+<li>
+<pre><code class="language-c">mutex_t m1, m2;
+
+void do_work1() {
+  lock(&amp;m1)
+  lock(&amp;m2)
+
+  // ...
+}
+
+void do_work2() {
+  lock(&amp;m2)
+  lock(&amp;m1)
+
+  // ...
+}
+</code></pre>
+</li>
+<li>このようなスレッドと資源の循環参照を避けるため、あらかじめ資源に全順序をつけて、その順に資源を要求していきましょうね、と言う話。</li>
+<li>もし、すでに資源を複数保持していて、新しく番号が小さい資源を要求したい場合、今持ってる資源を解放してから、資源を要求する。</li>
+</ul>
+</li>
+<li>お仕事。ドキュメントｶｷｶｷφ(･ω･｀)</li>
+<li>職場の方、産育休暇から復帰。一年ぶりの出社。めでたい！</li>
+<li>終業。19時から内見の予定だったが、先客が予約して募集終了。内見は流れた。ぴえんではある。</li>
+<li>井の頭公園をランニング：
+<ol>
+<li>8:26.15</li>
+<li>7:39.19</li>
+</ol>
+</li>
+<li>晩御飯。鶏の照り焼き。<a href="https://www.youtube.com/watch?v=eE-L3C2Xcj0">笠原氏のレシピ</a>で作った。 酒、醤油、みりん、砂糖。各大さじ１だとやや甘めに感じた。砂糖を半分に減らしてまた作ってみるか。</li>
+<li><a href="https://idratherbewriting.com/learnapidoc/">Documenting APIs: A guide for technical writers and engineers</a></li>
+<li><a href="https://www.amazon.co.jp/Build-Orchestrator-Go-Tim-Boring/dp/1617299758">Build an Orchestrator in Go</a>
+<ul>
+<li>スクラッチから作ってわかる系の本。時間あるかわかんないけど、中身気になる。</li>
+</ul>
+</li>
+<li>沿革。読めるけど、意味知らなかった。</li>
+</ul>
+</div>
+	
+</body>
+</html>

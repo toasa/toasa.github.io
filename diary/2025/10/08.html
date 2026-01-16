@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/10/08</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>水曜日</h3>
+<p><a href="https://www.phoronix.com/news/Python-3.14">Python 3.14 Released With Performance Improvements, Free-Threading &amp; Zstd</a>.
+円周率 Python きたー。
+<a href="https://peps.python.org/pep-0779/">PEP779</a> がサポートされるらしい。
+PEP779の内容は、GILをオプション化し、マルチスレッド実行を可能にする」提案みたい：</p>
+<blockquote>
+<p>Phase II would make the free-threaded build officially supported but still optional,</p>
+</blockquote>
+<p>そして、将来は GIL なしをデフォルトにするとのこと：</p>
+<blockquote>
+<p>phase III would make the free-threaded build the default.</p>
+</blockquote>
+<p>気になるパフォーマンスは、10%ほど減。macだと 3% ほどしか低下しないのはなんでだろ：</p>
+<blockquote>
+<p>Performance: the performance penalty on linear performance, comparing a free-threaded build against a with-GIL build, as measured by the pyperformance benchmarks (for example as run by Microsoft’s Faster CPython team, or Meta’s Python Runtime team), is currently around 10% (except on macOS, where it’s more like 3%).</p>
+</blockquote>
+<p>GIL なしで真の並列実行へ。
+この恩恵を普段 Python を使っている方に聞いてみたい。</p>
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/03/01</h1>
+		<a href="../03.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>昨晩眠れなかったのでTCP/IP プロトコルスタック自作を進める。
+UDP プロトコルの実装。
+チェックサムの計算範囲が IP と UDP で違うことにハマった。
+UDP ではペイロード部分も計算対象なんだけど、
+IP だとヘッダ部分だけが計算対象だった。
+<a href="https://datatracker.ietf.org/doc/html/rfc791">RFC791</a> を確認する。確かにデータ部分の正当性は保証しないとみたい（そもそも名前が &quot;Header Checksum&quot;だしな）：</p>
+<blockquote>
+<p>The Header Checksum provides a verification that the information used in processing internet datagram has been transmitted correctly. The data may contain errors.</p>
+<p>The internet protocol does not provide a reliable communication facility. (省略).  There is no error control for data, only a header checksum.</p>
+</blockquote>
+</div>
+	
+</body>
+</html>

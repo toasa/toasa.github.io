@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/08/29</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>月曜日</h3>
+<p>起床後すぐにランニング。
+外は快晴で涼しい。
+月曜日のランニングの目的は、週末で忘れた仕事を部分的に思い出すことにある。
+何しろ週末は仕事のことをほとんど考えていない。
+金曜までの記憶を再びキャッシュにのせようというわけである。</p>
+<p>5700 歩ほどのラン。涼しいことはいいことだ。</p>
+<p>午前中は出社してミーティング。
+午後からは在宅勤務。
+帰宅途中に三平ストアによってあじの寿司を買った。</p>
+<p>晩ごはんは鶏むね肉のミンチのハンバーグ。
+生姜としその葉をいれてさっぱりした味。</p>
+<h3>『親という二字』</h3>
+<p>ラランド西田が書き出しを褒めていたので、読んでみた。</p>
+<blockquote>
+<p>親という二字と無筆の親は言い。この川柳は、あわれである。</p>
+</blockquote>
+<p>酒を飲んで悩みを抑え込むのは、僕が飲めないだけに、無頼なかっこよさがあるなと思う。
+ただ最近は Sober Curious という考えもあるみたい。</p>
+<h3>db_tutorial</h3>
+<p>part6 では、現在注目している行を表現する <code>Cursor</code> という抽象化を入れるのだが、これがうまいなと思った。</p>
+<p><a href="https://cstack.github.io/db_tutorial/parts/part6.html">https://cstack.github.io/db_tutorial/parts/part6.html</a></p>
+<p>それまでは行を (serialize | deserialize) するときに、(書き込み先 | 読み込み元) のアドレスを <code>row_slot</code>
+というメソッドで取得していたのだが、part6 では <code>Cursor</code> のメソッド <code>cursor_value</code> を使う。
+また select 文ではテーブル内の各行をイテレートするのだが、これも <code>cursor_advance</code> メソッドを使う。</p>
+<p><code>Table</code>、<code>Row</code> と構造体のきれいな包含関係がある一方で、現在注目している行は <code>row_slot</code> でアドレスを取得したり、 for 文で行をイテレートしたりとイマイチ抽象化できていない気がしていたので、スッキリするなと感心した。こういうアイデアは場数なんだろな。</p>
+<p>（ただ insert や select を実行するたびに <code>Cursor</code> を malloc する必要はないように思う。static なグローバル変数として最初から領域を確保しておけば良さそう。）</p>
+</div>
+	
+</body>
+</html>

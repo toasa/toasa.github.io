@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2024/07/06</h1>
+		<a href="../07.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>引越し見積もり完了。
+大量の段ボールを受け取る。</p>
+<p>都知事選の期日前投票done.
+会場は吉祥寺の武蔵野商工会館。
+20人ほど行列ができていた。</p>
+<img src="https://i.imgur.com/r85yJNh.jpg" width="700">
+<p>築地で味噌汁。蕪と茗荷。</p>
+<h3>海のはじまり</h3>
+<p><a href="https://tver.jp/episodes/epsk2b0q13">https://tver.jp/episodes/epsk2b0q13</a></p>
+<p>月岡くん声いいな。
+ストーリーは怒涛の展開。
+弥生氏の反応が気になる。</p>
+<h3>std::collections::BTreeMap</h3>
+<p>Rust の B-tree の説明が良いという話：</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/collections/struct.BTreeMap.html">https://doc.rust-lang.org/nightly/std/collections/struct.BTreeMap.html</a></p>
+<p>二分木と比較し、計算量だけを見ると二分木の方が良いはずだが、
+現実的にはそうではない。
+二分木の普通の実装では１つノードを１つの heap アロケーションにとる：
+これは現代のコンピュータアーキテクチャと相性が悪い：</p>
+<ul>
+<li>ノードを追加するたびに head-allocation が入る。</li>
+<li>各ノードはヒープ領域に点在しているため、ノードの比較処理などでキャッシュミスが多発する。</li>
+</ul>
+</div>
+	
+</body>
+</html>

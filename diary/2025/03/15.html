@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/03/15</h1>
+		<a href="../03.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>『<a href="https://www.youtube.com/watch?v=uPjLotu5j9Y">走れコウタロー</a>』。
+走れ、といったらマキバオーでもウマ娘でもなく、コウタローだなあ。
+懐かしい。1970年の発売だけど、
+子供のころにどこかで聞いた覚えがある。</p>
+<hr>
+<p>吉祥寺の図書館まで散歩。
+学習室で競プロを解く：</p>
+<ul>
+<li><a href="https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ek">B64</a>。すっかり忘れてしまったダイクストラ法に再入門。未訪問のノードの中から、到達コストが最小のノードを選ぶのがキモ。最小コストのノードを選ぶために優先度付きキューを使うといいよね、という話。</li>
+<li><a href="https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_el">B65</a>。再帰関数を使った DFS で実装。一回目の提出時は RE (実行時エラー)。詳細を見てもメモリ上限には余裕がありそうだったので、Python の再帰上限に引っかかっていると予想。予想は当たり、<code>sys.setrecursionlimit()</code> を設定することで無事 AC。</li>
+<li><a href="https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_em">B66</a>。 Union-find 木を使う応用問題。 ノード間の辺を削除するクエリがあるが、クエリを逆順に見れば、これは辺を追加するクエリとみなせて、通常の Union-Find 木の問題として解ける、というのが主なアイデア。</li>
+<li><a href="https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_en">B67</a>。最大全域木を求める問題。辺の重みで降順にソートし、閉路ができなければ辺を追加する。辺の接続、閉路の判定のために、Union-Find 木を使う（最小全域木の解法と同じ）。</li>
+</ul>
+</div>
+	
+</body>
+</html>

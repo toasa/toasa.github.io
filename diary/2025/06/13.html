@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/06/13</h1>
+		<a href="../06.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>Kotlin の実行環境をDocker で作る</h3>
+<p>Dockerfile の内容：</p>
+<pre><code>toyama@blue:~$ cat Dockerfile
+FROM openjdk:21-jdk-bookworm
+
+ENV KOTLIN_VERSION 2.1.21
+
+RUN apt-get update &amp;&amp; \
+    apt-get install -y unzip curl &amp;&amp; \
+    curl -L &quot;https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip&quot; -o kotlin.zip &amp;&amp; \
+    unzip kotlin.zip &amp;&amp; \
+    rm kotlin.zip
+
+# 環境変数PATHにKotlinコンパイラのパスを追加
+ENV PATH=&quot;/kotlinc/bin:${PATH}&quot;
+
+WORKDIR /app
+
+CMD [&quot;bash&quot;]
+</code></pre>
+<p>Kotlin のサンプルプログラム</p>
+<pre><code>toyama@blue:~$ cat Hello.kt
+fun main() {
+    println(&quot;Hello from kotlinc in Docker! 🚀&quot;)
+}
+</code></pre>
+<p>イメージの作成とコンテナの実行：</p>
+<pre><code>toyama@blue:~$ sudo docker build -t kotlin-env .
+toyama@blue:~$ sudo docker run --name kotlin-env-cont -it -v $(pwd):/app kotlin-env
+</code></pre>
+<p>Javaサンプルプログラムのコンパイルと実行：</p>
+<pre><code>root@a45c1c728ed5:/app# kotlinc Hello.kt -include-runtime -d Hello.jar
+root@a45c1c728ed5:/app# java -jar Hello.jar
+Hello from kotlinc in Docker! 🚀
+</code></pre>
+</div>
+	
+</body>
+</html>

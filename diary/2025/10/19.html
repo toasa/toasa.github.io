@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/10/19</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>てんやわんやのコメダ珈琲。
+Go の time/time.go のコメントを読む。
+和風パスタを食べる。</p>
+<h3>負の整数の除算</h3>
+<p>あれ？Python は床除算になってる：</p>
+<pre><code>$ python3
+&gt;&gt;&gt; -1 // 60
+-1
+&gt;&gt;&gt; -1 % 60
+59
+</code></pre>
+<p>普通はゼロ方向への丸めじゃなかったっけ？と確認するとやっぱりそう：</p>
+<pre><code>tym@:~ $ echo &quot;-1 / 60&quot; | bc
+0
+tym@:~ $ echo &quot;-1 % 60&quot; | bc
+-1
+tym@:~ $ echo $((-1 / 60))
+0
+tym@:~ $ echo $((-1 % 60))
+-1
+</code></pre>
+<pre><code>$ gcc -xc - -o tmp.exe &lt;&lt;EOF &amp;&amp; ./tmp.exe
+#include &lt;stdio.h&gt;
+int main() {
+  printf(&quot;-1 / 60 = %d\n&quot;,  -1 / 60);
+  printf(&quot;-1 %% 60 = %d\n&quot;, -1 % 60);
+}
+EOF
+-1 / 60 = 0
+-1 % 60 = -1
+</code></pre>
+<p>PEP 238を確認する。
+そもそも、<code>//</code> は Floor division, <code>/</code> は True division とのことだった：</p>
+<p><a href="https://peps.python.org/pep-0238/">https://peps.python.org/pep-0238/</a></p>
+</div>
+	
+</body>
+</html>

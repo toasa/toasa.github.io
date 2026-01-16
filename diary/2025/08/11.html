@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/11</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>月曜日</h3>
+<p>浅草散歩。
+友人にバーガーキングを紹介する。
+気に入ってもらえたようでよかった。
+青柳総本家浅草店は残念ながらお休み。ういろうはたまに食べたくなる。</p>
+<hr>
+<p><a href="https://marp.app/">marp</a>。
+マークダウン記法でスライドを作成できる。
+<a href="https://marpwebeditor.app/">オンラインのエディタ</a>を少しさわってみる。
+かなり良さそう。</p>
+<hr>
+<p>ランニング中にラジオを聴きたくなり、
+カナル型のワイヤレスイヤホンを試してみたがイマイチ。
+耳が塞がれ外部の環境音が聞こえづらくなるため、
+車や自転車の走行音が聞こえない危なさと、
+せっかく外に出ているのに内に閉じこもっている楽しくなさがある。
+てなわけで Shokz の <a href="https://jp.shokz.com/products/openrun">OpenRun</a> を買う。
+吉祥寺のヨドバシカメラで、12,420円。
+定価は 17,888 円なので 30% ほど値引きされてた。
+値引きが効いたのは、バンドサイズが標準の長さで、充電方式がマグネットタイプのもの。
+もう一つの充電タイプは USB Type-C で、それだとスマホの充電ケーブルを流用できて人気なのかも。</p>
+<hr>
+<p>マラソン界隈の用語で 「サブエガ」を知る。</p>
+<h3>BLE</h3>
+<p>自分の Linux 環境は、
+macOS で OrbStack を使用して Linux 環境を作っている。
+この環境で BLE パケットを取得してみたいと思い、<code>socket(AF_BLUETOOTH, SOCK_RAW, BTPROTO_HCI);</code> を動かすが、成功しない。
+&quot;socket: Address family not supported by protocol&quot; というエラー。
+そもそも macOS の Bluetooth デバイスが Linux にパススルーされていないみたい。
+デバイスは macOS に見せているので、Linux に見えないのは当たり前か。
+となると、どうしようか。</p>
+<p>やりたいこととしては、BLE のパケットをキャプチャして、プロトコルスタック内の各レイヤの中身を見てみたい。
+思い浮かぶ方法は３つ。
+１つ目は、 N100 などのミニPC を買ってきて Ubuntu を入れて Linux 環境を用意する方法。
+２つ目は、Bluetooth の USB ドングルを買ってきて、
+QEMU などで Linux 環境を作り、その環境に USB パススルーで Bluetooth デバイスを見せる方法。
+３つ目は、macOS で BLE のパケットキャプチャを行い、pcap の解析を Wireshark で行う。
+３つ目はハードウェアの調達がいらないのでお手軽ではある。</p>
+</div>
+	
+</body>
+</html>

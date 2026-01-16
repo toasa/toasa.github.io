@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/11/29</h1>
+		<a href="../11.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p>雨ときどき曇り。肌寒い日。</p>
+<p>朝から雨。ランニングは諦めた。</p>
+<p>今週末にあるランニング大会のリマインドメールが届いた。
+20km の部は参加者が 91 名（内 15 名が女性）のようだ：</p>
+<p><a href="https://my.raceresult.com/227566/participants#20_E4A375">https://my.raceresult.com/227566/participants#20_E4A375</a></p>
+<p>全く準備してないし、なんなら体重は増加気味なんですが、はたしてどうなることやら。</p>
+<p>お昼休みに雨があがっていたのでランニングに行った。
+紅葉がきれいだった：</p>
+<img src="https://i.imgur.com/SkNrGIN.jpg" width="500">
+<p>晩ごはんは鶏むね肉に片栗粉をかけて焼いたもの。
+スイートチリソースをかけて食べた。</p>
+<h3>ストラウストラップ本メモ</h3>
+<p>3 章のはじめから 3.3.2 まで読んだ。以下メモ：</p>
+<ul>
+<li>3.2.1.2
+<ul>
+<li>コンストラクタで資源を獲得し、デストラクタで解放する技法を RAII (Resource Acquisition Is Initialization) という。</li>
+<li>用意されたコンストラクタ、デストラクタを動かすため、new や delete をユーザーが直接呼ぶのはなるべく避ける。</li>
+</ul>
+</li>
+<li>3.2.2
+<ul>
+<li>純粋仮想関数を持つクラスを抽象クラス (abstract class) という。</li>
+<li>さまざまなクラスにインタフェースを提供する Container のようなクラスを、一般に多相型 (polymorphic type) という。</li>
+</ul>
+</li>
+<li>3.2.4
+<ul>
+<li>抽象クラスのデストラクタを virtual にすることで、派生クラスのオブジェクトが呼び出したデストラクタが、vtable の仕組みによって実行される。</li>
+</ul>
+</li>
+<li>3.3
+<ul>
+<li>コピーとムーブの関数シグネチャ
+<ul>
+<li>
+<pre><code class="language-cpp">class Vector {
+    // ...
+
+    Vector(const Vector&amp; a);            // copy constructor
+    Vector&amp; operator=(const Vector&amp; s); // copy assignment
+
+    Vector(Vector&amp;&amp; a);                 // move constructor
+    Vector&amp; operator=(Vector&amp;&amp; a);      // move assignment
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

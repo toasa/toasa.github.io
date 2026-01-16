@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/08/21</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>朝7時頃目が冷めて10時までお布団の中でスマホ。
+無の時間を過ごしていた。まぁ <a href="https://qr.ae/pvwSPq">Quora の回答</a>を見てからは、
+必要経費だと思っている：</p>
+<blockquote>
+<p>私はテレビゴロゴロや、YouTubeゴロゴロは、現代における焚き火だと思います。原始人が焚き火を見てリラックスしたように、現代人はテレビやYouTubeを見るともなしに見て、日々の疲れを癒やしているのです。</p>
+</blockquote>
+<p>そこからランニングへでかけた。井の頭公園のいつもどおりのコース。
+休日は家族連れ、カップルの数がぐっと増え、風景として飽きない。
+１時間ほど走り、1万歩ちょっと。</p>
+<p>午後からはけやきコミュニティセンターにいった。
+夏休み中の学生さんが多く、みなさん黙々と勉強されている。
+こんな環境だとサボって twitter しようという気にはサラサラなれないので、僕も勉強する。
+水は方円の器に随うのです。</p>
+<img src="https://i.imgur.com/r09fo3h.jpg" width="700">
+<p>帰宅して晩ごはん。
+昨日のお好み焼きでキャベツが 1/4 残っていたので、今日もお好み焼き。
+変化を出すため魚肉ソーセージと紅生姜を足したのだが、ちょっと飽きたかも。
+ここ2日で4枚食べてるしねｗ</p>
+<h3>シェルのコメント</h3>
+<p><a href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a> を読んでいると、コメントを上手く使えという項目があった：</p>
+<blockquote>
+<p>If you are halfway through typing a command but change your mind, hit alt-# to add a # at the beginning and enter it as a comment (or use ctrl-a, #, enter). You can then return to it later via command history.</p>
+</blockquote>
+<p>これも即効性がありそう。
+例えばコマンドAが必要とわかったので記事からコピペするが、調べ物を続けるうちにAに先立つコマンドBが必要なことがわかったとする。
+このとき、とりあえずコマンドBを試したいのだが、コピペしちゃうとAが上書きされてしまう。
+そんなときにはコンソールで <code>#cmdA</code> を実行して、その後 <code>cmdB</code> を実行すればよい。</p>
+<h3>２つのファイルの和集合、共通部分、差集合</h3>
+<p>出典はまたまた <a href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a> 。
+例えば以下のような２つのファイル x, y があった場合：</p>
+<pre><code>root@b13b7c30051d:~/tmp# cat x
+foo
+bar
+baz
+root@b13b7c30051d:~/tmp# cat y
+foo
+bar1
+baz
+</code></pre>
+<p>両者の和集合、共通部分、差集合はそれぞれ以下のように求められる：</p>
+<pre><code>root@b13b7c30051d:~/tmp# cat x y | sort | uniq
+bar
+bar1
+baz
+foo
+root@b13b7c30051d:~/tmp# cat x y | sort | uniq -d
+baz
+foo
+root@b13b7c30051d:~/tmp# cat x y | sort | uniq -u
+bar
+bar1
+</code></pre>
+<p>なるほど sort と uniq を組み合わせるのか。頭いいね。</p>
+<h3>man unicode</h3>
+<p><code>man unicode</code> を読んだ。以下覚書。</p>
+<p>unicode はその他のあらゆる文字セットの super set になっていて、charsetA -&gt; UCS -&gt; charsetA と変換しても、情報がロストしないことを保証している。これを &quot;round-trip compatibility&quot; というのが面白い。視覚的でわかりやすいよね：</p>
+<blockquote>
+<p>UCS contains all characters of all other character  set standards.   It also guarantees &quot;round-trip compatibility&quot;; in other words, conversion tables can be built such that no information is lost when a string is converted from any other encoding to UCS and back.</p>
+</blockquote>
+<p>&quot;Combining characters&quot; というセクションでは combining characters (以下、 cc) という特別な文字を解説している。cc はレンダリング時にスペースを取らない文字で、直前の文字にアクセントをつける役割をはたす。ただアクセント付きの主要な文字はすでにそれ自身にコードポイントが割り当てられている。例えば A のウムラウトは以下のように２通りの表現方法がある：</p>
+<ol>
+<li>0x00c4</li>
+<li>0x0041 0x0308</li>
+</ol>
+<p>うーん、いかにもレンダリングの実装が面倒になりそう。Combining script のメリットは以下のようにある：</p>
+<blockquote>
+<p>Combining characters are essential for instance for encoding the  Thai script or for mathematical typesetting and users of the International  Phonetic Alphabet.</p>
+</blockquote>
+<p>これはおそらく一つの文字の構成要素が複数に分かれていて、それぞれの文字にコードポイントを割り当てていたら、場合の数が増えすぎてしまうということなんだろう。
+数学はまぁわかるとして、タイ語もそうなっているんだね。</p>
+<h3>man utf-8</h3>
+<p><code>man utf-8</code> も（途中まで）読んだ。以下覚書。</p>
+<p>Properties のセクションで &quot;The UTF-8 encoding has the following nice properties&quot; と紹介されてるだけあって、僕も以下の工夫はすごいと思う：</p>
+<blockquote>
+<ul>
+<li>UCS characters 0x00000000 to 0x0000007f (the classic US-ASCII  characters) are encoded simply as bytes 0x00 to 0x7f (ASCII compatibil-ity). This means that files and strings which  contain  only  7-bit ASCII characters have the same encoding under both ASCII and UTF-8.</li>
+<li>All  UCS characters greater than 0x7f are encoded as a multibyte sequence consisting only of bytes in the range 0x80  to 0xfd, so no ASCII byte can appear as part of another character and there are no problems with, for example,  '\0' or '/'.</li>
+<li>The first byte of a multibyte sequence which represents a single non-ASCII UCS character is always in the range 0xc2 to 0xfd and indicates how long this multibyte sequence is. All further bytes in a multibyte sequence are in the range 0x80 to 0xbf. This allows easy resynchronization and makes the encoding stateless and robust against missing bytes.</li>
+</ul>
+</blockquote>
+<p>だいたい Rui さんの受け売りなんだけど、それぞれ説明。</p>
+<p>最初の工夫は ASCII 文字を1バイトで表現できるのが大きくて、他の encoding に比べてデータ量の節約に貢献する。例えば HTTP ファイルだと、header は <a href="https://stackoverflow.com/a/5251951">ascii only</a>だし、HTTP タグもそう。ということはたとえ本文が日本語の HTTP ファイルであっても ASCII は相当に使われており、その部分が１バイトになるのは大きい。</p>
+<p>２番目の工夫では、多倍長文字の途中に NUL 文字が入ることはないので、C 言語の文字列の扱いと矛盾がない。</p>
+<p>３番めの工夫はパースの実装がかんたんになる。つまり文字の1バイト目を見ただけでそれが何バイト文字なのかわかれば、1文字のパースがかんたんになる。</p>
+<p>また以下の工夫は知らず、読んでいて？となった：</p>
+<blockquote>
+<ul>
+<li>The bytes 0xc0, 0xc1, 0xfe, and 0xff are never used in the UTF-8 encoding.</li>
+</ul>
+</blockquote>
+<p>調べたところ、この工夫は１バイトで表現できる文字を、無理やりマルチバイトにすることを禁じているらしい。このようなマルチバイト文字を「非最短形式」と呼ぶらしい。これを使ったウイルス被害も過去にあったようで、なかなか物騒なはなしだった。以下の記事を参考にした：</p>
+<p><a href="https://gihyo.jp/admin/serial/01/charcode/0004">https://gihyo.jp/admin/serial/01/charcode/0004</a></p>
+</div>
+	
+</body>
+</html>

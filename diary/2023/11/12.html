@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/11/12</h1>
+		<a href="../11.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>晴れ、寒い日。</p>
+<p>朝。かなり寒い。窓開けて寝るのはそろそろ限界。</p>
+<p>お昼。カフェで勉強。
+lock-free の記事を読む。
+何がわからないのかもわからなくなる：</p>
+<p><a href="https://preshing.com/20120612/an-introduction-to-lock-free-programming/">https://preshing.com/20120612/an-introduction-to-lock-free-programming/</a></p>
+<p>ここ最近の余暇時間は lock-free の理解に費やしてきたが、
+実感できるほどの成果がなく、気持ちが疲れてきた。</p>
+<p>晩御飯は麻婆豆腐に鶏もも肉を入れたもの。</p>
+<h3>&quot;Efficient Linux at the Command Line&quot;</h3>
+<p>第7章 11 More Ways to Run a Command</p>
+<ul>
+<li>Technique #4 の Process Substitution。<code>&lt;()</code> で囲ったコマンドの実行結果を一時的なファイルにし、別のコマンドに引数として渡す。例えば diff コマンド。実際、シェルの扱いとしては一時的なファイルを作っているようで、<code>$ echo &lt;(ls)</code> などでファイルディスクリプタが確認できる。</li>
+<li>Technieuq #8 xargs。文字列のリストと引数が欠けている不完全なコマンドから、リスト内の各文字列を引数にする完全なコマンドを実行する。
+<ul>
+<li><code>-n</code> オプションで何個分の文字列を引数とするか選べる。例えば <code>-n1</code> だと１文字列ごとにコマンドを実行する。</li>
+<li><code>-I</code> で文字列の変数を設定できる。
+<pre><code>$ ls
+blue	green	red
+$ ls | xargs -I XYZ echo XYZ is my favorite color
+blue is my favorite color
+green is my favorite color
+red is my favorite color
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>第8章 Building a Brash One-Liner</p>
+<ul>
+<li><code>$RANDOM</code> ってシェル変数は知らなんだ。0 から 32,767まで。</li>
+</ul>
+<h3>Fragments</h3>
+<p>学部時代のゼミ指導先生が九大に移られた：</p>
+<p><a href="https://www.math.kyushu-u.ac.jp/teachers/10615/">https://www.math.kyushu-u.ac.jp/teachers/10615/</a></p>
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/02/24</h1>
+		<a href="../02.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>月曜日</h3>
+<p><a href="https://github.com/toasa/microps/tree/dev">TCP/IP プロトコルスタック自作</a>。
+ICMP メッセージの送信を実装したため、別ホストからの ping コマンドに応答できるようになった。
+また、ARP リクエストの送信と ARPキャッシュを実装した。
+IP パケットを送信する際に、ARP キャッシュのテーブルを検索し、
+キャッシュがヒットしなければ ARP リクエストを送信して mac アドレスの解決を行う。
+解決されたアドレスはキャッシュされ、一定時間内であれば ARP リクエストは不要になる。
+キャッシュは内部にタイマーを持っており、一定時間が経過するとクリアされる仕組み。</p>
+</div>
+	
+</body>
+</html>

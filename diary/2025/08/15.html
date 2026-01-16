@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/15</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>金曜日</h3>
+<p>帰省のため成田空港に行く。
+11時45分のフライトだが、
+8時45分に着く。
+朝ごはん：</p>
+<img src="https://i.imgur.com/9Uehbb3.jpeg" width="500">
+<p>いつもだれもいないへや:</p>
+<img src="https://i.imgur.com/QA8KKa3.jpeg" width="500">
+<img src="https://i.imgur.com/sN9q0KU.jpeg" width="700">
+<h3>BLE</h3>
+<p>Connection</p>
+<ul>
+<li>
+<p>Connection Interval</p>
+<p>２つのBLEデバイスはほとんどの時間寝ていて（BLE の省電力性の要因）、
+たまに目覚めて通信を行う。この目覚める間隔を Connection Interval という。</p>
+</li>
+<li>
+<p>Supervision timeout</p>
+<p>最後にパケットを受け取った時間から、接続が失われたとみなすまでの時間間隔。</p>
+</li>
+</ul>
+<p>BLE パケットの構造</p>
+<ul>
+<li>Preamble (1B)</li>
+<li>Access Address (4B)</li>
+<li>Protocol Data Unit (PDU)
+<ol>
+<li>Advertisement PDU
+<ul>
+<li>Header (2B)</li>
+<li>Payload (0-37B)
+<ul>
+<li>AdvA (6B): Bluetooth address</li>
+<li>AdvData (0-31B)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data PDU
+<ul>
+<li>Header (2B)</li>
+<li>Payload (0-251B)
+<ul>
+<li>L2CAP Header (4B)</li>
+<li>ATT Header (3B)</li>
+<li>ATT Data (0-244B)</li>
+</ul>
+</li>
+<li>MIC (4B)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>CRC (3B)</li>
+</ul>
+<p>心拍センサーサービス (Heart Rate Service) の GATT の例：</p>
+<pre><code>Service (0x180D: Heart Rate)
+ ├─ Characteristic (0x2A37: Heart Rate Measurement)
+ │    ├─ Properties: Notify
+ │    ├─ Value: [78 bpm]
+ │    └─ Descriptor (0x2902: Client Characteristic Configuration Descriptor, CCCD)
+ │         └─ Value: 0x0001 (通知有効)
+ │
+ ├─ Characteristic (0x2A38: Body Sensor Location)
+ │    ├─ Properties: Read
+ │    └─ Value: Chest
+ │
+ └─ Characteristic (0x2A39: Heart Rate Control Point)
+      ├─ Properties: Write
+      └─ Value: [Command to reset energy expended]
+</code></pre>
+<h3>確定拠出年金</h3>
+<p>何が確定して、何を拠出するのか。
+そもそも拠出とは何か。</p>
+<p>将来受け取る年金額が確定しているのではなく、掛金の額が確定しているという意味。
+また、拠出とは掛金を出すという意味。
+また、掛金とは、主に年金の用語のようで、定期的に負担する費用のこと。</p>
+</div>
+	
+</body>
+</html>

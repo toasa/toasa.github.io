@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2026/01/10</h1>
+		<a href="../01.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>応用情報を勉強中。これまでの勉強遍歴だと、
+興味の赴くままにトピックをつまみ食いしてきたので、
+知識の抜け漏れが多いという弱点がわかった。
+応用情報で一通り網羅的に勉強することで、
+業界内の一般常識は知れるうれしさがある。</p>
+<p>午前試験。150分で全80問。
+つまり1問当たりにかけられる時間は112.5秒。
+うーん、短いような長いような。
+<a href="https://www.ap-siken.com/apkakomon.php">過去問道場</a>で解いてみると、一瞬でわかる問題もちょこちょこある（体感２割）けど、
+ほとんどは2分以上考えてる気がする。
+まぁスピードを求めるフェーズはまだ先でええか。
+１問１問しっかり理解していけ。</p>
+<p>応用情報も CBT (Computer Based Testing) に移行：</p>
+<p><a href="https://www.ipa.go.jp/shiken/2026/ap_koudo_sc-cbt.html">https://www.ipa.go.jp/shiken/2026/ap_koudo_sc-cbt.html</a></p>
+<blockquote>
+<p>春期（4月）と秋期（10月）であった試験実施を変更し、一定期間内に複数日で試験を実施する予定です（注釈2）。</p>
+</blockquote>
+<hr>
+<p>XSS がよくわからなかったので、
+AIさんに脆弱性のある web サイトを作ってもらう：</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;XSS Demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;XSS デモサイト&lt;/h1&gt;
+
+  &lt;form method=&quot;GET&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;q&quot; placeholder=&quot;何か入力&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;送信&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;hr&gt;
+
+  &lt;p&gt;あなたの入力：&lt;/p&gt;
+  &lt;div id=&quot;result&quot;&gt;
+    &lt;script&gt;
+      // URLパラメータを取得
+      const params = new URLSearchParams(location.search);
+      const q = params.get(&quot;q&quot;);
+
+      // ⚠ 脆弱：エスケープせずにHTMLとして出力
+      if (q) {
+        document.write(q);
+      }
+    &lt;/script&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>フォームに入力する文字が、通常？の文章だと問題ないのだが、
+<code>&lt;script&gt;alert(&quot;XSS成功&quot;)&lt;/script&gt;</code> のように JS として意味がある文を入力すると、ブラウザのJSエンジンがスクリプトとして実行してしまう。
+つまり <code>document.write()</code> がまずいってことか。
+ドキュメントは<a href="https://developer.mozilla.org/ja/docs/Web/API/Document/write">これ</a>。中の説明で</p>
+<blockquote>
+<p>このメソッドは構文解析の実行中に HTML パーサーの状態に影響を与え、結果として文書のソースに対応しない DOM を生成することがあります</p>
+</blockquote>
+<p>渡された文字列を HTML として再パースして、DOM ツリーに組み込む、ってことかな。</p>
+</div>
+	
+</body>
+</html>

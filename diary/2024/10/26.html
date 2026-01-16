@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2024/10/26</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>吉祥寺まで散歩。
+期日前投票done。</p>
+<p>吉祥寺図書館。
+Linux Foundation の無料 Linux 学習コース <a href="https://training.linuxfoundation.org/ja/training/introduction-to-linux-lfs101-jp/">LFS101-JP</a>をやる。</p>
+<p>京橋に移動。
+落合陽一さんの個展「<a href="https://www.brillia-art.com/bag/exhibition/22.html">昼夜の相代も神仏</a>」を見る。
+個展のタイトルは「ひるよるのあいかわるわきもかみほとけ」と読む。
+中に入ると落合さんがいて、鑑賞者に解説されてた。</p>
+<img src="https://i.imgur.com/xv9Wglj.jpeg" width="500">
+<p>ねじれゆく鮎：</p>
+<img src="https://i.imgur.com/FtNjXJ7.jpeg" width="700">
+<img src="https://i.imgur.com/tpJXWKZ.jpeg" width="700">
+<img src="https://i.imgur.com/aBW0Gp9.jpeg" width="500">
+<img src="https://i.imgur.com/hbVQ9BL.jpeg" width="700">
+<img src="https://i.imgur.com/QhUJr5L.jpeg" width="500">
+<p>夜。豊洲に移動。
+石破さんが演説をやってたので見に行く。
+普段テレビのインタビューで見るゆっくりとした口調ではなく、
+はっきり澱みなく聞きやすいスピードと声量で話されていた。
+これがスピーチが上手いということか！
+ちょっと感動してしまう体験だった。</p>
+<h3>vim でカーソルの前に put</h3>
+<p>vim でカーソルの前に put したいときは大文字の P なのか！
+小文字は後ろ、大文字は前。一貫性があってよきです。</p>
+<h3>Samurai 45</h3>
+<p><a href="https://www.youtube.com/watch?v=q5bpq8a9CCo">https://www.youtube.com/watch?v=q5bpq8a9CCo</a></p>
+<p>45 はどんな意味なんだろ。
+侍にまつわる数字といえば、七人の侍の７、士の１１とか：</p>
+<h3>LFS101-JP</h3>
+<p><a href="https://linux.die.net/man/1/at">at コマンド</a>。
+未来にコマンドを実行できるコマンド。</p>
+<pre><code>tym@blue:~$ at now + 1 minutes
+warning: commands will be executed using /bin/sh
+at Sat Oct 26 10:59:00 2024
+at&gt; echo foo &gt; $(date +%H_%M_%S)
+at&gt; # Ctrl-D で終了
+at&gt; &lt;EOT&gt;
+job 3 at Sat Oct 26 10:59:00 2024
+</code></pre>
+<p><code>!!</code> で一つ前のコマンドを実行</p>
+<pre><code>tym@blue:~$ echo $$
+207
+tym@blue:~$ !!
+echo $$
+207
+</code></pre>
+<p>vim でカーソルの前に put したいときは大文字の P なのか！
+小文字は後ろ、大文字は前。一貫性があってよきです。</p>
+<h3>routel コマンド</h3>
+<p>見やすい。ルーティングテーブルの見方、意味をちゃんと理解したい。</p>
+<pre><code>tym@blue:~$ routel
+Dst             Gateway         Prefsrc         Protocol Scope   Dev              Table
+default         198.19.249.1    198.19.249.205  dhcp             eth0             
+198.19.248.200  198.19.249.1    198.19.249.205  dhcp             eth0             
+198.19.249.0/24                 198.19.249.205  kernel   link    eth0             
+198.19.249.1                    198.19.249.205  dhcp     link    eth0             
+127.0.0.0/8                     127.0.0.1       kernel   host    lo               local
+127.0.0.1                       127.0.0.1       kernel   host    lo               local
+127.255.255.255                 127.0.0.1       kernel   link    lo               local
+198.19.249.205                  198.19.249.205  kernel   host    eth0             local
+198.19.249.255                  198.19.249.205  kernel   link    eth0             local
+</code></pre>
+<p>比べてみると ip コマンドは見づらいな：</p>
+<pre><code>tym@blue:~$ ip route show
+default via 198.19.249.1 dev eth0 proto dhcp src 198.19.249.205 metric 100 
+198.19.248.200 via 198.19.249.1 dev eth0 proto dhcp src 198.19.249.205 metric 100 
+198.19.249.0/24 dev eth0 proto kernel scope link src 198.19.249.205 metric 100 
+198.19.249.1 dev eth0 proto dhcp scope link src 198.19.249.205 metric 100
+</code></pre>
+</div>
+	
+</body>
+</html>

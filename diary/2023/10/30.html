@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/10/30</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>月曜日</h3>
+<p>晴れ、暖かい日。</p>
+<p>朝。近所の公園で30mほど読書。</p>
+<p>お昼休憩。会社周辺を散歩：</p>
+<img src="https://i.imgur.com/Qo2pMAj.jpg" width="700">
+<p>晩。ふるさと納税の返礼品が届いた：</p>
+<img src="https://i.imgur.com/woDzGc9.jpg" width="700">
+<h3>「大きな問題のほうが小さな問題より解くのは簡単だ」</h3>
+<p>Qiita Conference 2023 Autmun Day3、Rui さんの講演：</p>
+<p><a href="https://youtu.be/p_eVjpuzbw4?si=p8RHWZOdHt1ghsM9&amp;t=9523">https://youtu.be/p_eVjpuzbw4?si=p8RHWZOdHt1ghsM9&amp;t=9523</a></p>
+<p>でかいプロジェクトをドカンと立ち上げて、
+腕力で正面から解決する。ホントかっこいいな。</p>
+<h3>並列プログラムから見たFuture</h3>
+<p><a href="https://www.youtube.com/watch?v=4cNaZiZyOK0">第二回：コアを使い切る為に必要な事</a> メモ：</p>
+<ul>
+<li>並列計算は Non-blocking である必要がある</li>
+<li>CPUコア数に比べ、タスクは細かく分割しなければいけない</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=exKJe_kWqbM">第三回：スレッドプールとは</a> メモ：</p>
+<ul>
+<li>Thread pool メモ：
+<ul>
+<li>thread の数は CPU の数と同数</li>
+<li>タスクキューを持つ</li>
+<li>各スレッドは無限ループをしている。ループの中身はタスクキューからタスクを取り出し、ひたすら実行する</li>
+<li>タスクは Non-blocking である必要がある。blocking する処理がスレッドで走ると、CPU自体が止まってしまう</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

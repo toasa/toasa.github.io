@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/05/28</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>晴れのち曇り。</p>
+<p>朝10時ごろまで寝た。よく寝れて体調も良い。</p>
+<p>12時ごろから、武蔵野市総合体育館のジムへ行った。
+バイク30m、ラン30m、バーピー15回x4で終了。
+今日走ったトレッドミルにはスピードの上限値があったらしく、
+18 km/h までしか上がらなかった。
+20 km/h で走りたかった(´・ω・`)</p>
+<p>ジム後は、スタバ西東京新町店でのんびり。
+屋内の席は全て埋まっていたため、屋外のテラス席にした。
+ここもなかなか快適で、木の葉が風にゆられ、さやさやという音が聞こえた。
+15 時ごろ来店したので、コーヒーはデカフェで注文した。
+味も悪くないし、居場所も良い。いいね！</p>
+<h3>Fragments</h3>
+<p>日記の抜けをチェックするスクリプトを書いた：</p>
+<p><a href="https://github.com/toasa/diary/blob/main/coverage.py">https://github.com/toasa/diary/blob/main/coverage.py</a></p>
+<p>チェックの開始日から終了日までをイテレートするコードは、以下を参考にした：</p>
+<p><a href="https://stackoverflow.com/questions/1060279/iterating-through-a-range-of-dates-in-python">https://stackoverflow.com/questions/1060279/iterating-through-a-range-of-dates-in-python</a></p>
+<p>こういうのが、サクッと書けちゃうのは Python のよさ。</p>
+<hr>
+<p>&quot;Learn Rust With Entirely Too Many Linked Lists&quot; の続き。</p>
+<p>5章突入。<code>RefCell</code> が出てきたので、公式の doc でおさらい。
+以下のような理解：</p>
+<p><code>Cell</code> と <code>RefCell</code> は interior mutability という特異な性質を持つ。
+Rust では通常、参照は ① mutable な参照を１つだけ持つ、
+② immutable な参照を複数持つ、のどちらかしかできない。
+しかし、<code>Cell</code>/<code>RefCell</code> を使うと、第３の方法、つまり mutable な参照を複数持てるらしい。
+いつ使うべきかも載っていた：</p>
+<p><a href="https://doc.rust-lang.org/std/cell/#when-to-choose-interior-mutability">https://doc.rust-lang.org/std/cell/#when-to-choose-interior-mutability</a></p>
+<p><code>RefCell</code> は実行時に（mutable な参照の排他チェックのための）オーバーヘッドがあるというデメリットがあるが、
+<code>Cell</code> にはどのようなデメリットがあるのか、理解できていない。</p>
+<hr>
+<p>うお、カーリーが 9.88 を出したみたい。</p>
+<p><a href="https://www.youtube.com/watch?v=pm--WAI_Q5A">https://www.youtube.com/watch?v=pm--WAI_Q5A</a></p>
+<p>会場は横浜。せっかく関東に住んでいるので、
+こういうチャンスは逃したくないなあ。次の日本選手権は大阪だしな...：</p>
+<p><a href="https://www.jaaf.or.jp/competition/detail/1727/">https://www.jaaf.or.jp/competition/detail/1727/</a></p>
+<hr>
+<p>『<a href="https://www.amazon.co.jp/gp/product/B0B3MJNC7N">限りある時間の使い方</a>』読了。</p>
+<p>自分も休みになると、何かしら行動せねばという焦燥感に駆られて焦る経験があったため、
+少し気が軽くなる読書体験だった。良かった。</p>
+</div>
+	
+</body>
+</html>

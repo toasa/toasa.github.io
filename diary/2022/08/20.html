@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/08/20</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>朝は快晴。
+午後からは 30 %の降水確率だったので、朝ランニングすることにした。
+外に出ると気持ちいい。ひんやりとした風が秋の訪れを感じさせる。</p>
+<p>ランニング はいつものコース。西園の陸上競技場の外周を30分ほど走り、
+井の頭池の水門橋まで行って、帰宅した。
+50 分ほど走り、 9200 歩ほど。
+このところダイエットが好調で、ゴールデンウィークから 3~4 kg ほど減っている。
+ランニングしていても減量の効果が実感できて、以前より足の運びがよくなった気がする。</p>
+<p>お昼は大久保の「千里香」で中華を食べた。
+注文前にメニューを観察していると、張り紙で锅包肉が推されていた。
+好物なのだが、揚げ物を食べないダイエットを継続中のため、なくなく断念。
+頼んだのは以下：</p>
+<img src="https://i.imgur.com/MVC9Lap.jpg" width="700">
+<p>葱油餅（左）、魚香肉絲（右）</p>
+<img src="https://i.imgur.com/1zun1RI.jpg" width="700">
+<p>ニラ饅頭</p>
+<p>メニューも、店員さんの雰囲気も本場っぽい（と思う）。
+おいしゅうございました。</p>
+<p>晩ごはんはお好み焼き。
+前回よりもさらに上手くできた。変更点は以下：</p>
+<ul>
+<li>和風だしの素を多めに入れた</li>
+<li>片面に敷く豚肉をより薄切りのロース肉にした</li>
+</ul>
+<p>通常よりかなり大きめに作る。26 cm フライパンがうまるサイズ。
+キャベツ を1/4 玉分で消費し、お好み焼きを２つ作った。</p>
+<h3>フロアスタンドランプ</h3>
+<p>朝ポチって夕方届いた。</p>
+<p><a href="https://www.amazon.co.jp/gp/product/B07RQK6TQ9">https://www.amazon.co.jp/gp/product/B07RQK6TQ9</a></p>
+<p>電球が別売りなことに気づかなかったので、ランチの帰りに吉祥寺のヨドバシカメラで買ってきた：</p>
+<p><a href="https://panasonic.jp/lamp/products/led/e26_all_old.html">https://panasonic.jp/lamp/products/led/e26_all_old.html</a></p>
+<p>40, 60, 100 形と商品が並んでいたが、形という単位は初耳。
+単にワット数と読み替えてよいらしい。</p>
+<h3>Docker Ctrl-p ２回押し問題</h3>
+<p>Docker 環境で shell を操作しているときに、一つ前のコマンドに戻る <code>Ctrl-p</code> がうまく動かなかった。具体的には、一回目の <code>Ctrl-p</code> だとコマンドが表示されず、二回目で２個前のコマンドが表示される。非常に不便だった。</p>
+<p>ググったところ、コンテナから detach するためのデフォルトコマンドが <code>Ctrl-p Ctrl-q</code> で、この前半とバッティングしていたらしい。</p>
+<p><a href="https://docs.docker.com/engine/reference/commandline/cli/#default-key-sequence-to-detach-from-containers">https://docs.docker.com/engine/reference/commandline/cli/#default-key-sequence-to-detach-from-containers</a></p>
+<p>普段は interactive mode しか使っておらず、attached した状態からコマンドで動的に detached したい場面はまだない。
+てことで、detach する key-config を、あまり shell 操作で使わない（はず）のバックスラッシュ２回に置き換える。~/.docker/config.json に以下を追加した：</p>
+<pre><code>&quot;detachKeys&quot;: &quot;ctrl-\\&quot;
+</code></pre>
+<p>再度 <code>docker exec -it</code> すると、無事 <code>Ctrl-p</code> が効いてくれた。</p>
+<h3>No Shark</h3>
+<p>映画。主人公はサメに食べられるのを望むの女性。
+アメリカのビーチをいくつか訪れ、サメについて、内心、自他の容姿などへの独白が続く。</p>
+<p>英語音声英語字幕で見たけど、理解できたのは1割ぐらい。
+ぼんやり聞いていたら最後まで終わっちゃったので、ネタバレサイトで顛末を確認した。
+ふーん、そういうことかあ。</p>
+<p>Youtube でフルで見れる：</p>
+<p><a href="https://www.youtube.com/watch?v=vLOpBZI-3wM">https://www.youtube.com/watch?v=vLOpBZI-3wM</a></p>
+</div>
+	
+</body>
+</html>

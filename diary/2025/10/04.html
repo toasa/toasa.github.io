@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/10/04</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>自宅の N150 ミニPC のキャッシュメモリを調べる。
+L1, L2, L3 のキャッシュがあり、L1 キャッシュはコア毎に独立していて、
+L2, L3 キャッシュはコア間で共有されていた：</p>
+<pre><code>toyama@blue:~$ lscpu | grep cache
+L1d cache:                               128 KiB (4 instances)
+L1i cache:                               256 KiB (4 instances)
+L2 cache:                                2 MiB (1 instance)
+L3 cache:                                6 MiB (1 instance)
+</code></pre>
+<p>CPU はキャッシュラインという単位でデータをメモリからキャッシュに読み込む。
+弊環境ではL1, L2, L3、ともに 64B だった：</p>
+<pre><code>toyama@blue:~$ getconf -a | grep CACHE
+LEVEL1_ICACHE_SIZE                 65536
+LEVEL1_ICACHE_ASSOC                
+LEVEL1_ICACHE_LINESIZE             64
+LEVEL1_DCACHE_SIZE                 32768
+LEVEL1_DCACHE_ASSOC                8
+LEVEL1_DCACHE_LINESIZE             64
+LEVEL2_CACHE_SIZE                  2097152
+LEVEL2_CACHE_ASSOC                 16
+LEVEL2_CACHE_LINESIZE              64
+LEVEL3_CACHE_SIZE                  6291456
+LEVEL3_CACHE_ASSOC                 12
+LEVEL3_CACHE_LINESIZE              64
+LEVEL4_CACHE_SIZE                  
+LEVEL4_CACHE_ASSOC                 
+LEVEL4_CACHE_LINESIZE
+</code></pre>
+<p>異なるCPUが別々の変数を更新していても、それらの変数が同じキャッシュライン上に存在することで競合が発生してしまい、
+性能が低下する問題を &quot;<a href="https://en.wikipedia.org/wiki/False_sharing">False sharing</a>&quot;という。実験してみる。</p>
+<p>実験コードは以下。２つのCPUが、それぞれのカウンタをインクリメントするだけ：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;pthread.h&gt;
+
+#define N 1000000000
+
+struct counter {
+    uint32_t val;
+};
+
+struct counter counters[2];
+
+void *f(void *arg) {
+    int id = *(int *)arg;
+    for (int i = 0; i &lt; N; i++)
+        counters[id].val++;
+
+    return NULL;
+}
+
+int main(void) {
+    pthread_t t1, t2;
+    int id1 = 0;
+    int id2 = 1;
+
+    if (pthread_create(&amp;t1, NULL, f, &amp;id1) != 0) {
+        fprintf(stderr, &quot;pthread_create() failed\n&quot;);
+        return 1;
+    }
+    if (pthread_create(&amp;t2, NULL, f, &amp;id2) != 0) {
+        fprintf(stderr, &quot;pthread_create() failed\n&quot;);
+        return 1;
+    }
+
+    if (pthread_join(t1, NULL) != 0) {
+        fprintf(stderr, &quot;pthread_join() failed\n&quot;);
+        return 1;
+    }
+    if (pthread_join(t2, NULL) != 0) {
+        fprintf(stderr, &quot;pthread_join() failed\n&quot;);
+        return 1;
+    }
+
+    printf(&quot;counter1=%d, counter2=%d\n&quot;, counters[0].val, counters[1].val);
+
+    return 0;
+}
+</code></pre>
+<p><code>counters[0]</code> と <code>counters[1]</code> は構造体の隣り合わせに配置されるため、
+同じキャッシュラインに入ってしまう可能性が高い。</p>
+<p>比較対象として、構造体にパディングを追加して L1 キャッシュで共有されないようにするコードを用意する。diff は1行：</p>
+<pre><code class="language-diff">$ diff -u test-false-sharing-no-padding.c test-false-sharing-padding.c 
+--- test-false-sharing-no-padding.c	2025-10-04 20:37:08.696907085 +0900
++++ test-false-sharing-padding.c	2025-10-04 20:36:56.627786082 +0900
+@@ -6,6 +6,7 @@
+ 
+ struct counter {
+     uint32_t val;
++    uint8_t padding[64];
+ };
+ 
+ struct counter counters[2];
+</code></pre>
+<p>結果は以下：</p>
+<ul>
+<li>
+<p>パディングなし：</p>
+<pre><code>toyama@blue:~$ time ./test-no-padding 
+counter1=1000000000, counter2=1000000000
+
+real	0m4.594s
+user	0m8.734s
+sys	0m0.006s
+</code></pre>
+</li>
+<li>
+<p>パディングあり：</p>
+<pre><code>toyama@blue:~$ time ./test-padding 
+counter1=1000000000, counter2=1000000000
+
+real	0m1.323s
+user	0m2.628s
+sys	0m0.002s
+</code></pre>
+</li>
+</ul>
+<p>パディングありは、なしと比べて約3.47倍速かった。
+False sharing は思ったよりも性能が悪くなるんだな。
+（ちなみに、real より user が大きいのは、CPU が並列で動いているため）。
+こういう実験が気軽にできるのは、実機 Linux PC の良さだよな。うれしい。</p>
+<p>そういえば、Rui さんの mold リンカの並行ハッシュマップでも False sharing を避けるような最適化を入れた<a href="https://www.youtube.com/live/_LQ6jvB7sq8?si=QsvBCuU2_DDNDHCk&amp;t=805">話をされていたな</a>。</p>
+<hr>
+<p><a href="https://x.com/Yuk3u/status/1973771479398617476">https://x.com/Yuk3u/status/1973771479398617476</a></p>
+<p>確かに。 ミニPCを確認したら 423 MBだった。
+ほとんど何もタスクをしてないとはいえ、システム全体で 423MB ってすごいな。
+mac で開いてる Chrome のタブ１つがそれぐらいだった。Chrome さん使いすぎでは？</p>
+</div>
+	
+</body>
+</html>

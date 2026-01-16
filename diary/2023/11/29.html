@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/11/29</h1>
+		<a href="../11.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>水曜日</h3>
+<p>朝。公園のベンチで1.5hほど読書。
+&quot;Operating System Concepts&quot;:</p>
+<ul>
+<li>4.6.5 Schduler Activations
+<ul>
+<li>M:N モデルが前提の話。つまり Thread library が User thread を LWP 上にスケジューリングする必要がある前提。</li>
+<li>Kernel が Thread library に対して、スケジューリングのヒントを提供する。例えば実行予定の User thread が blocking しそうという情報など。この情報（ヒント）を Upcall という。</li>
+<li>LWP の見え方
+<ul>
+<li>User thread library からは仮想プロセッサとして見える</li>
+<li>OS からは 1 Kernel-thread として見える</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>5.4.1 Contention Scope
+<ul>
+<li>N:1, N:M モデルではスケジューリングが発生する（1:1 では自明）。この時、thread library は User thread を利用可能な LWP 上にスケジュールする。このスキームを Process Contention Scope (PCS) と呼ぶ。</li>
+</ul>
+</li>
+</ul>
+<p>お昼。会社周辺を散歩：</p>
+<img src="https://i.imgur.com/7LDneqD.jpg" width="700">
+<p>終業後、井の頭公園をランニング：</p>
+<img src="https://i.imgur.com/dqEgg3v.jpg" width="700">
+<p>晩御飯は豚ロースと玉ねぎの炒め物。</p>
+<h3>Fragments</h3>
+<p><a href="https://github.com/toasa/diary/blob/main/2022/12/04.md">去年参加した</a>「<a href="https://athmico.jp/item/kt2312">こりゃ多摩ラン</a>」の受付が終わってた...。
+惜しいことをした。</p>
+<hr>
+<p>Do you love me?:</p>
+<p><a href="https://www.youtube.com/watch?v=fn3KWM1kuAw">https://www.youtube.com/watch?v=fn3KWM1kuAw</a></p>
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/11/01</h1>
+		<a href="../11.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p>くもり、涼しい日。</p>
+<p>朝起きて井の頭公園へランニングに行った。
+昨日から軽い頭痛がしていたが、寒さのせいなのだろうか。
+ランニング中もやや気になったが、いつの間にか無くなっていた。</p>
+<img src="https://i.imgur.com/8N93s3U.jpg" width="500">
+<p>帰宅し 8000 歩ほどのランニングだった。 ランニング後はやっぱり気分がいい。
+ランニング前と比べ何が変わったかというと、体温が上昇したことが原因だと思うんだよな。
+であれば、健康に過ごすためには、体温を高める行動（ランニング、お風呂、サウナ）などを積極的に行い、
+体温を下げる行動（冷たい飲み物を飲む、部屋のなかでじっとする）などを回避していけばよいのかも。</p>
+<p>お昼ごはんはバナナと納豆と豆腐。
+一ヶ月後にハーフマラソンが控えているので、少しづつ減量中。</p>
+<p>晩ごはんは鶏むね肉をスライスして焼いたもの。
+昨日頂いたクラムチャウダーの缶詰を牛乳で溶いて食べた。海鮮がたくさん入っているのを期待したんだけど、
+じゃがいもばっかりだった(´・ω・`)</p>
+<h3>「本を読んだことがない32歳が初めて『走れメロス』を読む日」</h3>
+<p>良い読書とはと自省させられる記事：</p>
+<p><a href="https://omocoro.jp/bros/kiji/366606/">https://omocoro.jp/bros/kiji/366606/</a></p>
+<p>僕は小さい頃本をいかに速く読むかに注力してた時期があって、その習慣か今でも本を読むときには気をつけないと目がすべって読み飛ばしてしまう。
+そうなると、内容の理解度も薄いし定着度も低い。
+何故そんなに数を読む（というかななめ読みして概要だけ掴む）ことに頑張っていたかは謎だけど、やっぱり悪癖だよなと思う。</p>
+<p>仕事でドキュメントを読むでも無い限りは、スローでええんやでと言い聞かせるか。</p>
+<h3>karino2 C-lesson 進捗</h3>
+<p>昨日の<a href="https://github.com/toasa/diary/blob/main/2022/10/31.md#karino2-c-lesson-%E9%80%B2%E6%8D%97">実装がイマイチだった</a>原因は、
+自分が実行可能配列について理解不足だったことが <a href="https://gitter.im/karino2_program_lesson/c-lesson?source=orgpage#">kariono2 さんとのチャット</a>でわかった。
+具体的には実行可能配列という関数オブジェクトを１．単にスタックに積む場合と２．実行する場合の条件が曖昧だった。
+チャットにもある通り、いまのところ実行可能配列を実行する場合は以下の２ケースしかない：</p>
+<ul>
+<li>実行可能名前を評価し、バインドされた値が実行可能配列だった場合</li>
+<li><code>ifelse</code> などの制御演算子において実行可能配列を実行する場合</li>
+</ul>
+<p>実際のコードは以下：</p>
+<p><a href="https://github.com/toasa/c-lesson/blob/10_condbranch_stack_loop/sources/forth_modoki/interpreter/eval.c">https://github.com/toasa/c-lesson/blob/10_condbranch_stack_loop/sources/forth_modoki/interpreter/eval.c</a></p>
+<p>フルタイムの業務後に、また誰かに相談して実装を進めるのは、やってる中身は違えど、行為として代わり映えないなと思う。まぁ趣味なのでぼちぼちに進めていく。</p>
+</div>
+	
+</body>
+</html>

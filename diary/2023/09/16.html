@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/09/16</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>10連休初日。</p>
+<p>朝はお家でまったり。</p>
+<p>お昼から吉祥寺に移動。
+ヨドバシカメラでオーディオ製品を試す。</p>
+<p>Shokz OpenRun Pro。
+骨伝導イヤホンの視聴は人生初。
+音質は良い。付け心地はかなり良い。
+音漏れは多少あるが、店内がかなりうるさいので、よくわからない。
+総じて気に入った。もう少し安ければ購入も視野。</p>
+<p>次に電子ピアノをみる。
+キーボードとの違いを初めて知る：</p>
+<img src="https://i.imgur.com/nHnUJA9.jpg" width="500">
+<p>鍵盤の重たさを感じたいので、電子ピアノを探す。
+ピアノ経験はほぼゼロで、楽譜すら読めないが、
+気づけば20分ほど楽しんで弾いてた（音を出してた）。
+アコースティックギターと違い、指は痛くならないし、
+鍵盤を押せばとりあえず綺麗な音がなる。素晴らしい。
+気持ちもなんとなく癒される。
+いくつか見た中だと CASIO CDP S110 が良さそうだった。</p>
+<p>その後は吉祥寺の図書館で作業。</p>
+<p>晩御飯は焼き鮭とスクランブルエッグ。</p>
+<h3>Fragments</h3>
+<p>9/11: One Day in America.
+<a href="https://github.com/toasa/diary/blob/main/2022/09/14.md#911%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%82%92%E8%A5%B2%E3%81%A3%E3%81%9F%E3%81%82%E3%81%AE%E6%97%A5%E3%81%AE%E5%87%BA%E6%9D%A5%E4%BA%8B">去年</a>見た１話目の続きが無料公開されていた：</p>
+<ul>
+<li>英語版：https://www.youtube.com/watch?v=wmweNhFtHQY</li>
+<li>日本語字幕版：https://www.youtube.com/watch?v=xZK0Xtbkpqs</li>
+</ul>
+<h3>Rust Atomics and Locks</h3>
+<p>第1章メモ：</p>
+<ul>
+<li><code>&amp;T</code> は <em>shared reference</em>, <code>&amp;mut T</code> は <em>exclusive reference</em> と呼ぶ（immutable/mutable reference という名前は不正確）。
+<ul>
+<li><code>&amp;T</code> は基本的に immutable だが、interior mutability を持つ <code>T</code> （<code>Cell</code>, <code>RefCell</code>など）だけ例外的に mutable。</li>
+<li><code>&amp;mut T</code> は mutable。</li>
+</ul>
+</li>
+<li>Interior mutability を持つ構造体
+<ul>
+<li>シングルスレッド用：<code>Cell</code>, <code>RefCell</code></li>
+<li>マルチスレッド用：<code>Mutex</code>, <code>RwLock</code>, <a href="https://doc.rust-lang.org/std/sync/atomic/#structs">Atomic</a></li>
+</ul>
+</li>
+<li><code>MutexGuard</code>
+<ul>
+<li>サンプルの <code>Mutex&lt;Vec&lt;i32&gt;&gt;</code> の push 操作をワンライナーでかけるコードが便利。だが、<code>if let</code> 文などで使うとライフタイムを見誤り、lock が if の body まで続く、不必要に長い lock を取りがち。</li>
+</ul>
+</li>
+<li><code>RwLock</code>
+<ul>
+<li>実装は OS 依存。 違いは、writer が待ち状態の時に新しい reader が lock を取ろうとした場合に、どちらを優先するか。多くの実装は writer starvation を防ぐために writer が優先される。</li>
+</ul>
+</li>
+<li>Rust の Mutex は値を含むことが前提としているのは面白い。ここは C/C++ と違うところ。</li>
+<li>thread の park/unpark で thread を眠らせたり、起こしたりする。名前が面白い。
+<ul>
+<li>unpark -&gt; park の順で呼ぶと、unpark の効果は保存されており、park は block　されない。</li>
+<li>~~Single producer, Multi consumers の場合 park/unpark は使えない。producer はどの consumer に対して unpark() を呼べばいいかわからないため。~~ Thread handle に <a href="https://doc.rust-lang.org/stable/std/thread/struct.Thread.html#method.unpark">unpark() メソッド</a>があるので、producer は起こしたい consumer を選べるのでは？</li>
+</ul>
+</li>
+<li>Condition Variables
+<ul>
+<li>wait() で寝ているスレッドに、notify() を送って起こす。起こし方は２択：
+<ol>
+<li>寝ている任意の１スレッドを起こす: <code>Thread::notify_one()</code></li>
+<li>寝ているすべてのスレッドを起こす: <code>Thread::notify_all()</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

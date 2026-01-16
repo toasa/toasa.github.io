@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/05/19</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>金曜日</h3>
+<p>曇りのち雨、生暖かい日。</p>
+<p>朝。普段読書するベンチを覆っていた生垣が刈り取られていた！
+電話で依頼したのが<a href="https://github.com/toasa/diary/blob/main/2023/05/16.md">火曜日</a>なので、
+迅速な対応だった。ありがとうございました！</p>
+<img src="https://i.imgur.com/1BzCINy.jpg" width="500">
+<p>お昼休みは、いつも通り井の頭公園を散歩：</p>
+<img src="https://i.imgur.com/HfYaf26.jpg" width="500">
+<p>晩御飯は鳥もも肉を入れた麻婆豆腐。</p>
+<h3>Fragments</h3>
+<p>Kindle 本を普段づかいするようになって、気づいたイマイチな点。
+積読が可視化されないこと。
+昔に買ったまま未読の小説が、スクロールバーの下の方にいくつか埋もれていた。
+それらを見つけちゃうと、新しい小説を買う前に、これを読むべきだったなぁと後悔してしまう。
+それすらも忘れて、また積読が増えていく...</p>
+<hr>
+<p>会社にウォーターサーバーがあるので、水をグビグビ飲んでいる。
+今使っているマグカップだと 200 ml ほどしか容量がないので、
+頻繁に席を立ってしまう。
+座りっぱなしはよくないので、立席するのは構わないんだが、
+少し飲み足りない時に、再び水を求めに行くのは面倒（若干周りの目も気になるし）。
+でかいマグカップを買うべきなんだろうな。</p>
+<hr>
+<p>Rust N 回目の入門。Linked List を書いてみた：</p>
+<p><a href="https://wandbox.org/permlink/HQxWpORJAHq8f5T7">https://wandbox.org/permlink/HQxWpORJAHq8f5T7</a></p>
+<p>27 行目を <code>n.next = self.head;</code> と書いていて、
+コンパイラに move できない！としばらく怒られていた。
+だが、丁寧なことに <code>rustc --explain E0507</code> を見ると答えがあって、
+mutable な struct の一部のフィールドを持ち出そうとするのがダメらしく、
+回避策の <code>mem::replace</code> も紹介されていた。
+ただ、 rustc まで見に行かないといけないのは不親切だよな。
+stderr に出るメッセージは Copy trait を実装せよ、だけだし。</p>
+</div>
+	
+</body>
+</html>

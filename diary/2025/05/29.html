@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/05/29</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>浮動小数点数の間隔</h3>
+<p>IEEE 754 の浮動小数点数。
+0に近いあたりでは数が密に置かれていて、
+0から離れるに従って疎に配置される。
+浮動小数点数は３つに分類できて、
+0、非正規仮数、正規化数があり、（正の符号を考えると）この順番に並んでいる。
+0から離れるに従って疎になるというのは、
+正確に言えば点の間隔がときどき２倍になるということ。
+で、この２倍になる性質は指数部が変化する正規化数に限った話で
+指数部がすべてゼロである非正規仮数では、点の間隔は一定になる。
+たとえば32bit浮動小数点数の場合、仮数部が23ビット、指数部が8ビット（なので、 $Bias = 2^{(8-1)} - 1 = 127$ となり、指数 $E = 1 - Bias = 1 - 127 = -126$）なので、非正規化数の点の間隔は $2^{-23} \cdot 2^{-126}=2^{-149}$ となる。
+したがって、32bit浮動小数点数では、正の非正規化数は
+$1\times 2^{-149}$, $2\times 2^{-149}$, $3\times 2^{-149}$,..., $(2^{23}-1) \times 2^{-149}$ と並んでいる。</p>
+</div>
+	
+</body>
+</html>

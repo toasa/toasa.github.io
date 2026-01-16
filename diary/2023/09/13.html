@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/09/13</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>水曜日</h3>
+<p>晴れ、暑い日。</p>
+<p>朝。近所の公園で1hほど読書。
+『禅とオートバイ修理技術』の２周目を読み始めたが、
+あまり気乗りせず中断。
+『ルワンダ中央銀行総裁日記』のサンプルを読み終え、その後は『吾輩は猫である』の続きを読んだ。</p>
+<p>お昼休憩。
+スタバのマグカップが割れてしまった。
+ゴミに出しても良いのだが、<a href="https://www.city.musashino.lg.jp/gomi_kankyo/gomi/gomishushubi_dashikata/dashikata/bumbetsu_50onjun/1004824.html">武蔵野市のホームページ</a>を見ると 陶器は回収しているらしい：</p>
+<blockquote>
+<p>陶器製の食器はクリーンむさしのを推進する会が一部のコミセンで回収を行っています。</p>
+</blockquote>
+<p>せっかくなのでと、吉祥寺コミセンに割れた破片の残骸を持ち込んでみたが、にべもなく断られた。
+曰く、割れてない陶器を市民に譲渡するために回収しているのであって、割れてたらダメとのこと。
+まあ、そう言われるともっともなんだけど、ホームページに書いてて欲しかった。。割れてない食器のみ回収するよと。
+（今振り返ると我ながらアホすぎる...w）</p>
+<p>終業後は井の頭公園を30mほどランニング：</p>
+<img src="https://i.imgur.com/4qIe8dN.jpg" width="700">
+<p>晩御飯は鶏もも肉を焼いたものに<a href="https://www.ajinomoto.co.jp/cookdo/lineup/awase_014.html">エビチリのもと</a>を和えたもの。
+おいしゅーございました。</p>
+<h3>Fragments</h3>
+<p>メンバー - Ah！：</p>
+<p><a href="https://youtu.be/sM3-LG2PVlA?si=fnWuwePp7FW5snX8">https://youtu.be/sM3-LG2PVlA?si=fnWuwePp7FW5snX8</a></p>
+<p>新しい漫才のスタイル。楽しくて好き。</p>
+<hr>
+<p>PCの前に座っていると、手の指の皮をいじりがち。
+そのせいで若干手荒れが進行している。
+自分の手を見た人から何度か心配されたこともある。
+こりゃいかん。何か手を打たねば。</p>
+<p>この問題をお昼に思い出し、午後からの仕事は数時間ごとにワセリンを塗ってみた。
+結構綺麗な指の状態が続いていい感じである。キーボードがベタつくけど、まあいいさ。</p>
+<h3>Read, Copy, Update (RCU)</h3>
+<p>並行プログラミングの同期処理のはなし。
+Reader と Writer が混在する状況での排他制御メカニズムとして
+<a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock">Readers-writer lock</a> がある：</p>
+<ul>
+<li>Reader が lock を取ると、それ以降の write は block する、一方 read は block しない</li>
+<li>Writer が lock を取ると、それ以降の read と write は block する</li>
+</ul>
+<p>RCU はさらに優れていて、 Reader と Writer がどちらもロックフリーで read/write できるメカニズム。
+以下の動画（特に 29:30 辺りからのスライド）がわかりやすかった：</p>
+<p><a href="https://www.youtube.com/watch?v=rxQ5K9lo034">https://www.youtube.com/watch?v=rxQ5K9lo034</a></p>
+<p>RCU で write がブロックされない理由。
+Reader と Writer は、共有データへのアクセス (read/write) をポインタ（動画では Root pointer と呼ばれている）経由で行う。
+Writer が共有データを write したい場合は、単にポインタの差し先を新しいデータへすげ替える。
+（ポインタのすげ替えは store 命令で行い、少なくとも <a href="https://lwn.net/Articles/262464/">Linux では atomic に行われる</a>）</p>
+<blockquote>
+<p>On all systems running Linux, loads from and stores to pointers are atomic</p>
+</blockquote>
+<p>すげ替え直前までの read は古いデータを参照し、すげ替え直後からの read は新しいデータを参照する。
+つまり、ある時点において、古いデータを参照する Reader と新しいデータを参照する Reader が同時に存在する可能性がある。
+自分が理解した RCU の pros/cons は以下：</p>
+<ul>
+<li>pros
+<ul>
+<li>read と write どちらもロックフリー</li>
+</ul>
+</li>
+<li>cons
+<ul>
+<li>ある時点において古いデータを参照する Reader と新しいデータを参照する Reader の両方が存在する</li>
+<li>古いデータを（それへの Reader の参照が終わるまで）保持する必要があり、メモリのコストがかかる</li>
+</ul>
+</li>
+</ul>
+<p>RCU という名前はちょっとわかりにくい気がしている。
+Writer の動作に注目した名前だと思うが、
+Writer と Reader の役割に注目した名前でも良い気がする：</p>
+<ul>
+<li>Writer の動作に注目する場合
+<ul>
+<li>RCU のアクロニムは、Writer がポインタから Read し、古いデータを Copy し、（コピー先を修正して）新しいデータを作成し、ポインタの差し先の Update することを表す。</li>
+<li>RCU のアクロニムだと以下の動作が含まれていないので、命名としてイマイチな気がする：
+<ul>
+<li>コピー先の修正して新しいデータを作成する</li>
+<li>古いデータを drop する</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Writer と Reader の役割に注目する場合
+<ul>
+<li>RCU、あるいは Readers-writer lock の使用が想定される状況は、 多数の Reader が頻繁に read する一方、 少数（あるいは１つ）の Writer がまれに write する状況。</li>
+<li>この状況を前提としているので、<a href="https://lwn.net/Articles/262464/#Publish-Subscribe%20Mechanism">Publish-Subscribe</a> メカニズムと呼ぶ方が好き。この呼び方は以下を上手く表していると思う：
+<ul>
+<li>一人の出版者と多数の購読者という役割</li>
+<li>出版者が新しい版を出版直後は、古い版を読む購読者と新しい版を読む購読者が同時に存在する。時間と共に前者の数は単調減少しやがてゼロへ、後者の数は増えたり減ったりする</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>古くなったデータを free する方法はたくさんある
+(&quot;<a href="https://marabos.nl/atomics/inspiration.html#rcu">Rust Atomics and Locks</a>&quot; より)：</p>
+<blockquote>
+<p>There are many possible solutions for this issue, including reference counting (like Arc), leaking memory (ignoring the problem), garbage collection, hazard pointers (a way for threads to tell the others what pointers they are currently using), and quiescent state tracking (waiting for each thread to reach a point at which it is definitely not using any pointers). The last one can be extremely efficient in certain conditions.</p>
+</blockquote>
+<p>関係ないけど &quot;Rust Atomics and Locks&quot; が web だと無料で読めるの、すごない？</p>
+<p><a href="https://marabos.nl/atomics/">https://marabos.nl/atomics/</a></p>
+</div>
+	
+</body>
+</html>

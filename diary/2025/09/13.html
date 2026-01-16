@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/09/13</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>お昼。博多。
+鯖の南蛮漬けを食べる。</p>
+<hr>
+<ul>
+<li><a href="https://ctfexh.setodanote.net/challenges#morse_zero-68">morse_zero</a>
+<ul>
+<li>エディタで中身を見てみる。Z だけいくつかあるファイル、わからん。</li>
+<li>hexdump -C でみてみる。似たようなバイト列が並んでいる</li>
+<li>あー、３種類の Unicode コードポイントとして解釈できそう。</li>
+<li>U+0200C、U+0200B、と普通のASCII のZ。</li>
+<li>Zero width non-joiner か。普通の joiner は、前後の文字をくっつけて組版するために使われるものらしい。日本語だと<a href="https://ja.wikipedia.org/wiki/%E3%82%BC%E3%83%AD%E5%B9%85%E6%8E%A5%E5%90%88%E5%AD%90">ゼロ幅接合子</a>。</li>
+<li>Z を区切り文字、Zero width non-joiner を長点、Zero width space を短点として解釈。OK。</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

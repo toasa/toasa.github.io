@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/10/21</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>晴れ、暖かい日。</p>
+<p>朝。近所の公園で1.5hほど読書。</p>
+<p>お昼。神保町に移動。
+「ステーキ＆ワイン 神房」でハンバーグカレーを食べた：</p>
+<img src="https://i.imgur.com/3ODXHse.jpg" width="700">
+<p>中辛だがかなり辛かった。</p>
+<p>食事後、神保町から南下し、皇居北側に到着：</p>
+<img src="https://i.imgur.com/3gqj5AM.jpg" width="500">
+<img src="https://i.imgur.com/7yEIuow.jpg" width="500">
+<p>おしゃれなスタバがあるということで、目掛けて移動：</p>
+<img src="https://i.imgur.com/s334uDY.jpg" width="500">
+<p>スタバ 皇居外苑 和田倉噴水公園店に到着。
+予想以上に行列待ちの方が多かったので、
+入店は断念。噴水前の段差でしばし長閑な時間を過ごす：</p>
+<img src="https://i.imgur.com/KHUmhyi.jpg" width="700">
+<p>よくわからないオブジェ：</p>
+<img src="https://i.imgur.com/Ds3HeLD.jpg" width="700">
+<p>夕暮れ時の皇居外苑：</p>
+<img src="https://i.imgur.com/49s6SZL.jpg" width="700">
+<img src="https://i.imgur.com/OOfPOnj.jpg" width="700">
+<p>混雑した東京駅：</p>
+<img src="https://i.imgur.com/m0kMjYu.jpg" width="700">
+<h3>Fragments</h3>
+<p>付点音符、複付点音符の理解。
+元の音の長さを $n$ とすると、それらが付くことでそれぞれ以下の音の長さになる：</p>
+<ul>
+<li>付点音符：$<code>n + \frac{1}{2}n</code>$</li>
+<li>複付点音符：$<code>n + \frac{1}{2}n+ \frac{1}{4}n</code>$</li>
+</ul>
+<p>小中学校の音楽のテストで勉強した朧げな記憶。
+ドレミの歌の譜割りは良問だった：</p>
+<p><a href="https://www.youtube.com/watch?v=zTUF3JoSeBA">https://www.youtube.com/watch?v=zTUF3JoSeBA</a></p>
+<hr>
+<ul>
+<li>Rust の <code>std::ops::Deref</code> トレイトの <code>deref</code> メソッド。Dereference という名前だが、返り値は値への参照になる。理由は値を返すと move されてしまうから。
+<ul>
+<li><a href="https://doc.rust-lang.org/std/ops/trait.Deref.html">https://doc.rust-lang.org/std/ops/trait.Deref.html</a></li>
+</ul>
+</li>
+<li>Rust の型強制むずい。コンパイラが自動で参照外しとかやってくれるアレ。Rust の場合単なる参照外しだけでなく、可変性の話も絡んでくる。例えば、可変参照から不変参照への型強制は認められるが、逆は認められないなど。コードを読んでいても裏でどんなコードに置き換わっているかすぐにはわからない。
+<ul>
+<li><a href="https://doc.rust-jp.rs/rust-nomicon-ja/coercions.html">https://doc.rust-jp.rs/rust-nomicon-ja/coercions.html</a></li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

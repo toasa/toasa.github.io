@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/05/25</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>@pandax381さんのプロトコルスタック自作教材 <a href="https://github.com/pandax381/microps">microps</a>。
+どんなテスト環境だったか忘れていたので、まとめる。
+基本的に tap デバイスを２つ作って、
+１つはOSのプロトコルスタックを使用、
+もう一つは自作のプロトコルスタック使うようにする。
+たとえば、ping 応答をテストしたい場合は、以下のような構成になる：</p>
+<img src="https://i.imgur.com/rf0NP6t.png" width="700">
+<p>mircrops では<a href="https://docs.google.com/presentation/d/1_fTLvWuNkJ0cpQFKQ1m-J58nAX2kCSe8DujD7RiyStA/edit?slide=id.gd3283b5d32_0_931#slide=id.gd3283b5d32_0_931">実デバイスも扱えるように設計</a>されていて、
+その場合はソケットの PF_PACKET, SOCK_RAW を使い、
+OS のプロトコルスタックを完全にバイパスする。</p>
+<p>ソケットの PF_{INET,PACKET}, SOCK_{RAW,DGRAM,STREAM} の組み合わせを図にする（参照：man 7 raw, man 7 packet）。</p>
+<img src="https://i.imgur.com/HQRHUho.png" width="700">
+<h3>公開鍵暗号方式</h3>
+<p>忘れがちなのでメモ。</p>
+<p>セキュリティの３つの問題：</p>
+<ul>
+<li>機密性 (Confidentiality)：メッセージの秘密が守られること</li>
+<li>真正性 (Authenticity)：本人であることが検証できること</li>
+<li>完全性 (Integrity)：オリジナルのメッセージが改ざんされないこと</li>
+</ul>
+<p>公開鍵暗号の使用例</p>
+<ul>
+<li>暗号通信
+<ul>
+<li>機密性を保証</li>
+<li>流れ
+<ol>
+<li>受信側が、鍵ペアを生成。公開鍵を送信側に共有。</li>
+<li>送信側は、共有された公開鍵でメッセージを暗号化し、送る。</li>
+<li>受信側は、秘密鍵で暗号文を復号。オリジナルのメッセージを取得。</li>
+</ol>
+</li>
+<li>いまはあまり使われない[3]</li>
+</ul>
+</li>
+<li>デジタル署名
+<ul>
+<li>真正性、完全性を保証</li>
+<li>流れ
+<ol>
+<li>送信側が、鍵ペアを生成。公開鍵を受信側に共有。</li>
+<li>送信側は、自身の秘密鍵でメッセージを暗号化し、送る。</li>
+<li>受信側は、共有された公開鍵で復号。オリジナルのメッセージを取得。</li>
+</ol>
+</li>
+<li>機密性はない。復号用の鍵を公開しているため。</li>
+</ul>
+</li>
+<li>公開鍵による認証
+<ul>
+<li>認証される側：鍵ペアを生成。公開鍵を共有。</li>
+<li>認証する側：公開鍵を使用。</li>
+<li>例：公開鍵を使った、サーバへログインするユーザの認証（チャレンジ/レスポンス認証）
+<ol>
+<li>ユーザは、鍵ペアを生成。サーバーへ公開鍵を共有。</li>
+<li>サーバは、ランダムなデータを生成し、ユーザへ送る（チャレンジ）。</li>
+<li>ユーザは、データを秘密鍵で暗号化し、サーバへ返す（レスポンス）。</li>
+<li>サーバは、共有された公開鍵で復号。オリジナルのデータと一致すれば、正当なユーザと認証する。
+<ul>
+<li>ユーザの公開鍵は、サーバーの <code>~/.ssh/authorized_keys</code> に保存される。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>例：この逆として、サーバーの認証もある。この場合はサーバーが鍵ペアを生成し、ユーザが認証する。
+<ul>
+<li>ユーザは、サーバーを認証すると <code>~/.ssh/known_hosts</code> にホスト名を記録する。</li>
+<li><a href="https://github.blog/news-insights/company-news/we-updated-our-rsa-ssh-host-key/">Github が SSH ホストキーをアップデートした例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>参考文献</p>
+<ul>
+<li>[1]『<a href="https://www.lambdanote.com/products/tls">プロフェッショナルSSL/TLS</a>』</li>
+<li>[2]「<a href="https://www.coins.tsukuba.ac.jp/~yas/coins/literacy-2018/2018-05-22/index.html#cryptography">コンピュータリテラシ(2018年) - 暗号</a>」</li>
+<li>[3]「<a href="https://zenn.dev/tetsu1008/articles/1e3673ca1ece42">やはりお前らの「公開鍵暗号」はまちがっている。</a>」</li>
+</ul>
+</div>
+	
+</body>
+</html>

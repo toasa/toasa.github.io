@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/14</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>BLE</h3>
+<p>GATT のメモ：</p>
+<ul>
+<li><a href="https://academy.nordicsemi.com/courses/bluetooth-low-energy-fundamentals/lessons/lesson-4-bluetooth-le-data-exchange/topic/gatt-operations/">GATT Operations</a>
+<ul>
+<li>Service discovery: サーバが提供する service と characteristics を、クライアントが把握するプロセス</li>
+<li>Operations
+<ul>
+<li>Server-initiated operations
+<ul>
+<li>Read</li>
+<li>Write</li>
+<li>Write w/o response</li>
+</ul>
+</li>
+<li>Client-initiated operations
+<ul>
+<li>Notify: Ack 不要</li>
+<li>Indicate: Ack 必要</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://academy.nordicsemi.com/courses/bluetooth-low-energy-fundamentals/lessons/lesson-4-bluetooth-le-data-exchange/topic/services-and-characteristics/">Service and characteristics</a>
+<ul>
+<li>Attribute の構成
+<ul>
+<li>Handle
+<ul>
+<li>Attribute table の行番号とみなせる</li>
+</ul>
+</li>
+<li>Type (UUID)</li>
+<li>Permissions</li>
+<li>Value</li>
+</ul>
+</li>
+<li>Services の構成
+<ul>
+<li>1個の、Service Declaration Attribute</li>
+<li>0個以上の、 Characteristic Definition Attirbutes</li>
+</ul>
+</li>
+<li>Characteristic の構成
+<ul>
+<li>Characteristic declaration attribute
+<ul>
+<li>Attribute Value の構成 (5バイト)
+<ul>
+<li>Properties: 1バイト. e.g. Read flag</li>
+<li>Characteristic value handle: Characteristic value attribute へのハンドル（ポインタ、アドレスのようなもの）</li>
+<li>Characteristic UUID:</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Characteristic value attribute
+<ul>
+<li>実際のユーザデータが入る</li>
+</ul>
+</li>
+<li>Characteristic descriptor attirbute (optional):
+<ul>
+<li>e.g. CCCD</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Client characteristic configuration descriptor (CCCD)
+<ul>
+<li>クライアントがサーバに対して、特定の Characteristic を能動的に通知 (Notify / Indicate) させるための仕組み</li>
+<li>youtubeなどの subscribe 機能に似ている。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>財務諸表</h3>
+<p>転職活動での会社選びをする際、
+財務諸表の見方を知っていると、判断の役に立つなと思った。</p>
+<ol>
+<li>貸借対照表 (Balance Sheet, B/S)
+<ul>
+<li>ある時点の会社の財政状態を示す表
+<ul>
+<li>資産の部：会社が所有する財産（現金、土地、建物、売り掛け金など）</li>
+<li>負債の部：将来返済する必要がある借金（買掛金、借入金など）</li>
+<li>純資産の部：返済義務のない、株主からの出資金や利益の蓄積</li>
+</ul>
+</li>
+<li>資産 = 負債 + 純資産、となる。</li>
+</ul>
+</li>
+<li>損益計算書 (Profit and Loss statement, P/L)
+<ul>
+<li>一定期間（通常は１年間）の売上・費用・利益をまとめた表
+<ul>
+<li>収益：商品やサービスの販売などで得られた収入</li>
+<li>費用：収益を得るためにかかったコスト（仕入原価、人件費、家賃など）</li>
+</ul>
+</li>
+<li>利益 = 収益 - 費用、となる。</li>
+</ul>
+</li>
+<li>キャッシュ・フロー計算書 (Cash Flow statement, C/F)
+<ul>
+<li>一定期間における現金の増減（キャッシュ・フロー）を３つの活動区分に分けて表す表
+<ul>
+<li>営業活動によるキャッシュ・フロー：本業での現金の増減</li>
+<li>投資活動によるキャッシュ・フロー：設備投資や有価証券の売買などによる現金の増減</li>
+<li>財務活動によるキャッシュ・フロー：借入や返済、増資などによる現金の増減</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>財務諸表を見てみる。
+△(白三角) は赤字、という意味らしい。</p>
+</div>
+	
+</body>
+</html>

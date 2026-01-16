@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/08</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>Bluetooth Low energy</h3>
+<p>BLE の入門。</p>
+<p>電波強度を表す数値に RSSI (Received Signal Strength Indicator) がある。
+RSSI の一般的な単位の一つに dBm がある。
+読み方はデシベルミリワット。
+ワットは電気のエネルギーとわかるが、デシベルってなんだっけ。
+調べると、デシとベルを組み合わせたもの<a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%82%B7%E3%83%99%E3%83%AB">らしい</a>：</p>
+<blockquote>
+<p>底を10として対数をとり、得られた値をさらに10倍してあることを示す。なお、ベルは対数の底が10であることを示す単位であり、デシは10分の1を示す接頭辞である。</p>
+</blockquote>
+<p>つまり、dBm は１ミリワットを基準として、測定した電力がその何分の１かを対数スケールで表すものらしい。</p>
+<p>|電力 (mW) |dBm 値|
+|-|-|
+|10|10|
+|1|0|
+|0.1|-10|
+|0.01|-20|
+|0.001|-30|</p>
+<p>理解のために表にまとめたけど、
+dBm を使うありがたさがまだピンときていない。
+SI接頭辞を使えばいいのでは（0.001mW は 1μW みたいに）。</p>
+<hr>
+<p>Nordic Semiconductor の <a href="https://academy.nordicsemi.com/courses/bluetooth-low-energy-fundamentals/">BLE Fundamentals</a> というチュートリアルを見つける。
+専用のボードをを用意する必要がありそうで、どうしたもんかな。</p>
+</div>
+	
+</body>
+</html>

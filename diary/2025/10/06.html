@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/10/06</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>月曜日</h3>
+<p>お仕事。同僚が休日に自作した PC スタンドをデスクで使っていた。
+DIY すごい。</p>
+<p>&quot;<a href="https://www.phoronix.com/news/Linux-6.18-DDoS-Improvement">Linux 6.18 Will Be A Big Improvement For Servers Encountering DDoS Attacks</a>&quot;.
+10コミットからなるパッチを見てみると、構造体のフィールドの順番を入れ替えたり、
+頻繁に使われるキューを近接させ、逆に滅多に使わないカウンタを離したりしている。
+これで False sharing 対策となるのは、
+よく使うフィールドをデータの先頭に固めておけば、
+ホットパスで必要なキャッシュラインだけロードされて、
+他の不要なフィールドとの同居を減らせる
+（ホットとコールドを分離する）、ってことかな。</p>
+</div>
+	
+</body>
+</html>

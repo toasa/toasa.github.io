@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/10/05</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>木曜日</h3>
+<p>晴れ、涼しい日。</p>
+<p>朝。昨日の晩飯で<a href="https://note.com/travelingfoodlab/n/nacc4929965c4">樋口氏のキノコのソテー</a>を作った。
+きのこ（とオリーブオイル）の食べ過ぎで身体重い。</p>
+<p>近所の公園で1h20mほど読書。
+<a href="https://doc.rust-lang.org/book/">Rust the book</a>を mac book で読んでいたが、
+PCの画面だとイマイチ集中できず断念。
+『禅とオートバイ修理技術』を読み進める。
+時々地名が出てくるので Google map で確認する。
+サウスダコタ州のこの辺を走ったのかと妄想が広がる。
+ミズーリ川全然橋ないやん。</p>
+<p>お昼休憩は散歩。終末の空模様：</p>
+<img src="https://i.imgur.com/JUPIZ64.jpg" width="500">
+<p>終業後、井の頭公園を30mほどランニング：</p>
+<img src="https://i.imgur.com/GXagH93.jpg" width="500">
+<h3>Fragments</h3>
+<p>Rust の The book epub 化。
+<a href="https://github.com/atc0005/notes/issues/20">ズバリの issue</a> が見つかったので、試してみたらうまく行った。</p>
+<p>作業環境は Docker コンテナ内の Ubuntu:</p>
+<pre><code># grep VERSION= /etc/os-release 
+VERSION=&quot;22.04.1 LTS (Jammy Jellyfish)&quot;
+# uname -a
+Linux 9d40c48ce8fd 5.15.49-linuxkit #1 SMP PREEMPT Tue Sep 13 07:51:32 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux
+</code></pre>
+<p><a href="https://github.com/atc0005/notes/issues/20#issue-644181081">この手順</a>のうち、Ubuntu の中で 3. から 13. までを実行した。
+一点注意。手順 7. で指定している <code>mdbook</code> のバージョンが古く <code>cargo install</code> に失敗した。
+今日の時点で最新の v0.4.35 ではうまく行った：</p>
+<pre><code># cargo install mdbook --vers 0.4.35
+</code></pre>
+<p>Docker のゲスト環境で作成した EPUB ファイルをホスト環境にコピーするため <code>docker cp</code> コマンドを使った：</p>
+<pre><code>$ docker cp blue:&lt;WORKING DIR&gt;/rust-book/book/epub/The\ Rust\ Programming\ Language.epub .
+</code></pre>
+</div>
+	
+</body>
+</html>

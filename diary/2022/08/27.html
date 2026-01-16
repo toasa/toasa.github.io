@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/08/27</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>朝からランニング。１時間ちょっと走って、10100 歩ほど。
+ランニングの途中で昨日の百日紅を思い出し、樹皮をなでてみた。
+古い皮と新しい皮がまだらになっていて、後者はつるつるだった：</p>
+<img src="https://i.imgur.com/gpzgfsM.jpg" width="500">
+<p>以下の植物もランニング中にみつけたもの。
+葉の表面に霜が付着したような見た目で、クリスマス感があるｗ
+名はシロタエギクというらしい：</p>
+<img src="https://i.imgur.com/1taFgzp.jpg" width="500">
+<p>さて昼食。休日の昼食は結構厄介な問題だったりする。
+時間は十分にあるので、たくさんの候補が浮かぶのだが、膝を打つまでいかない。</p>
+<p>集中し、心の奥に鈎をたらし、何をたべたいのか、返事をじっと待つ。</p>
+<p>昨日行った肉のハナマサで「スイートチリソース」なるものを買ったので、鶏むね肉につけてみるアイデアを思いついた。まぁタレ以外は平日と代わり映えしないメニューではあるがｗ。自転車でオーケーストアに行き、鶏むね肉を入手。</p>
+<p>鶏むね肉を削ぎ切りにし、片栗粉をつけて焼く。炭水化物は白米。
+増量期のボディビルダーのようなメニューができた：</p>
+<img src="https://i.imgur.com/qFKHb04.jpg" width="700">
+<p>夕方からけやきコミュニティセンターに行った。
+ドキュメント読みなど。</p>
+<p>晩ごはんはチャーハン。マルシンハンバーグを３つのっけて食べた。</p>
+<h3>db_tutorial</h3>
+<p><a href="https://cstack.github.io/db_tutorial/">db_tutorial</a> の続き。
+DB のコードはすべて C なのだが、ユニットテストには Ruby のテストフレームワーク <a href="http://rspec.info/">RSpec</a> を使っていた。</p>
+<p>ちぐはぐな感じもするのだが、C のテストフレームワークも定番はよくわからないし、
+コンソールの I/O をスッキリかければそれで良いという気もする。
+ちなみに db_tutorial だと以下のように書かれている：</p>
+<pre><code>IO.popen(&quot;./db&quot;, &quot;r+&quot;) do |pipe|
+    cmds.each do |cmd|
+        pipe.puts cmd
+    end
+
+    pipe.close_write
+
+    raw_output = pipe.gets(nil)
+end
+raw_output.split(&quot;\n&quot;)
+</code></pre>
+<p>Ruby を普段全く書かないがなんとなくやってることがわかる。
+'db' を実行して、パイプの片方(標準入力)からコマンドを流し込む。
+すべて流し終わると、パイプのもう片方から標準出力を取り出している。</p>
+<p>標準エラー出力はどうなるのと思ったが、単に対象外みたい：</p>
+<ul>
+<li><a href="https://docs.ruby-lang.org/ja/latest/method/IO/s/popen.html">https://docs.ruby-lang.org/ja/latest/method/IO/s/popen.html</a></li>
+</ul>
+<blockquote>
+<p>サブプロセスを実行し、そのプロセスの標準入出力との間にパイプラインを確立します。</p>
+</blockquote>
+<p>db_tutorial はエラーログも標準出力に表示していたのは、これが理由なのかも。</p>
+<h3>日記</h3>
+<p>いつの間にか日記が２週間以上続いている。
+特に苦はないのでまぁそこそこ続きそうな気配がしたりもする。</p>
+<p>ただ現状の執筆工程はまだ改善できると思っている。
+例えばいまはすべての文字をキーボードで打っているが、音声入力も試してみたい。
+また写真の掲載方法もめんどくさく感じている。現在の手順は以下：</p>
+<ol>
+<li>スマホで写真をとる</li>
+<li>Google photo にアップロードされる</li>
+<li>PC で写真をローカルにダウンロードする</li>
+<li>imgur　にアップロードする</li>
+<li>imgur から 写真 URL を取得する</li>
+<li>日記に URL を貼る</li>
+<li>Google photo と PC ローカルの写真を削除する</li>
+</ol>
+<p>2, 3 は無駄だよなぁ。とりあえず imgur android app を見つけたので試してみる。</p>
+<h3>『好きにならずにいられない』</h3>
+<p>観た。良かった。主人公フーシは、今の自分の歳だとより魅力的にみえる。
+アイスランドが舞台で、寂寥、孤独、暗鬱、諦観、のようなシーンもあれば、幸福そうなシーンもある。</p>
+<p>観終わってすぐには気づかなかったが、最終盤の一連は、フーシはできることを行い、前に進もうとしているんだな。</p>
+</div>
+	
+</body>
+</html>

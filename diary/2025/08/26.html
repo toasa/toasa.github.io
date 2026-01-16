@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/26</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>CTF 入門</h3>
+<p><a href="https://ctf.cpaw.site/index.php">https://ctf.cpaw.site/index.php</a></p>
+<ul>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=24">Q24.[Web]Baby's SQLi - Stage 2-</a>
+<ul>
+<li>ログインフォームが与えられ、適切なユーザ名とパスワードを入力する問題</li>
+<li>ユーザ名はすでにわかっており、パスワードがわからない状態</li>
+<li>SQL インジェクションをやってみようという問題なんだろう。</li>
+<li>つまり、 Web アプリの挙動として、以下のように、ユーザ入力を SQL に埋め込んでデータベースにクエリしていると予想：
+<ul>
+<li><code>SELECT * FROM users WHERE username = '&lt;ユーザ入力&gt;' AND password = '&lt;ユーザ入力&gt;';</code></li>
+</ul>
+</li>
+<li>パスワードの式が True になればいいし、コメントアウトしてもよさそう</li>
+<li><code>ユーザ名' --</code> でコメントアウトしてOK</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>続編もあった：</p>
+<p><a href="https://ctf2.cpaw.site">https://ctf2.cpaw.site</a></p>
+<p>１問目からぜんぜんわからない。</p>
+</div>
+	
+</body>
+</html>

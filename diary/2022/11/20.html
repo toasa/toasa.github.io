@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/11/20</h1>
+		<a href="../11.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>お昼過ぎまでは吉祥寺のサンマルクカフェで c-lesson を進めた。
+JIT を実装しおえたのでこれで c-lesson は一応完了。</p>
+<p>お昼からは上野の東京都美術館に行ってみることにした。
+中央線で神田まで行き、山手線で上野まで行った。
+午後から雨の予報だったので、傘も持参した。</p>
+<p>無事到着。伊賀上野NINJAフェスタもやっていたようで、かなり人手で賑わっていた：</p>
+<img src="https://i.imgur.com/AzCHaQz.jpg" width="700">
+<p>東京都美術館の催し物で鑑賞したのは以下：</p>
+<ul>
+<li>展覧会 岡本太郎</li>
+<li>源氏物語と江戸文化</li>
+<li>第63回 日本版画会展</li>
+<li>第44回 清興展</li>
+<li>第47回 日輝展</li>
+</ul>
+<p>以下、気に入った作品の内、撮影可能だったものを挙げる。</p>
+<p>版画は小学生のときに版を彫った覚えがあった。
+当たり前だが、当時の自分よりはるかに腕がいい作品ばかりだった。</p>
+<img src="https://i.imgur.com/zK7YSTX.jpg" width="500">
+<img src="https://i.imgur.com/t2lhM29.jpg" width="500">
+<p>版画には４種類あるらしい：</p>
+<img src="https://i.imgur.com/U1THLmv.jpg" width="500">
+<p>岡本太郎展は一際混んでいた。このイベントだけ入場に時間制限があったが、
+それでも中は順路がわからないほど人がいた。
+トマトスープをぶっかけてまで主張したいことも特にないので、ほとんどの作品はざっと流して見た。
+「女神像」は迫力があった：</p>
+<img src="https://i.imgur.com/acFuWri.jpg" width="500">
+<p>以下の作品はどの展示会か忘れてしまったが、
+気持ちいい青色と金色の額縁が似合っていていいなと思った。
+スタリ・モストとはボスニアにある橋で、ボスニア紛争で破壊され、その後再建した街の象徴らしい：</p>
+<img src="https://i.imgur.com/NoTvM6J.jpg" width="500">
+<p>東京都美術館くらいになると階段もかっこいいのかと感心した。
+壁が青色ですよ：</p>
+<img src="https://i.imgur.com/QnBNJXI.jpg" width="500">
+<h3>karino2 C-lesson 進捗</h3>
+<p>PostScript の簡易的なサブセット（四則演算できる電卓程度）の JIT コンパイルを実装した：</p>
+<p><a href="https://github.com/toasa/c-lesson/tree/casm_6_jit/sources/casm_link/06_jit_ps">https://github.com/toasa/c-lesson/tree/casm_6_jit/sources/casm_link/06_jit_ps</a></p>
+<p>これで一応 C-lesson は終わり（スキップした第二回のアセンブラが残っているけど）。
+以下良かったことなど感想：</p>
+<ul>
+<li>継続を実装できた</li>
+<li>関数オブジェクト（実行可能配列）の評価と実行の違いが理解できた。その違いを明確化してコードが書けた
+<ul>
+<li>評価ではスタックに積むだけ。実行で各要素を評価していく。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>以下は昨日の <a href="https://github.com/toasa/diary/blob/main/2022/11/19.md#karino2-c-lesson-%E9%80%B2%E6%8D%97">SIGSEGV 問題</a> の調査。それっぽい原因と回避策がわかった。</p>
+<p>実行時に落ちるので昨日の予想では、自分で作成したバイナリに例えば以下の不具合があると思っていた：</p>
+<ul>
+<li>レジスタの下準備
+<ul>
+<li>関数の実行前に保存しておくべきレジスタを内部で上書きしてしまっている</li>
+</ul>
+</li>
+<li>レジスタの後処理
+<ul>
+<li>関数呼び出しの最後に書き戻すべきレジスタをそうしないままでいる</li>
+</ul>
+</li>
+</ul>
+<p>が、どうもそうではない。
+printf デバグで調べていくと、mmap で確保した JIT バイナリ用の領域に対する不正アクセスのようだった。</p>
+<p>前提として、複数の JIT のユニットテストがあるため、当該領域には複数回書き込みと実行を行う。
+一回目のユニットテストは通るが、二回目のテスト実行時にバイナリ命令を書き込むとき（コードは <code>binary_buf[pos++] = foo</code>）に SIGSEGV が発生していることがわかった。
+おそらく一回目のテストが終了した時点で、当該領域の権限が変更されたのだと予想する
+（何故そんな挙動になるかはわからないが）。</p>
+<p>これ以上の調査はなかなか大変そうだったので別の案を考える。
+現在の自分のJIT実行環境は実は <a href="https://github.com/karino2/c-lesson/blob/master/sources/casm_link/Dockerfile.CASM_LINK">c-lesson の Dockerfile</a> で用意されたものではない。
+理由は <a href="https://github.com/karino2/c-lesson/blob/master/sources/casm_link/Dockerfile.CASM_LINK#L16">&quot;ibc6-dev-i386&quot;</a>というパッケージが install できず、<a href="https://karino2.github.io/c-lesson/casm_link_load.html#clang%E3%81%A7%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B">このへんのパッケージ</a>が入れられなかったためだと思う（記憶があいまい）。</p>
+<p>ただ今回の場合は gcc で 32bit ARM 向けにクロスコンパイルできれば、JIT の動作確認はできるので、
+もともと用意された Dockerfile から環境を作成して、ユニットテストを走らせたところ SIGSEGV は発生しなかった。</p>
+</div>
+	
+</body>
+</html>

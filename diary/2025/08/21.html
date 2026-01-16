@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/21</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>木曜日</h3>
+<p><a href="https://x.com/crossfm_BLUE/status/1958189786818375853">https://x.com/crossfm_BLUE/status/1958189786818375853</a></p>
+<blockquote>
+<p>田中さんが語る
+「相手のプライバシーに踏み込まなくても会話はできる」。
+深くうなずきながら聴きました。</p>
+</blockquote>
+<p>Lifestyle Blueprint の今回のエピソードがよかった。
+ラジオで上がっていたプライバシーに踏み込む質問の例：</p>
+<ul>
+<li>結婚しているか？</li>
+<li>（している場合）子供はいるか？</li>
+<li>（いる場合）受験はするか？</li>
+</ul>
+<p>確かに、こういった質問には暴力性があるよな。
+聞く側が払うコストに、答える側が払う負担が見合ってない。
+大人はかくあるべしと固定化された回答があり、
+その回答に現実が逸れていることに苦しむ当人があり、
+その苦しみに無自覚な質問者がいる。</p>
+<p>もちろん相手から開示された場合は、関連する話題も聞くんだけど、
+そうでない場合は、プライバシーに立ち入らなくても話題はたくさんある。
+出身地のこと、地理のこと、食事のこと、パソコンのこと、インターネットのこと、
+宇宙のこと、
+AIのこと、旅行のこと、電車の路線のこと、映画のこと、運動のこと。</p>
+<p>コミュニケーションの快適さとは、
+会話の目的の明確さと思う。
+仕事を進めるための技術的な話であれば技術的な会話をすればいいし、
+親交を深めるための会話であればプライバシーに踏み込まない会話をすればいい。
+目的がなく、質問者だけが野次馬に情報を収奪する。
+そんな質問に出くわすと、回答者側でも、第三者側でも疲弊してしまう。
+こいつ、ぜんぜんわかってないな。</p>
+<p>前職は男性ばかりの職場ではあったが、ホモソーシャルは話題は皆無で、
+快適なコミュニケーションだった。
+そうかと思えば転職エージェント。久々に人と話して疲れる経験だった。</p>
+<h3>野菜を食べよう</h3>
+<p>元同僚の方が健康のために野菜を食べているのを見て感化される。
+よく食べているのは 玉ねぎ、長ネギ、ニラ、小ネギ。
+次点で、ピーマン、なす、トマト。</p>
+<p>調理に時間を要するのは敬遠してしまいがち。
+人参、ジャガイモとか。</p>
+<p>レパートリーに取り入れたい筆頭は小松菜、ブロッコリーかな。</p>
+<h3>BLE コード読み</h3>
+<p>Zephyr の BLE のサンプルで<a href="https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v3.5.0/samples/bluetooth/peripheral_hr/src/main.c">心拍数通知のコード</a> がある。
+Zephyr とは組み込み向けの RTOS、Linux foundation プロジェクト、とのこと。
+次の職場でシステム要件にリアルタイム性が求められるかは怪しいけど、コードがあるので読む。</p>
+<ul>
+<li><a href="https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v3.5.0/samples/bluetooth/peripheral_hr/src/main.c#L58">アドバタイズ開始</a>
+<ul>
+<li>公開するサービスは３つ。<a href="https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v3.5.0/samples/bluetooth/peripheral_hr/src/main.c#L28">心拍数サービス</a>, <a href="https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v3.5.0/samples/bluetooth/peripheral_hr/src/main.c#L29">バッテリー残量サービス</a>, <a href="https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v3.5.0/samples/bluetooth/peripheral_hr/src/main.c#L30">デバイス情報サービス</a>。</li>
+</ul>
+</li>
+<li>１秒おきに、<a href="https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v3.5.0/samples/bluetooth/peripheral_hr/src/main.c#L127">心拍数</a>と<a href="https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v3.5.0/samples/bluetooth/peripheral_hr/src/main.c#L130">バッテリー残量</a>を通知する
+<ul>
+<li>hrs_notify() 以下の呼び出し関係：
+<ul>
+<li><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/subsys/bluetooth/services/hrs.c#L162">bt_hrs_notify()</a> - subsys/bluetooth/services/hrs.c</li>
+<li><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/include/zephyr/bluetooth/gatt.h#L1474">bt_gatt_notigy()</a> - include/zephyr/bluetooth/gatt.h</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

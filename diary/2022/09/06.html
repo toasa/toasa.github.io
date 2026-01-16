@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/09/06</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p>晴れ。</p>
+<p>朝晴れていたのでランニング。２日ぶり。
+数日前の二郎が影響しているのか、体が重い。
+気温、湿度も高めで条件はあまり良くない。</p>
+<img src="https://i.imgur.com/zNCDi2R.jpg" width="500">
+<p>お昼休みは晩ごはんの買い出しのためオーケーストアに行った。
+日差しが強かったため日傘をさして歩くのだが、
+時々強烈な風（ビル風？）で傘が裏返ってしまう。
+対向のお兄さんを驚かせてしまった。</p>
+<p>夕方ごろに今日はじめての食事を取る。バナナ２本。
+少し食べようとすると食べすぎてしまうし、たくさん食べると仕事に集中できない。
+勤務中の食事はおざなりになりがち。</p>
+<p>晩ごはんは豚肉と葱を炒めて焼肉のタレをかけたもの。
+少し足りなかったので冷凍の焼きおにぎりも食べた。</p>
+<h3>Algebraic Effects</h3>
+<p>Algebraic Effects (以下、AE) の説明記事を読んだ：</p>
+<p><a href="https://overreacted.io/algebraic-effects-for-the-rest-of-us/">https://overreacted.io/algebraic-effects-for-the-rest-of-us/</a></p>
+<p>本文にも言及があるのだが、以下のような AE の説明は scheme でいうところの継続と似ている：</p>
+<blockquote>
+<p>when we perform an effect, our hypothetical engine would create a callback with the rest of our function, and resume with calls it.</p>
+</blockquote>
+<p>つまり AE とは「実行に必要なコンテキストを持ったまま関数外にもジャンプできる goto のようなもの」を実現できるアイデアという理解で良いんだろうか？（記事では非同期性にも触れられている）</p>
+<p>ちなみに継続は Shiro Kawai さんの「なんでも継続」がわかりやすい：</p>
+<p><a href="http://practical-scheme.net/docs/cont-j.html">http://practical-scheme.net/docs/cont-j.html</a></p>
+</div>
+	
+</body>
+</html>

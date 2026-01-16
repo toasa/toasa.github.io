@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/19</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p>親プロセスと子プロセスが交互に数字と文字を出力する問題の、
+<a href="https://www.coins.tsukuba.ac.jp/~syspro/2024/2024-06-26/index.html#exam506">シグナルを使って解く問題</a>。
+解いてみたものの、
+動いたり、（デッドロックで？）動かなかったりする：</p>
+<p><a href="https://github.com/toasa/syspro-tsukuba/blob/main/506/main.c">https://github.com/toasa/syspro-tsukuba/blob/main/506/main.c</a></p>
+<p>シグナル難しい。
+<a href="https://man7.org/linux/man-pages/man7/signal-safety.7.html">シグナルハンドラで使っていい API のリスト</a>を知る。
+これ以外 (printfなど) は使ってはダメらしい。</p>
+</div>
+	
+</body>
+</html>

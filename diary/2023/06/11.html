@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/06/11</h1>
+		<a href="../06.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>雨時々曇り。</p>
+<p>朝。雨が降っていたが、走りたかったので、クロックス（のパチモノ）を履いて井の頭公園をランニングした。
+初めてクロックスで走った感想としては、無理ではないが、快適では全くないという感じ。
+細かくは以下：</p>
+<ul>
+<li>いわゆるサンダルなので、足を後ろ側に大きく運ぶフォームはできない。すり足気味になり、スピードを上げにくくなる。楽しみも減る。</li>
+<li>自分の足に対して大きめのサンダルだったので、着地時に足がサンダルの中で若干動き、力が分散している気がする。
+<ul>
+<li>これが原因かわからないが、左足母指球が20分を過ぎてから痛み出した。</li>
+</ul>
+</li>
+</ul>
+<p>天候に左右されずランニングを習慣化したいので、雨天用のシューズを注文した：</p>
+<p><a href="https://www.amazon.co.jp/gp/product/B094XWVTNH">https://www.amazon.co.jp/gp/product/B094XWVTNH</a></p>
+<p>お昼は代官山蔦屋書店の Anjin で食事。「季節のナポリタン」を食べた。</p>
+<h3>Fragments</h3>
+<p>洋書を参考文献として挙げるときは、タイトルをダブルクォーテーションで囲えば良いと思ってたけど、
+少なくともアカデミックにはイタリック体で表記するらしい：</p>
+<p><a href="http://www.lib.seijo.ac.jp/wp-content/uploads/2015/03/bibliography.pdf">http://www.lib.seijo.ac.jp/wp-content/uploads/2015/03/bibliography.pdf</a></p>
+<p>全然間違ってた。</p>
+<hr>
+<p><em>Programming Rust</em> 第5章 &quot;References&quot; を読んでいる。</p>
+<p>構造体のメンバ？フィールド？へのアクセスの時に使われる <code>.</code> オペレータの話。
+構造体の参照のメンバアクセスは <code>.</code> オペレータが左辺値を暗黙的にデリファレンスしてくれるのは知っていた
+（Golang もあるよね）：</p>
+<pre><code class="language-rust">struct S { foo: u32 }
+let s = S { foo: 10 };
+let r = &amp;s;
+assert_eq!(r.foo, 10);
+assert_eq!((*r).foo, 10); // equivalent, but more verbose
+</code></pre>
+<p>一方、<code>.</code> オペレータの暗黙的な振る舞いとして、
+メソッド呼び出しに必要な場合には左辺値への参照を借用する、というのは知らなかった
+（というか意識してなかった）。</p>
+<pre><code class="language-rust">let mut v = vec![22, 11];
+v.sort();
+(&amp;mut v).sort(); // equivalent, but more verbose
+</code></pre>
+<p>言われるとなるほど、という感じ。</p>
+<hr>
+<p>C++ と Rust の参照 の違い。</p>
+<p>C++:</p>
+<pre><code class="language-c++">int x = 10;
+int &amp;r = x;
+r = 20;    
+assert(x == 20);
+
+int y = 30;
+r = y
+r = 40;
+assert(y == 30); // 😇
+assert(x == 40); // 😇😇
+</code></pre>
+<p>Rust:</p>
+<pre><code class="language-rust">let x = 10;
+let y = 20;
+let mut r = &amp;x;
+r = &amp;y;
+assert_eq!(x, 10);
+assert_eq!(y, 20);
+assert_eq!(*r, 20);
+</code></pre>
+<p>C++ の参照は一度初期化されると、それ以外の場所を参照することはできない。
+ここは未だに混乱する。</p>
+<hr>
+<p>林真理子と成田悠輔の対談：</p>
+<p><a href="https://www.youtube.com/watch?v=UxY4rFA7vfo">https://www.youtube.com/watch?v=UxY4rFA7vfo</a></p>
+<p>お互い余裕がありつつ、気になることをぶつけ合う、面白い対談だった。
+21 分あたりからの文学・言葉の話が面白かった。</p>
+</div>
+	
+</body>
+</html>

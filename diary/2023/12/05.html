@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/12/05</h1>
+		<a href="../12.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p>曇り、寒い日。</p>
+<p>朝。近所の公園で１hほど読書。
+コンビニでホットコーヒーを買い、ベンチで粘っていたが、
+寒さに根負け。残りはお家で読んだ。</p>
+<p>お昼。会社周辺を散歩：</p>
+<img src="https://i.imgur.com/61pqQut.jpg" width="700">
+<p>終業後、井の頭公園を30mほどランニング。</p>
+<p>晩御飯は鶏もも肉にシチュールーを溶いて煮込んだもの。
+ルーにはとろみ漬け用の片栗粉が使われていたらしく、
+ボテっとした仕上がり。</p>
+<h3>Fragments</h3>
+<p>曲婉婷 - 我的歌声里</p>
+<p><a href="https://www.youtube.com/watch?v=w0dMz8RBG7g">https://www.youtube.com/watch?v=w0dMz8RBG7g</a></p>
+<p>院生の冬によく聞いていた。
+勉強はうまくいかず、
+恋愛は実らず、
+将来の見通しは立たず。
+そんな冬。</p>
+<h3>&quot;Hands-On Design Patterns with C++&quot;</h3>
+<p>仕事でもプライベートでも C++ は書いてないが、
+C++ の最新のお作法を学びたいという動機。
+著者は CppCon でよく見る
+Fedor Pikus さん。</p>
+<p>1章 は継承とポリモーフィズムの話。
+理解は程度は怪しいが、興味はさほどないのでスキップ。
+2章 はテンプレート。同上でスキップ。</p>
+<p>3章 メモリとオブジェクトの所有権の話。</p>
+<ul>
+<li>Expressing non-ownership
+<ul>
+<li>オブジェクトの所有権を持たないことを表現する場合は、Raw pointer か Reference を使う。</li>
+<li>なので、関数引数に Raw pointer/Reference を見かけると、勝手に所有権をいじらない（ムーブしたり、デリートしたり）ことがわかる。</li>
+<li>Raw pointer と Reference の使い分け。Reference は non null なので、null pointer を許さない関数引数では、Reference を使うべき。ただし、デザインパターンといえるほど、周知されてはいない</li>
+</ul>
+</li>
+<li>Expressing exclusive ownership
+<ul>
+<li>スタックに確保したローカル変数か、<code>std::unique_ptr</code> を使う。</li>
+<li>ローカル変数がベストチョイスだが、使えない制約もある。例えば、スタックサイズの制約（通常、１スレッド辺り2MB~10MB）</li>
+</ul>
+</li>
+<li>Expressing transfer of exclusive ownership
+<ul>
+<li>rvalue reference を使う。</li>
+</ul>
+</li>
+<li>Expressing shared ownership
+<ul>
+<li><code>std::shared_ptr</code> を使う。</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

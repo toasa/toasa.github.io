@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/09/06</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>40 yard dash の世界記録が更新されてた。
+更新者は Xavier Worthy で <a href="https://www.youtube.com/watch?v=M1xhUAMEA2E">4.21</a>、前王者は John Ross で <a href="https://www.youtube.com/watch?v=04qabU6DsZI">4.22</a>。
+Ross の時は観客がいない？ためか全く盛り上がってないんだけど、
+Worthy の時は観客の歓声がいい。
+動画上の記録は非公式ながら 4.22 で終わっているけど、
+その後修正されて正式に 4.21 で世界記録となったみたい。
+あと、最後のインタビューで Worthy が子供の頃に John Ross を見ていたと語っていて、時間が経つのは早いものだね。</p>
+<h3>CTF 入門</h3>
+<ul>
+<li><a href="https://ctfexh.setodanote.net/challenges#tkys_never_die-19">tkys_never_die</a>
+<ul>
+<li>pcap が与えられるので、フラグを取得してねという問題。</li>
+<li>Wireshark でみてみると HTTP で flag.png という画像ファイルを要求していることがわかる。</li>
+<li>要求後、サーバーから画像ファイルの応答が続く。パケットレベルだと TCP のパケットが 50 個ぐらい続いている。</li>
+<li>この TCP パケットから flag.png を復元したい。Wireshark に便利な機能があって、[File] &gt; [Export Objects] &gt; [HTTP] から復元したいオブジェクトのリストが出る。そこで flag.png を選べば画像ファイルが復元される。むっちゃ便利やん。</li>
+</ul>
+</li>
+<li><a href="https://ctfexh.setodanote.net/challenges#puni_puni-47">puni_puni</a>
+<ul>
+<li><a href="https://ja.wikipedia.org/wiki/Punycode">Punycode</a> でエンコードされた文字列が与えられ、隠されたフラグを見つけてねという問題。</li>
+<li>Punycode の用途例として、ascii 以外のドメイン名を DNS で扱うためにエンコードする使われ方があるみたい。</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

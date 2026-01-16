@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/09/27</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>デュアルブート</h3>
+<p>昨晩ミニPCが届いた。
+これで3台目。
+１台目と２台目はどちらも返品済み
+（それぞれ、ファンがうるさかったため、<a href="https://github.com/toasa/diary/blob/main/2025/09/23.md">描画周りがおかしかった</a>ため）。
+両者は同じメーカーで、価格の安さで購入を決めたのだが、どちらもハズレ。
+今回はメーカーを変えて、GMKtec の<a href="https://www.amazon.co.jp/dp/B0F4WZ43RF">ミニPC</a>にした。23,999円。
+今回のスペックも１つ前と同じで、N150、メモリ16GB DDR4、SSD 512GB、HDMI 2.0 なのだが、
+安定感が違う。
+Windows を起動してから、グラフィックスは問題ないし、ファンはとても静か（エアコンの音の方が大きい）。
+たまたま当たりを引いただけかもしれないけど、
+前のメーカーはどうしても印象悪いし、
+GMKtec の印象は上がる。</p>
+<p>朝は５時近くに目が覚めた。
+カフェが開くまで時間があるので、ミニPCを Windows/Ubuntu のデュアルブートにセットアップする。
+おおまかな手順は以下：</p>
+<ol>
+<li>Ubuntu の ISO イメージをダウンロード
+<ul>
+<li><a href="https://ubuntu.com/download/desktop">公式サイト</a>から Ubuntu Desktop をダウンロード。</li>
+<li>Ubuntu 24.04.3 LTS にした</li>
+</ul>
+</li>
+<li>インストール用の USB メモリの作成
+<ul>
+<li><a href="https://rufus.ie/">Rufus</a>を使った。</li>
+<li>何のためにこの作業をするか、の自分の理解。PC は電源が入ると、はじめに BIOS/UEFI が動く。BIOS/UEFI はキーボードやHDDの初期化（デバイスの認識など）を行い、最後にブートローダを起動する。この BIOS/UEFI に Ubuntu 用のブートローダ (GRUB) を見つけてもらい、USB 内に配置したインストーラや Kernel から、Ubuntu をインストールするため。</li>
+<li>具体的な作業。１. パーティションの作成とフォーマット（作成したパーティションに、ファイルシステム (FAT32を選択) を構築）。２.ブートセクタの書き込み（パーティションの先頭のブートセクタにブートローダを書き込む）。3. ISO イメージの展開（Kernel本体、OSのインストーラなどを、フォーマット済みのUSBメモリのパーティション内に配置する）。</li>
+</ul>
+</li>
+<li>Windows のパーティション分割
+<ul>
+<li>もともとは Windows がストレージのすべての領域を占有しているため、Ubuntu 用の領域を確保する。</li>
+<li>Windows に 230GB、Ubuntu に 250GBを割り当てた。</li>
+</ul>
+</li>
+<li>BIOS/UEFI の設定変更
+<ul>
+<li>起動デバイスの優先順位を変更し、USB メモリを最優先させる</li>
+<li>Secure boot も disable にした方がいいとのことだったが、自分の環境ではデフォルトで disable だった。</li>
+</ul>
+</li>
+<li>Ubuntu のインストール
+<ul>
+<li>BIOS/UEFI の起動画面で &quot;Try or Install Ubuntu&quot; を選択</li>
+<li>Ubuntu のデスクトップ画面が表示され、インストールを進める。インストールの途中で、インストール種別を選択する画面が出る。&quot;Install Ubuntu alongside Windows Boot Manager&quot; を選択する。</li>
+</ul>
+</li>
+<li>デュアルブートの確認
+<ul>
+<li>再起動後 GRUB の画面で、Ubuntu と Windows Boot Manager を選択できる。それぞれ選んでみて、どちらも起動できたらオッケー。</li>
+</ul>
+</li>
+</ol>
+<p>デュアルブートができたので、とりあえずは良さそう。
+次は、Ubuntu に <a href="https://tailscale.com/">Tailscale</a> を入れて、カフェとかから遠隔アクセスできるようにしたいな。
+（昔はプロバイダから固定IPを買って、IP の払い出しとかやってたけど、今はそんな面倒はやらなくていいらしい。2025年よと）。</p>
+<h3>Tailscale</h3>
+<p>お昼。カフェから帰ってきた。Tailscale のセットアップをやってみる。
+セットアップといっても、公式サイトの手順に従うだけ。
+Mac は Mac 用のアプリをインストールし、Linux は<a href="https://tailscale.com/kb/1031/install-linux#ubuntu">インストール用のスクリプト</a>を叩くだけ。
+とてもかんたん。
+ping 応答もできて、カフェから ssh アクセスもできて、いうことなし。
+カッコいい。</p>
+<h3>systemd ターゲット</h3>
+<p>Ubuntu デスクトップをインストールしたので、デフォルトは GUI の GNONE が起動する。
+基本的にはこれでいいんだけど、サーバー用途として使いたいこともあり、
+その場合は GUI は不要で CUI モード？みたいなものが起動してくれればいい。
+調べてみると、 systemd ターゲットを切り替えればいいらしい。</p>
+<p>現在のデフォルトモードは <code>graphical.target</code> だった：</p>
+<pre><code>$ systemctl get-default
+graphical.target
+</code></pre>
+<p>一時的にGUIなしで起動するようにする：</p>
+<pre><code>$ sudo systemctl isolate multi-user.target
+</code></pre>
+<p>再起動後、CUI モードで起動した。よしよし。</p>
+<h3>土曜日</h3>
+<p>米津玄師の &quot;<a href="https://www.youtube.com/watch?v=LmZD-TU96q4">IRIS OUT</a>&quot; を聴く。
+歌詞の中で「蕩尽」という熟語があり、知らなかった。
+とうじんと読み、財産などを使い果たす、という意味らしい。
+確かにお湯が尽きてそうではある。</p>
+</div>
+	
+</body>
+</html>

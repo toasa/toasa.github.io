@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/12/01</h1>
+		<a href="../12.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>金曜日</h3>
+<p>晴れ、さっむい日。</p>
+<p>朝。公園のベンチで１hほど読書。
+&quot;Operating System Concepts&quot;.</p>
+<ul>
+<li>5.4 Thread Scheduling
+<ul>
+<li>スレッドがどのスコープで計算資源を争うか。２種類の Contention Scope:
+<ul>
+<li>Process Contention Scope(PCS): User thread が他の User thread と LWP の実行権を争う</li>
+<li>System Contention Scope(SCS): Kernel thread が他の Kernel thread と CPU Core の実行権を争う</li>
+</ul>
+</li>
+<li>PCS は N:1, N:M モデルでのみ発生する。</li>
+<li>SourcePro の Figure 16 がわかりやすい：
+<ul>
+<li><a href="https://help.perforce.com/sourcepro/current/HTML/index.html#page/SourcePro_Core/threadsug-ThreadPackage.22.118.html">https://help.perforce.com/sourcepro/current/HTML/index.html#page/SourcePro_Core/threadsug-ThreadPackage.22.118.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>5.7.2 Example: Windows Scheduling</li>
+<li>5.7.3 Example: Solaris Scheduling
+<ul>
+<li>割り当てる優先度とタイムスライスは反比例にする。この工夫は合理的に見える。</li>
+<li>例えばインタラクティブなプロセスは高優先度、CPU-bound なプロセスには低い優先度を割り当てる。よってインタラクティブなプロセスは Response time が良くなり、CPU-bound なプロセスは throughput が良くなる。</li>
+</ul>
+</li>
+</ul>
+<p>お昼。会社周辺を散歩：</p>
+<img src="https://i.imgur.com/mBIN0ZE.jpg" width="500">
+<p>終業後、井の頭公園をランニング。</p>
+<p>晩御飯は鶏胸肉とネギにいなばのカレー缶をかけたもの。</p>
+<h3>Fragments</h3>
+<p>スニーカー。限界かも。
+側面の布の部分が破れかけ。
+全く同じ型でいいのでどこかに売ってないかね。</p>
+<hr>
+<p>「ばらの花 × ネイティブダンサー」。よく晴れた寒い日に聴きたくなる：</p>
+<p><a href="https://www.youtube.com/watch?v=K7eQxgD_bp0">https://www.youtube.com/watch?v=K7eQxgD_bp0</a></p>
+<hr>
+<p>今の会社、今日で丸三年。
+クビにならず、なんとかサバイブしてます。</p>
+<h3>「いちばんすきな花」</h3>
+<p>四人それぞれが志木美鳥氏と1on1。
+四人だけでは膠着してしまった関係が、彼女の登場により動き出しそうではある。</p>
+</div>
+	
+</body>
+</html>

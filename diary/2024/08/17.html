@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2024/08/17</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>朝。武蔵野プレイスで『Linuxシステムプログラミング』のつづきを読む。
+<code>malloc()</code> がある一定サイズ以上のメモリ割り当てを行う場合、
+ヒープからではなく、無名メモリマッピングを使う。知らなかった。
+<a href="https://man7.org/linux/man-pages/man3/malloc.3.html">man malloc</a> の NOTES：</p>
+<blockquote>
+<p>Normally, malloc() allocates memory from the heap, and adjusts the size of the heap as required, using sbrk(2). When allocating blocks of memory larger than MMAP_THRESHOLD bytes, the glibc malloc() implementation allocates the memory as a private anonymous mapping using mmap(2).  MMAP_THRESHOLD is 128 kB by default, but is adjustable using mallopt(3).</p>
+</blockquote>
+<p>というか、そもそも無名メモリマッピングを知らなかった。</p>
+<img src="https://i.imgur.com/qw5uyCf.jpg" width="500">
+<p>お昼。吉祥寺にあるコストコミニ商店（何て名前だっけ？）でロティサリーチキンを買う。</p>
+<p>夜。豊洲でチキンを食べる。</p>
+</div>
+	
+</body>
+</html>

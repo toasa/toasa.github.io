@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/06/12</h1>
+		<a href="../06.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>月曜日</h3>
+<p>雨時々曇り。</p>
+<p>朝、雨なのでお家で過ごす。セブンイレブンでペットボトルのアイスコーヒーを買い、読書をした。</p>
+<p>昨日のサンダルランニングが原因なのか、
+左足前脛骨筋（ぜんけいこつきん）が張っている。
+症状的に筋肉痛と判断したが、骨などに異常がなければいいな。</p>
+<p>会社のお昼休憩では、いつも通り井の頭公園を散歩した：</p>
+<img src="https://i.imgur.com/K2JtOXp.jpg" width="500">
+<p>晩御飯は鶏もも肉とキムチを炒めたもの。</p>
+<h3>Fragments</h3>
+<p><em>Programming Rust</em> 5章 &quot;References&quot; つづき。</p>
+<ul>
+<li>Anonymous variable は使い所がよくわからない。本だとイタリック体で書かれてないので、正式用語ではないのかな。
+<ul>
+<li>サンプルコードとして以下が紹介されているのだが、これが出来て何が嬉しいのかピンときてない：</li>
+<li>
+<pre><code class="language-rust">fn factorial(n: usize) -&gt; usize {
+  (1..n+1).product()
+}
+let r = &amp;factorial(5);
+assert_eq!(r + &amp;1, 121);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><em>trait object</em> とは、あるトレイトを実装した値に対する<strong>参照</strong>のことらしい。ただ、trait object は値に対する参照だけではなく、トレイトの実装へのポインタも持つらしい（いわゆる fat pointer）。これって、C++ の vtable みたいに動的な計算でポリモーフィズムをするってことなんだろうか？だとしたらやだなあ。それともコンパイラが賢いので呼び出す関数を静的に解決してくれるんだろうか。</li>
+</ul>
+<hr>
+<p>ふるさと納税の返礼品である「さくらんぼ１kg」の出荷が完了したとメールを受けた。
+wktk（0ﾟ・∀・）</p>
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/08/16</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p>大変暑い一日。最高36度最低27度。
+思ったほど日差しは強烈ではないが、朝のランニングはやめておいた。</p>
+<p>お昼ごはんは、オートミールに<a href="https://www.inaba-foods.jp/products/detail/1622">いなばのチキンとタイカレー グリーン</a>を混ぜ、めんつゆで味を整えたもの。オートミールは和食でいうお粥のような味付けで食べると美味しい気がする。
+湯がいてプチプチした食感は麦に似ている。</p>
+<p>昼ごはんを食べ終わると、オーケーストアに晩の買い出しにでかけた。
+こういうフラットした外出には<a href="https://www.amazon.co.jp/gp/product/B0B3JDCKZ8">最近買った折りたたみ日傘</a>が活躍する。中心の棒がやや短く細いところと、取っ手がカメラのフィルムケースのような形で持ちづらいことを除けば、なかなか気に入っている。インスタント日陰。
+豚肉と玉ねぎをゲットして帰宅。</p>
+<p>業務でドキュメントを読んでると &quot;cutting edge&quot; と出会った。
+いつもどおり Google 先生に尋ねると「最先端」という意味らしい。
+カッティング・エッジ、、切り出した縁。。？
+ロックアイスみたいな氷の一端を刃物で切ったときにできる新しいエッジで、
+時間が立つと丸みをおびてエッジは無くなる、みたいなことなんだろうか。
+最先端って &quot;state of the art&quot; ともいうよね。見るばっかりで書いたことは一度もないけど。</p>
+<p>晩ごはん前に40分ほどランニング。
+日没しているが、まだまだ暑い。31度。
+帰り道に御殿山を通った。ここは夜になるとほぼ真っ暗闇の雑木林が 300m ほど続く。
+しばしば人とすれ違うが、不審者と間違えられたらかなわないので、真正面を見据えて胸をはったままずんずん歩いて帰宅した。</p>
+<p>晩ごはんは豚肉と玉ねぎの炒めものに <a href="https://knktare.com/products/?p=4">スタミナ源たれ</a>をかけた。このたれはりんごの甘味、生姜、醤油がバランス良く感じられて非常に美味しい。</p>
+<h3>SE</h3>
+<p>自分の職業を名乗るときはソフトウェア・エンジニアということにしている。
+ただ、他にも似たような職種があってシステムエンジニア、プログラマ、コーダーなどは見聞きする。
+自分でも違いはよくわかっていないし、どれでもいい気もするんだが、
+相手から SE ですかと聞かれたときは、とっさに否定してしまう。</p>
+<p>日本だと SE といえばシステムエンジニアのことで、この職種はいい噂ばかりではない。
+きつい、帰れない、給料が安いの3Kや、多重下請けの辛さなども散見される。
+幸運にもその種の辛さは経験がないので、差別化する意味でとっさに SE の肩書きを否定している気がする。
+面倒くさいやつだと思われてるかもね。</p>
+<h3>リンク</h3>
+<p><a href="https://github.com/jlevy/the-art-of-command-line#basics">The art of command line</a>でリンクの話がでてきた：</p>
+<blockquote>
+<p>ln and ln -s (learn the differences and advantages of hard versus soft links)</p>
+</blockquote>
+<p>ハードリンクはコピー元と同じ inode をもつレギュラファイルを作る。
+cp コマンドとの違いは、cp でコピーすると inode が違うレギュラファイルができる。</p>
+<p>ソフトリンク（シンボリックリンクのこと？）で作ったファイルは inode がコピー元と異なり、
+「シンボリックリンク」という特別なファイルの種類になる。
+<a href="https://qiita.com/lnznt/items/6178e1c5f066f22fe9c2">Qiita の記事</a>がわかりやすい。</p>
+<p><a href="https://github.com/mit-pdos/xv6-public/blob/xv6-rev11/sysfile.c#L117-L165">xv6 の実装</a>を確認してみた。</p>
+<blockquote>
+<p>Create the path new as a link to the same inode as old.</p>
+</blockquote>
+<p>とあるし、ここで実装されているのはハードリンクのようだ。</p>
+<p>コピー元がディレクトリの場合はリンクを<a href="https://github.com/mit-pdos/xv6-public/blob/xv6-rev11/sysfile.c#L134">作成できないみたい</a>。へぇそうなんだ、作れても良さそうな気がするけどと瞬間的に思う。</p>
+<p>そういう場合99%は自分の予想が間違っているｗ
+案の定<a href="https://askubuntu.com/a/525129">ズバリの質問と回答</a>があった。
+要約するとファイルパスの無限ループができてしまって、色々不都合だよということらしい。
+例えば以下のようにすると <code>/a/b/l/b/l/b/l/b...</code> となってしまう：</p>
+<pre><code>$ mkdir -p /a/b
+$ cd /a/b
+$ ln -d /a l
+</code></pre>
+</div>
+	
+</body>
+</html>

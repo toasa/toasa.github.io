@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/25</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>CTF 入門</h3>
+<p>以下のサイトを見つけたので、いくつか解く：</p>
+<p><a href="https://ctf.cpaw.site/index.php">https://ctf.cpaw.site/index.php</a></p>
+<ul>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=7">Q7.[Reversing] Can you execute ?</a>
+<ul>
+<li>謎のファイルが渡されて実行せよ、という問題</li>
+<li>file コマンドで調べてみると x86-64 の ELF 実行バイナリ</li>
+<li>自分の環境は Apple シリコンの mac なので直接の実行はムリ</li>
+<li>Docker コンテナで x86-64 環境を作って実行</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=8">Q8.[Misc] Can you open this file ?</a>
+<ul>
+<li>謎のファイルが渡されて開いてみよ、という問題</li>
+<li>file コマンドで調べると、&quot;Composite Document File V2 Document&quot; とのこと</li>
+<li>ググってみると Microsoft のドキュメントのフォーマット？らしい</li>
+<li>Google クラウドにアップロードして Google ドキュメントとして無事オープンでき終了</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=16">Q16.[Network+Forensic]HTTP Traffic</a>
+<ul>
+<li>pcap が与えられるので、元の Web ページを再構成する問題</li>
+<li>Wireshark の使い方のいい勉強になった。</li>
+<li>Wireshark でパケットを見てみると HTTP パケットが飛んでいるのがわかる。</li>
+<li>クライアントの URL リクエストと、サーバーからのレスポンスをもとに、Web ページを復元する。（.html 以外に、.css, .js ファイルなども返されているので、それぞれ正しいディレクトリ階層に配置してあげて、HTTP サーバーを実行すると、正解のページが見れる）。</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=18">Q18.[Forensic]leaf in forest</a>
+<ul>
+<li>1行で膨大な長さのファイルが与えられるので、ファイルの中からキーワードを探す問題</li>
+<li>ファイルの中身は、かなり重複した文字列が含まれているので sed コマンドで取り除く。</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=19">Q19.[Misc]Image!</a>
+<ul>
+<li>よくわからない zip ファイルが渡せて、フラグ文字列を見つけてという話</li>
+<li>zip を解凍すると、<a href="https://e-words.jp/w/ODF.html">Open Document</a>っぽい形式のファイルができる。オフィスソフトがあれば読み取れるんだろうか。</li>
+<li>OpenOffice をインストールしようとして、公式サイトから .dmg ファイルをダウンロードしたが、ソフトウェアを開けず：
+<ul>
+<li>
+<blockquote>
+<p>Appleは、“OpenOffice”にMacに損害を与えたり、プライバシーを侵害する可能性のあるマルウェアが含まれていないことを検証できませんでした。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=20">Q20.[Crypto]Block Cipher</a>
+<ul>
+<li>C 言語のソースコードを読みとり、適切なオプション引数を指定すれば解読できるというはなし。おもしろいです、まる。</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=21">Q21.[Reversing]reversing easy!</a>
+<ul>
+<li><code>ELF 32-bit LSB executable, Intel 80386</code> という古の実行バイナリが渡される。手元の Linux 環境で objdump -d で逆アセンブルを試したが、<code>objdump: can't use supplied machine i386</code> というエラー。アーキテクチャが古すぎるのだろう。</li>
+<li>Docker で古い環境を用意：
+<ul>
+<li><code>$ docker run -it --rm -v /Users/tym/tmp:/ctf i386/ubuntu bash</code></li>
+<li>binutils パッケージをインストール</li>
+</ul>
+</li>
+<li>とりあえず objdump で逆アセンブルはできた。</li>
+<li>アセンブリがずらずらと出る。main 関数を見てみると、スタックに文字を詰めている箇所が見つかる。ascii コードと照らし合わせて、フラグ文字列を見つけられた！模範的な解き方としてこれでいいのか、不安になる。</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=28">Q28.[Network] Can you login？</a>
+<ul>
+<li>与えられた pcap を見てみると FTP のパケットが飛んでいる。</li>
+<li>パケットを見てみると、ftp サーバーのIPアドレスはもちろん、ユーザ名とパスワードが平文で見れるw。これは楽しい。まるでハッカー。</li>
+<li>手元の環境で ftp コマンドを叩くと入ってない。今どきは sftp だよなあ。しょうがないので ftp-ssl パッケージをインストールする。</li>
+<li>ftp サーバーのIPアドレスでログイン。ユーザ名とパスワードを入れてログイン成功。</li>
+<li>sftp みたいに ls コマンドでファイル一覧を見ようとしたが、うまくいかず。どうやら ftp にはアクティブモードとパッシブモードが存在するようで、デフォルトはアクティブモードで起動するよう。パッシブモードだと ls コマンドも使えた。get で隠しファイルを取得して、フラグ文字列の取得成功。</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=23">Q23.[Reversing]またやらかした！</a>
+<ul>
+<li>printf を忘れちゃった実行バイナリを渡される。やっぱり 80386 のバイナリ。Docker で環境を用意して、逆アセンブリして、アセンブリを眺める。</li>
+<li>Q21 と同じように、main 関数の中でスタックに文字を詰めていそうな箇所が見つかる。ただそのまま ascii コードとして見ても意味不明な文字列が出てきてうまくいかない。</li>
+<li>というわけで、逆コンパイルという、実行バイナリからソースコードを復元するという謎技術(!?)を試す。<a href="https://dogbolt.org/">dogbolt</a> というオンラインのツールが使えた。（godbolt というオンラインコンパイラを文字ったサイトなんだろう。シャレが効いてる。）</li>
+<li>逆コンパイルされたコードを見てみると、単なる ascii コードではなく、暗号化のために一工夫された処理が入っているのがわかる。自分のアセンブリ力だとこりゃわからんわ。ツールさまさまです。</li>
+</ul>
+</li>
+<li><a href="https://ctf.cpaw.site/questions.php?qnum=24">Q24.[Web]Baby's SQLi - Stage 2-</a>
+<ul>
+<li>テーブルの一覧を取得するクエリを調べる。</li>
+<li>その方法は各種DBで異なるようで、問題のサイトは SQLite を使っているっぽい。<code>SELECT name FROM sqlite_master WHERE type='table';</code> でテーブル一覧を取得できた。</li>
+<li>WIP</li>
+</ul>
+</li>
+</ul>
+<p>問題の難易度が自分にとってちょうどよく、
+CTF とはなんぞやという入門ができた。
+この作者はすごい力量だな。作問力が素晴らしい。</p>
+</div>
+	
+</body>
+</html>

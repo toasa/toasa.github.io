@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/10/16</h1>
+		<a href="../10.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>午前中は家でだらだら。
+ようつべ見て、冷蔵庫の焼きそばを食べたらあっという間に時間が過ぎた。</p>
+<p>お昼から外出。
+目的地は代々木公園だったが、下北沢から歩いて行くことにした。
+吉祥寺駅から京王井の頭線の急行で下北沢へ到着。
+<a href="https://github.com/toasa/diary/blob/main/2022/09/09.md">９月の東京観光</a>以来だったので、本多劇場までの道中が懐かしかった：</p>
+<img src="https://i.imgur.com/6e2w1iY.jpg" width="500">
+<p>予定通り下北沢から代々木公園へ向かう。
+途中「東北沢」という駅を見つけた。
+右北沢じゃないと名前付けに一貫性がないけどな（それか南北沢にするか）とツッコミながら通り過ぎる。駅の入口はカッコよかった：</p>
+<img src="https://i.imgur.com/iCJ60FM.jpg" width="700">
+<p>そのまま北東に進み、県道413号線に合流した。
+富ヶ谷交差点を下北沢方面から見た図。
+雲の峰よりつづきけんという感じ：</p>
+<img src="https://i.imgur.com/EaGGVM8.jpg" width="700">
+<p>代々木公園に到着。催し物はおそらくなかったと思うが、かなりの人手で、
+大学生、家族連れ、ランナー、お年寄りなどありとあらゆる人がいた。
+来園者も多様性があったほうが面白いなと感じた。</p>
+<p>公園ではベンチに座ったり、散歩したりなどした。
+噴水の前のベンチは人気のようで、空いた席も数十秒で別の方が座っていた：</p>
+<img src="https://i.imgur.com/9xJFKWu.jpg" width="700">
+<img src="https://i.imgur.com/0yGj9S7.jpg" width="700">
+<p>入園時は日は高かったが、出るときは夕暮れだった。</p>
+<img src="https://i.imgur.com/Uzlifpz.jpg" width="700">
+<img src="https://i.imgur.com/eyf4m7Y.jpg" width="700">
+<p>帰りは公園から新宿駅まで歩き中央線に乗った。
+結構歩いたので２万歩は超えたなと思ったけど、帰宅して確認すると 16,000 ほどだった。</p>
+<h3>「コード読みの話はみんな分かってない、という雑談」</h3>
+<p>またまた有野さんの「プログラム雑談」のエピソード：</p>
+<p><a href="https://anchor.fm/karino2/episodes/114-elacdq">https://anchor.fm/karino2/episodes/114-elacdq</a></p>
+<p>以下まとめ：</p>
+<ul>
+<li>そもそもコード読みは難しい技術</li>
+<li>こうすれば読めるという方法論はない
+<ul>
+<li>例えばある関数を中まで読むか、それとも関数名や引数などのシグネチャだけを把握するか、判断する基準はなく経験としかいえない。</li>
+<li>コンパイラはあらゆるコードを「読める」けど、コードがかなり読める人でも失敗することはある。ただ読めない人よりは打率が良い。</li>
+</ul>
+</li>
+<li>コード読みの楽しさとは
+<ul>
+<li>最初は一部分から理解していき、各コンポーネントの理解が有機的につながっていき、全体像がわかる楽しみ。
+<ul>
+<li>Minesweeper や数独に近い。</li>
+</ul>
+</li>
+<li>読んでいく過程が面白いのであって、巷に出回るコードリーディングを勧めるブログポストはすでに読み終わったコードを解説しているだけなのでけしからん。</li>
+</ul>
+</li>
+<li>コード読みの上達方法
+<ul>
+<li>ドキュメント化されたノウハウはなさそう。</li>
+<li>英作文の添削のように、読み手と先生役がいて、①読む②理解した内容を伝える③フィードバックを受ける、をループすると良いのでは。</li>
+</ul>
+</li>
+</ul>
+<p>有野さんが実際に Tensorflow のコードを読む（すでに理解したコードの解説ではなく、理解する過程を紹介する）動画：</p>
+<p><a href="https://www.youtube.com/watch?v=_JB3ClT1riM">https://www.youtube.com/watch?v=_JB3ClT1riM</a></p>
+<h3>Golang の Generics は代数的データ型として使えるか？</h3>
+<p><a href="https://github.com/vishpat/lisp-rs">lisp-rs</a>を見ていて、
+やっぱり代数的データ型（ADT）を使うと処理系のコードはきれいに書けるよなあと実感した。
+Golang では 1.18 から Generics が入ったので、ADT を作れるのかと一瞬おもったけど、
+どうもできないっぽい。</p>
+<p>ググって自分が理解した範囲だと Generics の目的は、何かしらの共通するふるまい（例えば comparable など）を持つ複数の型を１つの抽象的な型にまとめることだと思う。
+ADT でやりたいのはそのように型を共通化することではなく、disjoint なまま各 variant にデータを持たせたいことなので、Generics はお門違いだった。</p>
+<p>なお Go に ADT を入れようという proposal は既に出ていて、今も open になっている：</p>
+<p><a href="https://github.com/golang/go/issues/19412">https://github.com/golang/go/issues/19412</a></p>
+<p>余談だけど ADT って別名が多い気がするなーと思って調べてみた。
+<a href="https://zenn.dev/uhyo/scraps/13760c3798d8ce">こちら</a>を参照すると４つもあった。。。：</p>
+<ul>
+<li>判別共用体 (Discriminated Union)</li>
+<li>直和型 (Disjoint Union)</li>
+<li>タグ付き共用体 (Tagged Union)</li>
+<li>代数的データ型 (ADT)</li>
+</ul>
+</div>
+	
+</body>
+</html>

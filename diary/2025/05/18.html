@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/05/18</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p>C 言語のコード断片をコンパイルしてアセンブリを見るコマンド。
+よく忘れるのでメモ：</p>
+<pre><code>tym@blue:~$ echo 'char *p = &quot;あ&quot;;' | gcc -S -x c - -o- 
+	.arch armv8-a
+	.file	&quot;&lt;stdin&gt;&quot;
+	.text
+	.global	p
+	.section	.rodata
+	.align	3
+.LC0:
+	.string	&quot;\343\201\202&quot;
+	.section	.data.rel.local,&quot;aw&quot;
+	.align	3
+	.type	p, %object
+	.size	p, 8
+p:
+	.xword	.LC0
+	.ident	&quot;GCC: (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0&quot;
+	.section	.note.GNU-stack,&quot;&quot;,@progbits
+</code></pre>
+<p>オプションの意味は：</p>
+<ul>
+<li><code>-S</code>: アセンブリを出力</li>
+<li><code>-x c</code>: 言語を指定（C言語を指定）</li>
+<li><code>-</code>: 標準入力からソースコードを指定</li>
+<li><code>-o-</code>: 結果を標準出力に表示</li>
+</ul>
+<hr>
+<p>人生に疲れています。</p>
+</div>
+	
+</body>
+</html>

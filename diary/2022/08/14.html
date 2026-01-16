@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/08/14</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>xargs</h3>
+<p><a href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a> を読んでいると、xargs コマンドが出てきた。
+仕事で必要な時には都度ググっているが、あまり手に馴染んでおらず、端的な説明もできなかった。
+<a href="https://qiita.com/knknkn1162/items/806604341508d32b160e">この記事</a> では foreach と説明されており、腑落ちした：</p>
+<blockquote>
+<p>xargsは名前こそわかりにくいものの、実体はforeachと同じ</p>
+</blockquote>
+<p>確かに関数型言語の map 関数だと思えばわかりやすい。
+<code>cmd1 | xarg cmd2</code> と書くと、<code>cmd1</code> の結果の各行に対して <code>cmd2</code> を作用させることができる。</p>
+<h3>Ctrl+w, Ctrul+u</h3>
+<p>また<a href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a>の話。
+以下のショートカットは知らなかった：</p>
+<ul>
+<li><code>Ctrl+w</code>: カーソルの直前の単語消す</li>
+<li><code>Ctrl+u</code>: カーソルから行頭まですべて消す</li>
+</ul>
+<p>こういう知らなくても困らないし、他人に聞くほどでもないが、知ってると作業が早くなる知識は、即効性があって満足度が高い。
+その他のキー割り当ては <code>man readline</code> を参照。</p>
+<h3>日曜日</h3>
+<p>午前中はのんびり、というよりぼんやり。youtube でマリオカートのラウンジ対戦を見ながら、ロティサリーチキンのもう半分を食べた。
+頭はモヤがかかった感じ。副交感神経が優位な状態なんだろう。</p>
+<p>このまま夜までだらだら行くと、自責の念に駆られるのは目にみえている。
+13 時頃に重い腰を上げ、井の頭公園へランニングに行った。
+一時間ほど走り、9500 歩ほど。</p>
+<p>ランニング後、頭は別人のようにスッキリしている。
+毎度思うのだが、走る前は体も気も重く、走った後のすっきり感は想像がつかない。
+そして走った後では、走る前のもやもや感は思い出せない。
+ランニングの間に何かが変わったのは確実なのだが、
+「交感神経が優位になったのだ」と説明を受けても、やっぱりランニング前は気が重い。
+トグルスイッチみたいに切り替えられたらよいのにね。</p>
+<p>少し昼寝して<a href="http://www.city.musashino.lg.jp/shisetsu_annai/shisetsu_bunka/community/1000619.html">けやきコミュニティセンター</a>
+に行った。
+廊下には浴衣姿にバイオリン？を持った数人が挨拶をしていた。おそらく何かしら演奏をしてその公演後の挨拶だったのだろう。
+自習室は夏休み中の学生さんが多かった。そんな環境でサボる気にもならないので、<a href="https://github.com/donnemartin/system-design-primer">System design Primer</a>を読んでた。</p>
+<h3>豆台風</h3>
+<p>台風８号は一日であっさり終わった。</p>
+<h3>RTA in Japan</h3>
+<p><a href="https://rtain.jp/">RTA in Japan</a>が開催中だった。
+いつか現場でみたいと思っていたが、ゼルダ系（ムジュラの仮面、トワイライトプリンセス）は 11 日(木)に終わってた。
+(´・ω・｀)ｼｮﾎﾞｰﾝ</p>
+<h3>REST</h3>
+<p><a href="https://misreading.chat/">Misreading Chat</a> Mukai さんの回答。
+REST でない API は、REST の何を嫌っているのかという点がわかりやすい：</p>
+<p><a href="https://qr.ae/pv5qj5">https://qr.ae/pv5qj5</a></p>
+<p>以下自分が理解した要約：</p>
+<ul>
+<li>REST full な API の場合
+<ul>
+<li>URL にリソースが割り当てられており、そこに HTTP request を送ることでリソースを操作する。</li>
+<li>操作の種類は基本的に request method で決まることになっている。</li>
+<li>GET はリソースの取得、POST はリソースの更新に使う。</li>
+</ul>
+</li>
+<li>REST でない API の場合
+<ul>
+<li>HTTP を単なるトランスポートとして使う。</li>
+<li>その理由は HTTP の仕様で決まっていることと、web API がやりたいことの間にギャップがあるため。</li>
+<li>例えば HTTP の仕様では GET request method は cache して良いことになっている。当然 cache してほしくないこともある。</li>
+<li>一方、web API がやりたいことは本質的には「request を投げると response が返ってくる」ということだけ。
+<ul>
+<li>HTTP の不要な機能は使いたくない。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

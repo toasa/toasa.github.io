@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/07/17</h1>
+		<a href="../07.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>月曜日</h3>
+<p>晴れ、あっつい日（昨日よりはマシかも）。</p>
+<p>朝、スタバに行った。
+東からの朝日が店の横窓から差し込み、結構眩しかった：</p>
+<img src="https://i.imgur.com/VGhfPG5.jpg" width="500">
+<p>お昼は吉祥寺で着物の物色など。
+帰りにSEIYU に寄り、晩飯用のうなぎを購入。</p>
+<p>晩御飯はうなぎ。美味しくはあったが、おととい食べたばかりなので、
+味覚の驚きは薄らいでいた：</p>
+<img src="https://i.imgur.com/M7vKBXw.jpg" width="700">
+<h3>Fragments</h3>
+<hr>
+<p>成田悠輔 卒業式の花向けのことば：</p>
+<p><a href="https://www.youtube.com/watch?v=bbQX89lVkj4">https://www.youtube.com/watch?v=bbQX89lVkj4</a></p>
+<p>社会で常識とされている枠組みから少しだけはみ出すことの重要さと方法を話していて面白かった。
+具体的な方法のキーワードは &quot;幼児性&quot;、&quot;異国性&quot;、&quot;武士性&quot;。</p>
+<hr>
+<p>個人的に成田悠輔ブームなので初耳学での講義も見た。</p>
+<p>年齢、性別、ライフステージもバラバラの大人が生徒として集まり、
+成田氏に質問するという企画。</p>
+<p>結婚生活で守らなければならないルールとして、成田氏が知人の言葉を引用していた：</p>
+<blockquote>
+<p>配偶者より幸せになってはいけない</p>
+</blockquote>
+<p>こういう毒気があって、だけどある種、真実っぽい言葉っていいよなー。</p>
+<hr>
+<p>アルカラス！：</p>
+<p><a href="https://www.youtube.com/watch?v=K-VmllVIOXA">https://www.youtube.com/watch?v=K-VmllVIOXA</a></p>
+<hr>
+<p>Nice guitar!</p>
+<p><a href="https://www.youtube.com/watch?v=2VV92337l7E">https://www.youtube.com/watch?v=2VV92337l7E</a></p>
+<h3>　『<a href="https://www.amazon.co.jp/%E3%82%BC%E3%83%AD%E3%81%8B%E3%82%89%E5%AD%A6%E3%81%B6Rust-%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E5%9F%BA%E7%A4%8E%E3%81%8B%E3%82%89%E7%B7%9A%E5%BD%A2%E5%9E%8B%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%BE%E3%81%A7-KS%E6%83%85%E5%A0%B1%E7%A7%91%E5%AD%A6%E5%B0%82%E9%96%80%E6%9B%B8-%E9%AB%98%E9%87%8E-%E7%A5%90%E8%BC%9D/dp/4065301955">ゼロから学ぶ Rust</a>』 のメモ</h3>
+<p>3.3 ライフタイム</p>
+<ul>
+<li>
+<blockquote>
+<p>個人的に、ライフタイム指定子が Rust で最も微妙な表記であると考えている。</p>
+</blockquote>
+</li>
+</ul>
+<p>3.4 借用</p>
+<ul>
+<li><code>&amp;</code> 借用はコピーセマンティクス、<code>&amp; mut</code> 借用はムーブセマンティクス
+<ul>
+<li>
+<pre><code class="language-rust">let a = 10;
+let b = &amp;a;
+let c = b; // コピー発生、 以降 b 使える
+</code></pre>
+</li>
+<li>
+<pre><code class="language-rust">let mut a = 10;
+let b = &amp;mut a;
+let c = b; // ムーブ発生、 以降 b は使えない
+</code></pre>
+</li>
+</ul>
+</li>
+<li>上のルールの例外の例
+<ul>
+<li><code>&amp;mut</code> 借用を関数引数にとる場合</li>
+<li>
+<pre><code class="language-rust">fn foo(x: &amp;mut i32) {
+    *x += 1;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>分配束縛が必要な例として、以下のコードがコンパイルエラーになると紹介されているが、普通に通った。コンパイラが進化したのかな。
+<ul>
+<li>
+<pre><code class="language-rust">struct XY {
+    x: Vec&lt;i32&gt;,
+    y: Vec&lt;i32&gt;,
+}
+
+let mut xy = XY {
+    x: vec![1,2,3],
+    y: Vec::new(),
+};
+
+for e in xy.x.iter() {
+    xy.y.push(*e * e); // Not compile error
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+	
+</body>
+</html>

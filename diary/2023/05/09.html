@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/05/09</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p>晴れ、暖かい日。</p>
+<p>朝。近所の公園で１hほど読書。</p>
+<p>今日は連休明けのお仕事はじめ。１０日ぶりのお仕事なので、やっぱり頭は回らない。</p>
+<p>お昼休みはいつも通り井の頭公園へ散歩。
+競技場のトラック内の芝生が柵で覆われていた。
+看板によると天然芝の張り替えを行うっぽい。
+８月下旬までこの状態とのことなので、休日の家族づれやカップルは少し困りそう：</p>
+<img src="https://i.imgur.com/cCKOzRa.jpg" width="700">
+<p>終業後、武蔵野市総合体育館のジムに行った。
+自転車を漕いでいると、館内放送のラジオからあいみょん -
+『<a href="https://www.youtube.com/watch?v=9qRCARM_LfE">愛を伝えたいだとか</a>』が流れた。
+バイク 1 h, ラン 15m, バーピー 15回x4 で終了。</p>
+<hr>
+<p>Kindle Scribe で PDF を読んでいるのだが、
+世に出回っている PDF の大半は四隅の余白がある。
+紙に印刷した場合にはメモ用のスペースとして役立つのだが、
+Kindle だと単に邪魔なのでトリミング（英語だと crop らしい）する。
+今までは <a href="https://www.adobe.com/jp/acrobat/online/crop-pdf.html">Adobe 公式サイト</a>上でオンラインでトリミングしていたが、
+もう少し細かくトリミング範囲を指定したい（例えば、偶数ページと奇数ページでレイアウトが違う場合など）。</p>
+<p>こんな動機で調べてみると Python の PyPDF2 というライブラリを見つけた。
+<a href="https://blog.shikoan.com/pdf-trimming-in-python/">このページのサンプルコード</a>を動かしてみると、うまくトリミングできた。
+ただ、問題点もある。PDF のメタ情報？としての章節項の階層構造がなくなっている。
+うーむ。。</p>
+<hr>
+<p>そういえば、ふるさと納税の返礼品のさくらんぼが届いてないことに気づいた。
+届いたメールを見返してみると６月中旬〜下旬の到着らしい。
+もうしばし待とう。</p>
+</div>
+	
+</body>
+</html>

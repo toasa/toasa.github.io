@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/03/09</h1>
+		<a href="../03.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>日曜日</h3>
+<p><a href="https://github.com/toasa/microps/commits/dev/">プロトコルスタック自作</a>。以下を実装：</p>
+<ul>
+<li>UDP用のユーザーAPI （使い方は socket(2)と同じ）</li>
+<li>TCP パケットの入力処理</li>
+</ul>
+<p><a href="https://x.com/pandax381">@pandax381</a>のスライドの4/5を完了。残り1スライドで、TCP の複雑な状態管理を実装できそう？でワクワクしている。</p>
+<p><a href="https://chadnauseam.com/coding/random/calculator-app">&quot;A calculator app? Anyone could make that.&quot;</a>
+Android の電卓アプリは、
+Boehm GC で有名な Hans-J. Boehm さんが書いてるよ、という話。
+整数は Bignum、有理数は Bignum のペア、
+実数は Recursive Real Arithmetic (RRA) を使ったとのこと。
+RRA は実数 $r$ と任意の精度 $\epsilon \gt 0$に対して、
+$|r-q| \le \epsilon $ となる $q$ を見つけられるアルゴリズムらしい。
+目的の $q$ に対して、ジグザクに近づく（近似する）イメージみたい。</p>
+<p>なんだか、人生に対するやる気がありません。ミッドエイジクライシス、早めに来たか。</p>
+</div>
+	
+</body>
+</html>

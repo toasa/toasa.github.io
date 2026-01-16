@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2022/09/30</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>金曜日</h3>
+<p>朝起きてランニング。
+井の頭公園のコースを 50 分ほど走った。
+8100歩ほど。</p>
+<p>近所の金木犀の蕾が開いていた：</p>
+<img src="https://i.imgur.com/f8rxzAf.jpg" width="500">
+<p><a href="https://github.com/toasa/diary/blob/main/2022/09/28.md#%E6%B0%B4%E6%9B%9C%E6%97%A5">水曜日</a>にはまだまだだったのが、２日経つと開きはじめるんだな。
+花びらの縁がくるんと丸まっていてかわいい。</p>
+<p>晩ごはんは鶏むね肉のてりやき。
+昨日と同様、電子レンジで調理した。
+鶏むね肉は火を通しすぎるとすぐに固くなってしまうので、
+調理時間の調整がもも肉よりシビアに感じる。</p>
+<h3>今月の歩数</h3>
+<p>|||
+|---|---|
+|歩数|368183|
+|ハートポイント|3415|</p>
+<h3>月末を判定するコマンド</h3>
+<p>この日記はシェルスクリプトでテンプレを生成しているのだが、
+月末に歩数を載せたいと思ったので、
+月末か否か判定するコマンドを調べた。
+軽くネットで調べた限りだと Linux の date コマンドで <code>-d</code> オプションを使えばできることはわかったが、macOS の date コマンドには <code>-d</code> オプションがなく、解説サイトも見当たらない。
+mac の man を読むと <code>-v</code> でいけそうとわかった。</p>
+<p>仕組みは今日の次の日が１日なら月末と判定するロジック。
+Linux と macOS でそれぞれ今日の次の日を取得するコマンドは以下：</p>
+<pre><code>Linux$ date -d '1 day'
+macOS$ date -v+1d
+</code></pre>
+<p>スクリプト全体は github にある：</p>
+<p><a href="https://github.com/toasa/scripts/blob/main/diary.sh">https://github.com/toasa/scripts/blob/main/diary.sh</a></p>
+<h3>大谷 15 勝目</h3>
+<p><a href="https://www.mlb.com/news/shohei-ohtani-takes-no-hitter-into-eighth-vs-athletics">https://www.mlb.com/news/shohei-ohtani-takes-no-hitter-into-eighth-vs-athletics</a></p>
+<p>MVP は Aaron Judge というコメントに以下の reply を見つけた：</p>
+<ul>
+<li>Judge is a most valuable player for Yankees.</li>
+<li>Ohtani is a most valuable player for Baseball.</li>
+</ul>
+<p>納得です。</p>
+<h3>2022 Korea Open</h3>
+<p>西岡 が Ruud に勝ってた。
+Ruud は ATP ランキング２位、本大会第一シードなので、むっちゃすごい：</p>
+<p><a href="https://www.youtube.com/watch?v=VPiWlZzdHNM">https://www.youtube.com/watch?v=VPiWlZzdHNM</a></p>
+<p>1:14 あたりのジャンピングバックハンドがかっこいい。</p>
+</div>
+	
+</body>
+</html>

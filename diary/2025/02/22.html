@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/02/22</h1>
+		<a href="../02.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>土曜日</h3>
+<p>朝。吉祥寺の図書館まで散歩。
+散歩は気持ちよかったが、図書館の学習室が終日貸切のため使えず。
+あら、残念。学習室が使えないとなると、他に行きたいところないんだよな。
+大勢の人がいて無数の店が賑わっているが、ほとんどの店に用がない。
+バインミーを食べて自宅に戻る。</p>
+<p>TCP/IP プロトコルスタック自作。
+昨日テストに失敗した原因は、テスト用のバイナリの実行に root 権限を忘れていたためだった。
+テストは、自作プロトコルスタック (eth/ip/icmp) を使う tun デバイスに対して、別シェルから ping を投げるもの。
+root 権限がないため <code>open(/dev/net/tun)</code> に失敗していた。
+こういう時にログのありがたみを実感する。</p>
+</div>
+	
+</body>
+</html>

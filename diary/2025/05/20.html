@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/05/20</h1>
+		<a href="../05.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>火曜日</h3>
+<p><a href="https://www.youtube.com/watch?v=_LQ6jvB7sq8">moldの並行ハッシュマップの最適化</a>。
+マルチコアCPU環境において、
+CPUキャッシュラインに起因する false sharing を緩和するためのデータ構造の最適化、という話。
+この最適化により、リンカの文字列をマージする工程が 10%~15% ほど性能が向上したとのこと。
+<a href="https://github.com/rui314/mold/commit/1a13c5076e7e3f6528a6f98201e6b2f73ccde243">該当コミット</a>。</p>
+<h4>リンカにおけるハッシュマップ</h4>
+<p>リンカとは、複数のオブジェクトファイルから１つの実行ファイルを作るソフトウェア。
+リンカの工程の１つに文字列のマージがある。
+文字列のマージとは、複数の同じ文字列を１つにまとめること。
+文字列のマージにより、複数のオブジェクトファイルに存在する同じ文字列を、実行ファイルに１つ埋め込むだけでいいので、実行ファイルのサイズの節約になる。</p>
+<p>mold リンカでは文字列のマージにハッシュマップを使用する。
+特に複数のCPUコアがハッシュマップを操作する並行ハッシュマップを使用する。</p>
+<h4>CPU キャッシュライン</h4>
+<p>CPUキャッシュラインとは、CPUがメインメモリからデータを読み書きする際の最小単位のこと。</p>
+<p>たとえば自分の M2 MacBook Air は 128 バイトだった：</p>
+<pre><code>tym@:~ $ sysctl -a | grep cacheline 
+hw.cachelinesize: 128
+</code></pre>
+<h4>False sharing</h4>
+<p><a href="https://en.wikipedia.org/wiki/False_sharing">False sharing</a> とは、マルチコアCPU環境において、複数のCPUコアが、それぞれ異なるデータを扱っているにもかかわらず、それらのデータがたまたま同じキャッシュライン上に存在するために発生するパフォーマンス低下の問題。</p>
+<p>mold の修正前の実装では、
+ハッシュマップのキーに文字列へのポインタを使用し、
+キー全体はポインタの配列で表していた。
+64bit環境だとポインタは８バイト。
+キャッシュラインが64バイトと仮定すると、
+１つのキャッシュラインに８つのキーが存在する。
+ハッシュマップは複数のCPUコアからアクセスされるため、
+False sharing が起こりうる。</p>
+<p>修正後は、ハッシュマップのデータ構造を変え、
+１つのエントリが<a href="https://github.com/rui314/mold/commit/1a13c5076e7e3f6528a6f98201e6b2f73ccde243#diff-34c932128256ee886b3a8581b5f11a1c38717aaa9d228189f1ce12e823f3207fR487">32バイトアラインされる</a>ようになった。
+そのため、１つのキャッシュライン（64バイトと仮定）に載るエントリ数が２となり、False sharing が緩和された。</p>
+</div>
+	
+</body>
+</html>

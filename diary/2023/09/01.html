@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/09/01</h1>
+		<a href="../09.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>金曜日</h3>
+<p>晴れ、暑い日。</p>
+<p>朝。近所の公園で50mほど読書。</p>
+<p>お昼休憩は三鷹中央大通りを散歩。
+雲一つない青空、いいね：</p>
+<img src="https://i.imgur.com/XJkf6hO.jpg" width="500">
+<p>終業後は井の頭公園をランニング。</p>
+<p>晩御飯は麻婆豆腐に焼いた鳥もも肉を入れたもの。</p>
+<h3>Fragments</h3>
+<p>「禅とオートバイ修理技術」をプログラマが読んだ：</p>
+<p><a href="https://kumagi.hatenablog.com/entry/Zen-and-Motorcycle-and-Programming">https://kumagi.hatenablog.com/entry/Zen-and-Motorcycle-and-Programming</a></p>
+<p>ネタバレを見たくないので、ブログタイトルだけ見て、中身は読んでいない。
+が、件の本で説かれていることは、プログラマの行動規範、職業観と親和性がありそうなのはわかる。
+早く読み終わりたい。</p>
+<hr>
+<p>String interning:</p>
+<p><a href="https://en.wikipedia.org/wiki/String_interning">https://en.wikipedia.org/wiki/String_interning</a></p>
+<p>immutable で中身が同じ文字列が複数個コードに登場する場合、
+メモリに置くのは一つだけで良いよねという最適化。
+メリットは２つ：</p>
+<ol>
+<li>メモリの節約</li>
+<li>文字列比較の高速化</li>
+</ol>
+<p>1. は当たり前。
+2. はオブジェクトのIDやアドレスの比較で文字列比較を判定できるから。</p>
+<p>intern の意味。いわゆる就活のインターンシップではなく、
+抑留するという意味らしい。
+ユニークな文字列を string intern pool に閉じ込める、というのが命名の意図かな。
+この辺の言葉の感覚がパッとわからないのが、ノンネイティブの辛いところ。
+ただ、この命名は結構上手いと思う。
+使われない文字列がランタイムで生き続けてしまう様子が、
+留置するという比喩にマッチしている：</p>
+<p><a href="https://en.wikipedia.org/wiki/String_interning#Reclaiming_unused_interned_strings">https://en.wikipedia.org/wiki/String_interning#Reclaiming_unused_interned_strings</a></p>
+<p>試しに手元の mac で試してみたが、アドレスは異なっていた：</p>
+<pre><code>$ cat main.c 
+#include &lt;stdio.h&gt;
+
+int main() {
+    const char *s1 = &quot;foo&quot;;
+    const char *s2 = &quot;foo&quot;;
+
+    printf(&quot;%p\n&quot;, &amp;s1);
+    printf(&quot;%p\n&quot;, &amp;s2);
+}
+$ gcc main.c &amp;&amp; ./a.out 
+0x16dc335f8
+0x16dc335f0
+</code></pre>
+<p>Python だと使われてるらしいが、どうなんだろ。</p>
+</div>
+	
+</body>
+</html>

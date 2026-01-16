@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2025/08/03</h1>
+		<a href="../08.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>CS631 APUE</h3>
+<p>シンプルなウェブサーバーを作る宿題：</p>
+<p><a href="https://github.com/toasa/apue-cs631/tree/main/sws">https://github.com/toasa/apue-cs631/tree/main/sws</a></p>
+<p>とりあえず、 最もシンプルなケース（GET メソッド、URL は  index.html のみ）については正常系が動いた。
+以下のようにサーバーを実行
+（ポート番号は適当）：</p>
+<pre><code>$ ./sws -p 9977
+</code></pre>
+<p>別シェルを開き、HTTP アクセスをする：</p>
+<pre><code>tym@blue:~$ curl --http1.0 -v localhost:9977
+* Host localhost:9977 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:9977...
+* connect to ::1 port 9977 from ::1 port 60862 failed: Connection refused
+*   Trying 127.0.0.1:9977...
+* Connected to localhost (127.0.0.1) port 9977
+&gt; GET / HTTP/1.0
+&gt; Host: localhost:9977
+&gt; User-Agent: curl/8.5.0
+&gt; Accept: */*
+&gt; 
+* HTTP 1.0, assume close after body
+&lt; HTTP/1.0 200 OK
+&lt; Date: Sun, 03 Aug 2025 04:11:32 GMT
+&lt; Server: sws
+&lt; Last-Modified: Sun, 03 Aug 2025 03:42:32 GMT
+&lt; Content-Type: text/html
+&lt; Content-Length: 13
+&lt; 
+Hello world!
+* Closing connection
+</code></pre>
+<p>出来ていないことは、まだいろいろとある。たとえば：</p>
+<ul>
+<li>GET 以外のメソッドをサポートする</li>
+<li>CGI をサポートする</li>
+<li>fork() していないので、複数のクライアントが接続しにきても、ひとりしか対応できない</li>
+</ul>
+<p>ただ、こういうのは動くまでは頑張ってやるんだけど、
+一度動いてしまうと、やる気を持続させるのが難しい。
+ということで、次は何をやろう。
+「作ろう！CPU」か mold のコード読みかなあ。</p>
+<h3>「禅とオートバイ修理技術」</h3>
+<p><a href="https://kumagi.hatenablog.com/entry/work-with-llm">LLM時代の仕事</a>で引用されていて、改めていいなと思ったので、こちらでも引用：</p>
+<blockquote>
+<p>たとえ困難な問題にぶつかり、試行錯誤の末、どうしてもうまくいかないことがあっても、まだ道はある。「もうだめだ。今度ばかりは何をやっても無駄だ」と思っても、理路整然とした科学的な方法がまだ残っているのである。</p>
+<p>こんなときのために必要なのが、研究ノートである。いまやっていること、過去にやったこと、そしてこれからやろうとしていること、これらをいつでも知ることができるようにいっさいもらさず書きとめておくのである。（中略）</p>
+<p>だがもし混乱するようなことが出てきたら、そのときは焦らず客観的に見直してみることが肝要である。生じた問題を一つ一つ書きとめるという行為は、混乱した頭をもとの整然とした状態に戻してやることになる。</p>
+<p>ノートはあくまで論理的な記述をする必要があるが、分類するとすれば、それは六つのカテゴリーに分けられる。</p>
+<ol>
+<li>問題点の記述</li>
+<li>原因の仮説</li>
+<li>各仮説をテストするための実験</li>
+<li>実験結果の予想</li>
+<li>実験結果</li>
+<li>実験結果から導かれた結論</li>
+</ol>
+<p>以上の六つである。これは大学や高校で研究ノートを作るやり方とまったく同じだが、その目的は、単なる見せかけの仕事を行うことではない。ここでの目的は、失敗を導きかねない誤った考え方を、正確に処理することである。</p>
+</blockquote>
+<p>新しい職場でも頑張ろう。</p>
+<h3>東亜樹 - いつも何度でも</h3>
+<p><a href="https://www.youtube.com/watch?v=szpO2_1ysC8&amp;ab_channel=MBNMUSIC">https://www.youtube.com/watch?v=szpO2_1ysC8&amp;ab_channel=MBNMUSIC</a></p>
+<p>宥められる。</p>
+</div>
+	
+</body>
+</html>

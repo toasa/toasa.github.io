@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Diary</title>
+	<style>
+		 
+		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+		img { max-width: 100%; height: auto; }  
+		a { color: #0066cc; }
+		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+	</style>
+</head>
+<body>
+	<nav><a href="/diary/index.html">Home</a></nav>
+	<hr>
+	
+		<h1>2023/11/01</h1>
+		<a href="../11.html">月一覧へ戻る</a>
+		<hr>
+		<div><h3>水曜日</h3>
+<p>晴れ、暖かい日。</p>
+<p>近所の公園で1.5hほど future 勉強＆読書。</p>
+<p>お昼休憩。会社周辺を散歩：</p>
+<img src="https://i.imgur.com/G8rJtTo.jpg" width="500">
+<p>終業後、井の頭公園を25mほどランニング。</p>
+<p>晩御飯は鶏もも肉と玉ねぎの炒め物。</p>
+<h3>Fragments</h3>
+<p>Karino2さん -
+<a href="https://www.youtube.com/watch?v=lIagzffRcLI">並列プログラムから見たFuture おまけ：周辺の話題</a></p>
+<ul>
+<li>Future とスレッドの違い
+<ul>
+<li>スレッド：共有データを複数スレッドがワイルドに変えられる可能性がある。値がいつでも変更されうることを前提にプログラミングをしないといけない。これは大半の人類には難しすぎる。</li>
+<li>Future：状態は２種類しかない。1. future の値が未定 2. 値が確定。1. の状態では触ることができず、2. の状態でのみ触れる。状態が２種類のみなので、プログラミングのメンタルモデルとしてシンプル。</li>
+</ul>
+</li>
+<li>Future の実装
+<ul>
+<li>Future/Promise に触るのは通常１スレッドのみ。なので Future/Promise の部分ではマルチスレッドのことを考えなくて良い。
+<ul>
+<li>(ギモン）これって Single Producer, Single Consumer パターンというやつでは？ Future の実装ではそれに適合したデータ構造 (SPSC Queue など) が使われるのかね？</li>
+</ul>
+</li>
+<li>Future と Promise はデータの流れを一方向にする。データを生み出す側が Promise, 消費する側が Future。</li>
+</ul>
+</li>
+</ul>
+<img src="https://i.imgur.com/KHcfmO0.jpg" width="500">
+<hr>
+<p>あとで読む</p>
+<ul>
+<li>イベントループとプロミスチェーンで学ぶJavaScriptの非同期処理
+<ul>
+<li><a href="https://zenn.dev/estra/books/js-async-promise-chain-event-loop">https://zenn.dev/estra/books/js-async-promise-chain-event-loop</a></li>
+</ul>
+</li>
+<li>folly::MPMCQueue
+<ul>
+<li><a href="https://github.com/facebook/folly/blob/main/folly/MPMCQueue.h">https://github.com/facebook/folly/blob/main/folly/MPMCQueue.h</a></li>
+</ul>
+</li>
+<li>Concurrent Queue
+<ul>
+<li><a href="https://github.com/cameron314/concurrentqueue">https://github.com/cameron314/concurrentqueue</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><a href="https://www.amazon.co.jp/gp/product/B00CSJC6Q2">耳栓の詰め合わせ</a>が届いた：</p>
+<img src="https://i.imgur.com/1MDKWNc.jpg" width="500">
+</div>
+	
+</body>
+</html>
