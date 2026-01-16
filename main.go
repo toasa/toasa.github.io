@@ -19,7 +19,6 @@ import (
 const outputDir = "public/diary"
 const dataDir = "data"
 
-// 日記データの構造体
 type DayEntry struct {
 	Year    string
 	Month   string
@@ -95,7 +94,6 @@ func main() {
 	fmt.Println("生成完了: ./public ディレクトリを確認してください")
 }
 
-// データ収集関数
 func collectEntries(root string) ([]DayEntry, error) {
 	var entries []DayEntry
 
@@ -134,7 +132,6 @@ func collectEntries(root string) ([]DayEntry, error) {
 	return entries, err
 }
 
-// 階層データ構築
 func buildTree(entries []DayEntry) map[string]map[string][]DayEntry {
 	tree := make(map[string]map[string][]DayEntry)
 	for _, e := range entries {
@@ -165,7 +162,7 @@ func renderTemplate(kind string, data interface{}) string {
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>My Diary</title>
+	<title>日記</title>
 	<style>
 		/* 簡易的なスタイル調整 */
 		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
