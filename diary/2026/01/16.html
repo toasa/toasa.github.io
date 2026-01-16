@@ -25,12 +25,14 @@
 届いてよかった。</p>
 <hr>
 <p>Github pages でブログのデプロイをしたい。N回目の挑戦。
-Go 言語で、静的なHTMLを吐くプログラムを書く。
-Github actions で、HTML 生成とデプロイのCIを作成。
+yyyy/mm/dd.md の日記マークダウンファイルから、dd.html を生成する<a href="https://github.com/toasa/toasa.github.io/blob/main/main.go">プログラム</a>を作成。
+そして、日記のレポジトリに dd.md を push したら、
+github.io のレポジトリの CI を動かすよう設定
+（<a href="https://github.com/toasa/diary/blob/main/.github/workflows/trigger.yml">トリガ用</a>、 <a href="https://github.com/toasa/toasa.github.io/blob/main/.github/workflows/deploy.yml">デプロイ用</a>）。
 なんか動いてそうな雰囲気：</p>
 <p><a href="https://toasa.github.io/diary/">https://toasa.github.io/diary/</a></p>
-<p>うまく動いてそうでいくつか眺めてみると、
-マークダウンのテーブル記法がレンダリングできてない：</p>
+<p>いくつか眺めてみると、
+マークダウンのテーブル記法がレンダリングできてない日記があった：</p>
 <p><a href="https://toasa.github.io/diary/2022/10/06.html">https://toasa.github.io/diary/2022/10/06.html</a></p>
 <p>なおさねば。</p>
 </div>
