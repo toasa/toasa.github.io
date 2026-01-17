@@ -175,18 +175,18 @@ func renderTemplate(kind string, data interface{}) string {
 	<nav><a href="/diary/index.html">Home</a></nav>
 	<hr>
 	{{if eq .Kind "index"}}
-		<h1>日記トップ</h1>
+		<h2>日記トップ</h2>
 		<ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
 	{{else if eq .Kind "year"}}
-		<h1>{{.Data.Year}}年</h1>
+		<h2>{{.Data.Year}}</h2>
 		<a href="{{.Data.UpLink}}">戻る</a>
 		<ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
 	{{else if eq .Kind "month"}}
-		<h1>{{.Data.Year}}年 {{.Data.Month}}月</h1>
+		<h2>{{.Data.Year}}/{{.Data.Month}}</h2>
 		<a href="{{.Data.UpLink}}">戻る</a>
 		<ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
 	{{else if eq .Kind "day"}}
-		<h1>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h1>
+		<h2>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h2>
 		<a href="../{{.Data.Month}}.html">月一覧へ戻る</a>
 		<hr>
 		<div>{{.Data.Content}}</div>
