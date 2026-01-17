@@ -219,6 +219,31 @@ func renderTemplate(kind string, data interface{}) string {
 			padding-left: 16px;
 			color: #555;
 		}
+        /* GitHubスタイルのテーブル設定 */
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-top: 0;
+            margin-bottom: 16px;
+            width: 100%;
+            display: block;
+            overflow: auto;
+        }
+        table th {
+            font-weight: 600;
+        }
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #d0d7de; /* 枠線 */
+        }
+        table tr {
+            background-color: #ffffff;
+            border-top: 1px solid #d8dee4;
+        }
+        /* 1行おきに背景色を変える（ゼブラ縞） */
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
 		nav { margin-bottom: 20px; }
 		/* hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; } */
 	</style>
