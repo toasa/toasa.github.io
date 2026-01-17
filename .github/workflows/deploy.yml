@@ -23,6 +23,7 @@ jobs:
         with:
           repository: toasa/diary
           path: data # プロジェクト内の 'data' フォルダに配置
+          token: ${{ secrets.PA_TOKEN }}
 
       # 3. Go のセットアップ
       - name: Setup Go
