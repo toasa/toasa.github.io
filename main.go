@@ -56,7 +56,6 @@ func main() {
 		for month, days := range months {
 			data := map[string]interface{}{
 				"Year": year, "Month": month, "Days": days,
-				"UpLink": fmt.Sprintf("../%s.html", year),
 			}
 			html := renderTemplate("month", data)
 			saveFile(filepath.Join(outputDir, year, month+".html"), html)
@@ -74,7 +73,6 @@ func main() {
 
 		data := map[string]interface{}{
 			"Year": year, "Months": monthKeys,
-			"UpLink": "index.html",
 		}
 		html := renderTemplate("year", data)
 		saveFile(filepath.Join(outputDir, year+".html"), html)
@@ -164,7 +162,6 @@ func renderTemplate(kind string, data interface{}) string {
 	<meta charset="utf-8">
 	<title>日記</title>
 	<style>
-		/* 簡易的なスタイル調整 */
 		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
 		img { max-width: 100%; height: auto; } /* 画像がはみ出さないように */
 		a { color: #0066cc; }
@@ -172,23 +169,39 @@ func renderTemplate(kind string, data interface{}) string {
 	</style>
 </head>
 <body>
-	<nav><a href="/diary/index.html">Home</a></nav>
-	<hr>
 	{{if eq .Kind "index"}}
+        <nav>
+            <a href="/diary/index.html">トップ</a>
+        </nav>
+        <hr>
 		<h2>日記トップ</h2>
 		<ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
 	{{else if eq .Kind "year"}}
+        <nav>
+            <a href="/diary/index.html">トップ</a>
+        </nav>
+        <hr>
 		<h2>{{.Data.Year}}</h2>
-		<a href="{{.Data.UpLink}}">戻る</a>
 		<ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
 	{{else if eq .Kind "month"}}
+        <nav>
+            <a href="/diary/index.html">トップ</a>
+            /
+            <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
+        </nav>
+        <hr>
 		<h2>{{.Data.Year}}/{{.Data.Month}}</h2>
-		<a href="{{.Data.UpLink}}">戻る</a>
 		<ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
 	{{else if eq .Kind "day"}}
+        <nav>
+            <a href="/diary/index.html">トップ</a>
+            /
+            <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
+            /
+            <a href="/diary/{{.Data.Year}}/{{.Data.Month}}.html">{{.Data.Month}}</a>
+        </nav>
+        <hr>
 		<h2>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h2>
-		<a href="../{{.Data.Month}}.html">月一覧へ戻る</a>
-		<hr>
 		<div>{{.Data.Content}}</div>
 	{{end}}
 </body>
