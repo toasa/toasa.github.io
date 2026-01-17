@@ -178,6 +178,7 @@ func renderTemplate(kind string, data interface{}) string {
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>日記</title>
 	<style>
 		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
