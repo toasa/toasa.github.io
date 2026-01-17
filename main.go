@@ -187,7 +187,8 @@ func renderTemplate(kind string, data interface{}) string {
 			margin: 0 auto;
 			padding: 20px;
 			line-height: 1.6;
-			color: #333;
+			/* color: #333; */
+            color: #1f2328; /* GitHub風の少し濃い黒 */
 		}
 		/* スマホなど画面が狭い時の余白調整 */
 		@media (max-width: 600px) {
@@ -195,6 +196,23 @@ func renderTemplate(kind string, data interface{}) string {
 		}
 		img { max-width: 100%; height: auto; } /* 画像がはみ出さないように */
 		a { color: #0066cc; }
+        code {
+            background-color: rgba(175, 184, 193, 0.2);
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+            overflow: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
 		blockquote {
 			border-left: 4px solid #ccc;
 			margin: 1em 0;
