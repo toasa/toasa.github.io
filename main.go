@@ -85,7 +85,25 @@ func main() {
 	}
 	sort.Strings(years)
 
-	data := map[string]interface{}{"Years": years}
+    var latestEntry *DayEntry
+	if len(entries) > 0 {
+		// 日付が新しい順にソート
+		sort.Slice(entries, func(i, j int) bool {
+			if entries[i].Year != entries[j].Year {
+				return entries[i].Year > entries[j].Year
+			}
+			if entries[i].Month != entries[j].Month {
+				return entries[i].Month > entries[j].Month
+			}
+			return entries[i].Day > entries[j].Day
+		})
+		latestEntry = &entries[0]
+	}
+
+	data := map[string]interface{}{
+        "Years": years,
+        "Latest": latestEntry,
+    }
 	html := renderTemplate("index", data)
 	saveFile(filepath.Join(outputDir, "index.html"), html)
 
@@ -170,11 +188,15 @@ func renderTemplate(kind string, data interface{}) string {
 </head>
 <body>
 	{{if eq .Kind "index"}}
-        <nav>
-            <a href="/diary/index.html">トップ</a>
-        </nav>
-        <hr>
-		<h2>日記トップ</h2>
+		<h2>日記</h2>
+        {{if .Data.Latest}}
+            <h3>最新</h3>
+			<a href="{{.Data.Latest.Year}}/{{.Data.Latest.Month}}/{{.Data.Latest.Day}}.html">
+				{{.Data.Latest.Year}}年{{.Data.Latest.Month}}月{{.Data.Latest.Day}}日
+			</a>
+		{{end}}
+
+		<h3>アーカイブ</h3>
 		<ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
 	{{else if eq .Kind "year"}}
         <nav>
