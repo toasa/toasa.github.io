@@ -193,7 +193,7 @@ func renderTemplate(kind string, data interface{}) string {
 		@media (max-width: 600px) {
 			body { padding: 15px; }
 		}
-		img { max-width: 100%; height: auto; display: block; }
+		img { max-width: 100%; height: auto; } /* 画像がはみ出さないように */
 		a { color: #0066cc; }
 		blockquote {
 			border-left: 4px solid #ccc;
