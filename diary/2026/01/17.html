@@ -12,7 +12,8 @@
 			margin: 0 auto;
 			padding: 20px;
 			line-height: 1.6;
-			color: #333;
+			 
+            color: #1f2328;  
 		}
 		 
 		@media (max-width: 600px) {
@@ -20,6 +21,23 @@
 		}
 		img { max-width: 100%; height: auto; }  
 		a { color: #0066cc; }
+        code {
+            background-color: rgba(175, 184, 193, 0.2);
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+            overflow: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
 		blockquote {
 			border-left: 4px solid #ccc;
 			margin: 1em 0;
@@ -42,22 +60,32 @@
         <hr>
 		<h2>2026/01/17</h2>
 		<div><h3>土曜日</h3>
-<p>朝。日記デプロイシステムをちょこちょこ修正。</p>
+<p>朝。<a href="https://github.com/toasa/toasa.github.io/blob/main/main.go">日記生成プログラム</a>をちょこちょこ修正。</p>
 <ul>
-<li>マークダウン記法の表をレンダリングできるようにした。（<a href="https://github.com/yuin/goldmark/blob/master/extension/gfm.go">goldmarkの Github flavored markdown 拡張</a>を使用）</li>
-<li>スマホでページを見たときに、ページを適切なサイズで表示されるようにした。（ビューポートタグ <code>&lt;meta name=&quot;viewport&quot; ... &gt;</code> を追加）</li>
 <li>最新の日記へのリンクをトップページに載せた。</li>
+<li>マークダウン記法の表をレンダリングできるようにした。（goldmarkの <a href="https://github.com/yuin/goldmark/blob/master/extension/gfm.go">Github flavored markdown 拡張</a>を使用）</li>
+<li>スマホでページを見たときに、ページを適切なサイズで表示されるようにした。（ビューポートタグ <code>&lt;meta name=&quot;viewport&quot; ... &gt;</code> を追加）</li>
+<li><code>&lt;pre&gt;</code>タグ、<code>&lt;code&gt;</code> タグの見た目を見やすくした。</li>
 </ul>
-<p>見た目がすっきりしてうれしい。</p>
+<p>なかなかいい感じ：</p>
+<p><a href="https://toasa.github.io/diary/index.html">https://toasa.github.io/diary/index.html</a></p>
+<hr>
+<p>日記の見た目をちょこちょこいじる。
+某コンサルさんの<a href="https://x.com/MOJITOmojo1/status/1947622055534526748">いうとおり</a>、
+真っ白の背景色に、真っ黒の文字だと意外と見づらい。
+なので CSS で調整してあげる必要がある。
+Github で使用される色がまとめられたので、参考にする：</p>
+<p><a href="https://primer.style/product/primitives/color/">https://primer.style/product/primitives/color/</a></p>
 <hr>
 <p>お昼。ボウリング。３ゲームやってハイスコアは80。
 思ったより悪くない。
 9ポンドのボールを使用して、これは下から３番目の重量だったけど、けっこう重く感じる。
-女性や子供もふつうに投げててすごい。o</p>
+女性や子供もふつうに投げててすごい。</p>
 <hr>
 <p>夜。冷凍うなぎをお湯で戻す。</p>
 <hr>
-<p>「<a href="https://daiwa-log.com/magazine/ohashi/newyork17/">この街に来て、今話したいこと</a>」。</p>
+<p>「<a href="https://daiwa-log.com/magazine/ohashi/newyork17/">この街に来て、今話したいこと</a>」。
+うん。心にくる。</p>
 </div>
 	
 </body>
