@@ -80,7 +80,7 @@
 <li>thread の park/unpark で thread を眠らせたり、起こしたりする。名前が面白い。
 <ul>
 <li>unpark -&gt; park の順で呼ぶと、unpark の効果は保存されており、park は block　されない。</li>
-<li>~~Single producer, Multi consumers の場合 park/unpark は使えない。producer はどの consumer に対して unpark() を呼べばいいかわからないため。~~ Thread handle に <a href="https://doc.rust-lang.org/stable/std/thread/struct.Thread.html#method.unpark">unpark() メソッド</a>があるので、producer は起こしたい consumer を選べるのでは？</li>
+<li><del>Single producer, Multi consumers の場合 park/unpark は使えない。producer はどの consumer に対して unpark() を呼べばいいかわからないため。</del> Thread handle に <a href="https://doc.rust-lang.org/stable/std/thread/struct.Thread.html#method.unpark">unpark() メソッド</a>があるので、producer は起こしたい consumer を選べるのでは？</li>
 </ul>
 </li>
 <li>Condition Variables
