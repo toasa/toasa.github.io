@@ -181,10 +181,28 @@ func renderTemplate(kind string, data interface{}) string {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>日記</title>
 	<style>
-		body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
-		img { max-width: 100%; height: auto; } /* 画像がはみ出さないように */
+        body {
+			font-family: sans-serif;
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			line-height: 1.6;
+			color: #333;
+		}
+		/* スマホなど画面が狭い時の余白調整 */
+		@media (max-width: 600px) {
+			body { padding: 15px; }
+		}
+		img { max-width: 100%; height: auto; display: block; }
 		a { color: #0066cc; }
-		blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+		blockquote {
+			border-left: 4px solid #ccc;
+			margin: 1em 0;
+			padding-left: 16px;
+			color: #555;
+		}
+		nav { margin-bottom: 20px; }
+		/* hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; } */
 	</style>
 </head>
 <body>
