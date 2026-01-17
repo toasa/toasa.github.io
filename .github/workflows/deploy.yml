@@ -7,7 +7,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read  # 日記生成プログラムの読み取り権限
+  pages: write    # Pagesへのデプロイ権限
+  id-token: write # デプロイ用の認証
 
 jobs:
   build-and-deploy:
@@ -35,11 +37,13 @@ jobs:
       - name: Generate HTML
         run: go run main.go
 
-      # 5. 生成された public フォルダを github.io として公開
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # 5. 生成されたフォルダ (public) のアップロード
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          #  gh-pages ブランチにデプロイする。
-          publish_branch: gh-pages 
+          path: ./public
+
+      # 6. デプロイの実行
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
