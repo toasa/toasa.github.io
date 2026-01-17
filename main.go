@@ -114,7 +114,7 @@ func collectEntries(root string) ([]DayEntry, error) {
 	var entries []DayEntry
 
 	md := goldmark.New(
-		goldmark.WithExtensions(extension.Linkify),      // Linkify: URLを自動でリンクにする
+		goldmark.WithExtensions(extension.GFM),          // GitHub Flavored Markdown
 		goldmark.WithRendererOptions(html.WithUnsafe()), // WithUnsafe: <img>タグなどをそのまま出力する
 	)
 
