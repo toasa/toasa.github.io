@@ -44,6 +44,31 @@
 			padding-left: 16px;
 			color: #555;
 		}
+         
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-top: 0;
+            margin-bottom: 16px;
+            width: 100%;
+            display: block;
+            overflow: auto;
+        }
+        table th {
+            font-weight: 600;
+        }
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #d0d7de;  
+        }
+        table tr {
+            background-color: #ffffff;
+            border-top: 1px solid #d8dee4;
+        }
+         
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
 		nav { margin-bottom: 20px; }
 		 
 	</style>
@@ -65,7 +90,8 @@
 <li>最新の日記へのリンクをトップページに載せた。</li>
 <li>マークダウン記法の表をレンダリングできるようにした。（goldmarkの <a href="https://github.com/yuin/goldmark/blob/master/extension/gfm.go">Github flavored markdown 拡張</a>を使用）</li>
 <li>スマホでページを見たときに、ページを適切なサイズで表示されるようにした。（ビューポートタグ <code>&lt;meta name=&quot;viewport&quot; ... &gt;</code> を追加）</li>
-<li><code>&lt;pre&gt;</code>タグ、<code>&lt;code&gt;</code> タグの見た目を見やすくした。</li>
+<li><code>&lt;pre&gt;</code>タグ、<code>&lt;code&gt;</code> タグの見た目を GitHub 風にした。</li>
+<li><code>&lt;table&gt;</code>タグの見た目を GitHub 風にした。</li>
 </ul>
 <p>なかなかいい感じ：</p>
 <p><a href="https://toasa.github.io/diary/index.html">https://toasa.github.io/diary/index.html</a></p>
