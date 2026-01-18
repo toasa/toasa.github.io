@@ -85,7 +85,7 @@ func main() {
 	}
 	sort.Strings(years)
 
-    var latestEntry *DayEntry
+	var latestEntry *DayEntry
 	if len(entries) > 0 {
 		// 日付が新しい順にソート
 		sort.Slice(entries, func(i, j int) bool {
@@ -101,9 +101,9 @@ func main() {
 	}
 
 	data := map[string]interface{}{
-        "Years": years,
-        "Latest": latestEntry,
-    }
+		"Years":  years,
+		"Latest": latestEntry,
+	}
 	html := renderTemplate("index", data)
 	saveFile(filepath.Join(outputDir, "index.html"), html)
 
@@ -132,7 +132,7 @@ func collectEntries(root string) ([]DayEntry, error) {
 
 			content, _ := os.ReadFile(path)
 			var buf bytes.Buffer
-			
+
 			// 作成したパーサー(md)を使って変換
 			if err := md.Convert(content, &buf); err != nil {
 				return err
@@ -290,14 +290,14 @@ func renderTemplate(kind string, data interface{}) string {
 	{{end}}
 </body>
 </html>`
-	
+
 	t, _ := template.New("base").Parse(tplString)
 	var buf bytes.Buffer
 	wrapper := struct {
 		Kind string
 		Data interface{}
 	}{Kind: kind, Data: data}
-	
+
 	t.Execute(&buf, wrapper)
 	return buf.String()
 }
