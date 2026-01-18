@@ -275,47 +275,43 @@ func renderTemplate(kind string, data interface{}) string {
 </head>
 
 <body>
-    {{if eq .Kind "index"}}
-    <h2>日記</h2>
-
-    {{if .Data.Latest}}
-    <h3>最新</h3>
-    <a href="{{.Data.Latest.Year}}/{{.Data.Latest.Month}}/{{.Data.Latest.Day}}.html">
-        {{.Data.Latest.Year}}年{{.Data.Latest.Month}}月{{.Data.Latest.Day}}日
-    </a>
+    {{if ne .Kind "index"}}
+        <nav>
+            <a href="/diary/index.html">トップ</a>
+            {{if eq .Kind "month"}}
+                / <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
+            {{else if eq .Kind "day"}}
+                / <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
+                / <a href="/diary/{{.Data.Year}}/{{.Data.Month}}.html">{{.Data.Month}}</a>
+            {{end}}
+        </nav>
+        <hr>
     {{end}}
-    <h3>アーカイブ</h3>
-    <ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
+
+    {{if eq .Kind "index"}}
+        <h2>日記</h2>
+
+        {{if .Data.Latest}}
+            <h3>最新</h3>
+            <a href="{{.Data.Latest.Year}}/{{.Data.Latest.Month}}/{{.Data.Latest.Day}}.html">
+                {{.Data.Latest.Year}}年{{.Data.Latest.Month}}月{{.Data.Latest.Day}}日
+            </a>
+        {{end}}
+
+        <h3>アーカイブ</h3>
+        <ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
 
     {{else if eq .Kind "year"}}
-    <nav>
-        <a href="/diary/index.html">トップ</a>
-    </nav>
-    <hr>
-    <h2>{{.Data.Year}}</h2>
-    <ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
+        <h2>{{.Data.Year}}</h2>
+        <ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
 
     {{else if eq .Kind "month"}}
-    <nav>
-        <a href="/diary/index.html">トップ</a>
-        /
-        <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
-    </nav>
-    <hr>
-    <h2>{{.Data.Year}}/{{.Data.Month}}</h2>
-    <ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
+        <h2>{{.Data.Year}}/{{.Data.Month}}</h2>
+        <ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
 
     {{else if eq .Kind "day"}}
-    <nav>
-        <a href="/diary/index.html">トップ</a>
-        /
-        <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
-        /
-        <a href="/diary/{{.Data.Year}}/{{.Data.Month}}.html">{{.Data.Month}}</a>
-    </nav>
-    <hr>
-    <h2>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h2>
-    <div>{{.Data.Content}}</div>
+        <h2>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h2>
+        <div>{{.Data.Content}}</div>
 
     {{end}}
 </body>
