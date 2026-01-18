@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"os"
 	"path/filepath"
-	"sort"
 	"time"
 
 	"github.com/yuin/goldmark"
@@ -26,6 +25,16 @@ type DayEntry struct {
 	Path    string
 }
 
+type MonthSection struct {
+	Month string
+	Days  []DayEntry
+}
+
+type YearSection struct {
+	Year   string
+	Months []*MonthSection
+}
+
 func main() {
 	// 1. データの収集
 	entries, err := collectEntries(dataDir)
@@ -40,7 +49,7 @@ func main() {
 	}
 
 	// 3. 階層構造データの作成
-	tree := buildTree(entries)
+	years := groupEntriesByDate(entries)
 
 	// 4. HTMLの生成
 
@@ -51,52 +60,29 @@ func main() {
 	}
 
 	// 4-2. 月のページ
-	for year, months := range tree {
-		for month, days := range months {
+	for _, y := range years {
+		for _, m := range y.Months {
 			data := map[string]interface{}{
-				"Year": year, "Month": month, "Days": days,
+				"Year": y.Year, "Month": m.Month, "Days": m.Days,
 			}
 			html := renderTemplate("month", data)
-			saveFile(filepath.Join(outputDir, year, month+".html"), html)
+			saveFile(filepath.Join(outputDir, y.Year, m.Month+".html"), html)
 		}
 	}
 
 	// 4-3. 年のページ
-	for year, months := range tree {
-		// 月順ソート用
-		var monthKeys []string
-		for m := range months {
-			monthKeys = append(monthKeys, m)
-		}
-		sort.Strings(monthKeys)
-
+	for _, y := range years {
 		data := map[string]interface{}{
-			"Year": year, "Months": monthKeys,
+			"Year": y.Year, "Months": y.Months,
 		}
 		html := renderTemplate("year", data)
-		saveFile(filepath.Join(outputDir, year+".html"), html)
+		saveFile(filepath.Join(outputDir, y.Year+".html"), html)
 	}
 
 	// 4-4. トップページ
-	var years []string
-	for y := range tree {
-		years = append(years, y)
-	}
-	sort.Strings(years)
-
 	var latestEntry *DayEntry
 	if len(entries) > 0 {
-		// 日付が新しい順にソート
-		sort.Slice(entries, func(i, j int) bool {
-			if entries[i].Year != entries[j].Year {
-				return entries[i].Year > entries[j].Year
-			}
-			if entries[i].Month != entries[j].Month {
-				return entries[i].Month > entries[j].Month
-			}
-			return entries[i].Day > entries[j].Day
-		})
-		latestEntry = &entries[0]
+		latestEntry = &entries[len(entries)-1]
 	}
 
 	data := map[string]interface{}{
@@ -155,22 +141,31 @@ func collectEntries(root string) ([]DayEntry, error) {
 	return entries, nil
 }
 
-func buildTree(entries []DayEntry) map[string]map[string][]DayEntry {
-	tree := make(map[string]map[string][]DayEntry)
+func groupEntriesByDate(entries []DayEntry) []*YearSection {
+	var years []*YearSection
+
 	for _, e := range entries {
-		if tree[e.Year] == nil {
-			tree[e.Year] = make(map[string][]DayEntry)
-		}
-		tree[e.Year][e.Month] = append(tree[e.Year][e.Month], e)
-	}
-	for y := range tree {
-		for m := range tree[y] {
-			sort.Slice(tree[y][m], func(i, j int) bool {
-				return tree[y][m][i].Day < tree[y][m][j].Day
+		// 年の処理: 最後の年と違う、またはまだない場合は新しい年を追加
+		if len(years) == 0 || years[len(years)-1].Year != e.Year {
+			years = append(years, &YearSection{
+				Year: e.Year,
 			})
 		}
+		currentYear := years[len(years)-1]
+
+		// 月の処理: その年の最後の月と違う、またはまだない場合は新しい月を追加
+		if len(currentYear.Months) == 0 || currentYear.Months[len(currentYear.Months)-1].Month != e.Month {
+			currentYear.Months = append(currentYear.Months, &MonthSection{
+				Month: e.Month,
+			})
+		}
+		currentMonth := currentYear.Months[len(currentYear.Months)-1]
+
+		// 日の追加
+		currentMonth.Days = append(currentMonth.Days, e)
 	}
-	return tree
+
+	return years
 }
 
 func saveFile(path string, content string) {
@@ -306,15 +301,27 @@ func renderTemplate(kind string, data interface{}) string {
         {{end}}
 
         <h3>アーカイブ</h3>
-        <ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
+        <ul>
+            {{range .Data.Years}}
+                <li><a href="{{.Year}}.html">{{.Year}}年</a></li>
+            {{end}}
+        </ul>
 
     {{else if eq .Kind "year"}}
         <h2>{{.Data.Year}}</h2>
-        <ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
+        <ul>
+            {{range .Data.Months}}
+                <li><a href="{{$.Data.Year}}/{{.Month}}.html">{{.Month}}月</a></li>
+            {{end}}
+        </ul>
 
     {{else if eq .Kind "month"}}
         <h2>{{.Data.Year}}/{{.Data.Month}}</h2>
-        <ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
+        <ul>
+            {{range .Data.Days}}
+                <li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>
+            {{end}}
+        </ul>
 
     {{else if eq .Kind "day"}}
         <h2>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h2>
