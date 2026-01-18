@@ -173,29 +173,41 @@ func saveFile(path string, content string) {
 }
 
 func renderTemplate(kind string, data interface{}) string {
-	const tplString = `
-<!DOCTYPE html>
+	const tplString = `<!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>日記</title>
-	<style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日記</title>
+    <style>
         body {
-			font-family: sans-serif;
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 20px;
-			line-height: 1.6;
-			/* color: #333; */
-            color: #1f2328; /* GitHub風の少し濃い黒 */
-		}
-		/* スマホなど画面が狭い時の余白調整 */
-		@media (max-width: 600px) {
-			body { padding: 15px; }
-		}
-		img { max-width: 100%; height: auto; } /* 画像がはみ出さないように */
-		a { color: #0066cc; }
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            /* color: #333; */
+            color: #1f2328;
+            /* GitHub風の少し濃い黒 */
+        }
+
+        /* スマホなど画面が狭い時の余白調整 */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: #0066cc;
+        }
+
         code {
             background-color: rgba(175, 184, 193, 0.2);
             padding: 0.2em 0.4em;
@@ -203,22 +215,26 @@ func renderTemplate(kind string, data interface{}) string {
             border-radius: 6px;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
         }
+
         pre {
             background-color: #f6f8fa;
             padding: 16px;
             border-radius: 6px;
             overflow: auto;
         }
+
         pre code {
             background-color: transparent;
             padding: 0;
         }
-		blockquote {
-			border-left: 4px solid #ccc;
-			margin: 1em 0;
-			padding-left: 16px;
-			color: #555;
-		}
+
+        blockquote {
+            border-left: 4px solid #ccc;
+            margin: 1em 0;
+            padding-left: 16px;
+            color: #555;
+        }
+
         /* GitHubスタイルのテーブル設定 */
         table {
             border-spacing: 0;
@@ -229,66 +245,81 @@ func renderTemplate(kind string, data interface{}) string {
             display: block;
             overflow: auto;
         }
+
         table th {
             font-weight: 600;
         }
-        table th, table td {
+
+        table th,
+        table td {
             padding: 6px 13px;
-            border: 1px solid #d0d7de; /* 枠線 */
+            border: 1px solid #d0d7de;
         }
+
         table tr {
             background-color: #ffffff;
             border-top: 1px solid #d8dee4;
         }
+
         /* 1行おきに背景色を変える（ゼブラ縞） */
         table tr:nth-child(2n) {
             background-color: #f6f8fa;
         }
-		nav { margin-bottom: 20px; }
-		/* hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; } */
-	</style>
-</head>
-<body>
-	{{if eq .Kind "index"}}
-		<h2>日記</h2>
-        {{if .Data.Latest}}
-            <h3>最新</h3>
-			<a href="{{.Data.Latest.Year}}/{{.Data.Latest.Month}}/{{.Data.Latest.Day}}.html">
-				{{.Data.Latest.Year}}年{{.Data.Latest.Month}}月{{.Data.Latest.Day}}日
-			</a>
-		{{end}}
 
-		<h3>アーカイブ</h3>
-		<ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
-	{{else if eq .Kind "year"}}
-        <nav>
-            <a href="/diary/index.html">トップ</a>
-        </nav>
-        <hr>
-		<h2>{{.Data.Year}}</h2>
-		<ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
-	{{else if eq .Kind "month"}}
-        <nav>
-            <a href="/diary/index.html">トップ</a>
-            /
-            <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
-        </nav>
-        <hr>
-		<h2>{{.Data.Year}}/{{.Data.Month}}</h2>
-		<ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
-	{{else if eq .Kind "day"}}
-        <nav>
-            <a href="/diary/index.html">トップ</a>
-            /
-            <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
-            /
-            <a href="/diary/{{.Data.Year}}/{{.Data.Month}}.html">{{.Data.Month}}</a>
-        </nav>
-        <hr>
-		<h2>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h2>
-		<div>{{.Data.Content}}</div>
-	{{end}}
+        nav {
+            margin-bottom: 20px;
+        }
+
+        /* hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; } */
+    </style>
+</head>
+
+<body>
+    {{if eq .Kind "index"}}
+    <h2>日記</h2>
+
+    {{if .Data.Latest}}
+    <h3>最新</h3>
+    <a href="{{.Data.Latest.Year}}/{{.Data.Latest.Month}}/{{.Data.Latest.Day}}.html">
+        {{.Data.Latest.Year}}年{{.Data.Latest.Month}}月{{.Data.Latest.Day}}日
+    </a>
+    {{end}}
+    <h3>アーカイブ</h3>
+    <ul>{{range .Data.Years}}<li><a href="{{.}}.html">{{.}}年</a></li>{{end}}</ul>
+
+    {{else if eq .Kind "year"}}
+    <nav>
+        <a href="/diary/index.html">トップ</a>
+    </nav>
+    <hr>
+    <h2>{{.Data.Year}}</h2>
+    <ul>{{range .Data.Months}}<li><a href="{{$.Data.Year}}/{{.}}.html">{{.}}月</a></li>{{end}}</ul>
+
+    {{else if eq .Kind "month"}}
+    <nav>
+        <a href="/diary/index.html">トップ</a>
+        /
+        <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
+    </nav>
+    <hr>
+    <h2>{{.Data.Year}}/{{.Data.Month}}</h2>
+    <ul>{{range .Data.Days}}<li><a href="{{.Month}}/{{.Day}}.html">{{.Day}}日</a></li>{{end}}</ul>
+
+    {{else if eq .Kind "day"}}
+    <nav>
+        <a href="/diary/index.html">トップ</a>
+        /
+        <a href="/diary/{{.Data.Year}}.html">{{.Data.Year}}</a>
+        /
+        <a href="/diary/{{.Data.Year}}/{{.Data.Month}}.html">{{.Data.Month}}</a>
+    </nav>
+    <hr>
+    <h2>{{.Data.Year}}/{{.Data.Month}}/{{.Data.Day}}</h2>
+    <div>{{.Data.Content}}</div>
+
+    {{end}}
 </body>
+
 </html>`
 
 	t, _ := template.New("base").Parse(tplString)
