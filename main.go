@@ -4,11 +4,10 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
-	"io/fs"
 	"os"
 	"path/filepath"
 	"sort"
-	"strings"
+	"time"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
@@ -118,34 +117,42 @@ func collectEntries(root string) ([]DayEntry, error) {
 		goldmark.WithRendererOptions(html.WithUnsafe()), // WithUnsafe: <img>タグなどをそのまま出力する
 	)
 
-	err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
+	startDate := time.Date(2022, 8, 11, 0, 0, 0, 0, time.Local)
+	today := time.Now()
+
+	for d := startDate; !d.After(today); d = d.AddDate(0, 0, 1) {
+		year := fmt.Sprintf("%04d", d.Year())
+		month := fmt.Sprintf("%02d", int(d.Month()))
+		day := fmt.Sprintf("%02d", d.Day())
+
+		path := filepath.Join(root, year, month, day+".md")
+
+		if _, err := os.Stat(path); err != nil {
+			if os.IsNotExist(err) {
+				continue // ファイルがない日はスキップ
+			}
+			return nil, err
+		}
+
+		content, err := os.ReadFile(path)
 		if err != nil {
-			return err
+			return nil, err
 		}
-		if !d.IsDir() && strings.HasSuffix(d.Name(), ".md") {
-			parts := strings.Split(filepath.ToSlash(path), "/")
-			if len(parts) < 4 {
-				return nil
-			}
-			year, month := parts[len(parts)-3], parts[len(parts)-2]
-			day := strings.TrimSuffix(parts[len(parts)-1], ".md")
 
-			content, _ := os.ReadFile(path)
-			var buf bytes.Buffer
-
-			// 作成したパーサー(md)を使って変換
-			if err := md.Convert(content, &buf); err != nil {
-				return err
-			}
-
-			entries = append(entries, DayEntry{
-				Year: year, Month: month, Day: day,
-				Content: template.HTML(buf.String()),
-			})
+		var buf bytes.Buffer
+		if err := md.Convert(content, &buf); err != nil {
+			return nil, err
 		}
-		return nil
-	})
-	return entries, err
+
+		entries = append(entries, DayEntry{
+			Year:    year,
+			Month:   month,
+			Day:     day,
+			Content: template.HTML(buf.String()),
+		})
+	}
+
+	return entries, nil
 }
 
 func buildTree(entries []DayEntry) map[string]map[string][]DayEntry {
